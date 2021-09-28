@@ -13,9 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Food Truck Finder </name>
 	<description>Software II Project Fall 2021</description>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
