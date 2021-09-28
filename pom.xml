@@ -11,15 +11,15 @@
 	<groupId>SoftwareII</groupId>
 	<artifactId>FoodTruckFinder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Food Truck Finder</name>
-	<description>Software II Project for Fall 2021</description>
+	<name>Food Truck Finder </name>
+	<description>Software II Project Fall 2021</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
