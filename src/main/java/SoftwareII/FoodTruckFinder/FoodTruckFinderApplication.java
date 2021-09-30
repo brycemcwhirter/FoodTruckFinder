@@ -14,6 +14,23 @@ public class FoodTruckFinderApplication {
 		SpringApplication.run(FoodTruckFinderApplication.class, args);
 	}
 
+	@GetMapping("/")
+	public String home(){
+		return String.format("Home Page");
+	}
+
+	@GetMapping("/dashboard")
+	public String dashboard(){
+		return String.format("Dashboard");
+	}
+
+	@GetMapping("/search")
+	public String search(){
+		return String.format("Search");
+	}
+
+
+
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
