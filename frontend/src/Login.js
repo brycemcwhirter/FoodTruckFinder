@@ -21,6 +21,7 @@ class Login extends Component {
     render() {
         return (
             <div>
+                <h1>Login Account</h1>
                 <br></br>
                 <label htmlFor="text-input">Enter Email <br></br></label>
                 <input onChange={this.handleEmail}
@@ -35,7 +36,7 @@ class Login extends Component {
                         id="password-input"
                         onChange={this.handlePassword}
                 />
-
+                <div><small className="text-muted">Don't have an account? <a href="/Register">Create Account</a></small></div>
             </div>
 
         );
