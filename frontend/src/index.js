@@ -1,17 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker';
+import RouterConfig from "./Route";
 
+/*
+This function used to directly load App.js to the root element. Now it has been modified to use the router configuration defined above.
+*/
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+ <div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+    <RouterConfig/>
+ </div>,
+  
+ document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
