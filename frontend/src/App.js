@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import avo from './avo.png';
 import './App.css';
 class App extends Component {
   
@@ -8,16 +9,13 @@ Now the App Component just acts as an entry point for other components/pages
    render() {
        return (
          <div>
+           <header2>
+           <h2>Rolling Guacamole - Home Page</h2>  
+           <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
            <header className="App-header">
-           <h2>Rolling Guacamole - Home Page</h2>
-           <div>
-             <nav>
-               <a href = "\test">Test Component</a>
-               <br/>
-               <a href = "\login">Login</a>
-             </nav>
-           </div>
+             <h4 className="center">Welcome to the Food Truck Application</h4>
            </header>
+           </header2>
          </div>
            );
    }

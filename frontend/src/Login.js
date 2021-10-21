@@ -31,16 +31,17 @@ class Login extends Component {
             <div>
             <header2>
             <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
-            <h1>Login Account</h1>
-            <form onSubmit={this.handleSubmit}>
+            <h1>Login to Account</h1>
+            <header className="App-header">
+            <form onSubmit={this.handleSubmit} className="formBackground">
                 <br></br>
                 <label htmlFor="text-input">Enter Email <br></br></label>
                 <input onChange={this.handleEmail}
-                       placeholder="email"
+                       placeholder="Email"
 
                 /><br></br>
 
-                <label htmlFor="password-input">Password <br></br></label>
+                <label htmlFor="password-input">Enter Password <br></br></label>
                 <input
                         type="password"
                         placeholder="Password"
@@ -48,9 +49,10 @@ class Login extends Component {
                         onChange={this.handlePassword}
                 />
                 <br/>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Login"/>
             </form>
-            <div><small className="text-muted">Don't have an account? <a href="/Register">Create Account</a></small></div>
+            <div><small className="text-muted">Don't have an account? <a href="/register">Create Account</a></small></div>
+            </header>
             </header2>
            </div>
            );

@@ -8,9 +8,12 @@ class About extends Component {
     render() {
         return (
             <div>
+                <header2>
+                <header className="App-header">
                 <h1>About Page</h1>
                 <p>Made by  Bryce McWhirter, Sheldon Smith, Malik Mohamedali, and Tom Pechulis</p>
-
+                </header>
+                </header2>
             </div>
 
         );

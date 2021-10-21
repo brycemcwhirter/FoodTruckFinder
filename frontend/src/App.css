@@ -3,10 +3,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /*align-items: center;
-  justify-content: center;*/
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
+  width: 50%;
 }
 
 header2 {
@@ -57,4 +56,24 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+.formBackground{
+  display: flex;
+  flex-direction: column;
+  background-color: #6fa00f;
+  border: double;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.text-muted{
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+.center{
+  text-align: center;
 }
