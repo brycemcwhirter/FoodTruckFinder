@@ -9,7 +9,7 @@ This function used to directly load App.js to the root element. Now it has been 
 */
 ReactDOM.render(
  <div>
-    <ul>
+    <ul className="navbar">
       <li><a href="/">Home</a></li>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>

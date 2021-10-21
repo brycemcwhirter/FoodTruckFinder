@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import avo from './avo.png';
+import './App.css';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -31,6 +33,8 @@ class Register extends Component {
    render() {
        return (
             <div>
+            <header2>
+            <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
             <h1>Register Page</h1>
 
             <label>Email:</label>
@@ -41,6 +45,7 @@ class Register extends Component {
             <input name = "login" type="submit"></input>
                 
             <div><small class="text-muted">Already have an account? <a href="/login">Login</a></small></div>
+            </header2>
            </div>
            );
    }

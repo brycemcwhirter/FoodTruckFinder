@@ -8,6 +8,7 @@ Now the App Component just acts as an entry point for other components/pages
    render() {
        return (
          <div>
+           <header className="App-header">
            <h2>Rolling Guacamole - Home Page</h2>
            <div>
              <nav>
@@ -16,6 +17,7 @@ Now the App Component just acts as an entry point for other components/pages
                <a href = "\login">Login</a>
              </nav>
            </div>
+           </header>
          </div>
            );
    }
