@@ -1,48 +1,35 @@
 import React, { Component } from 'react';
 import avo from './avo.png';
 import './App.css';
+import Navbar from './Navbar';
+
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
-var pass, em, username;
 class Register extends Component {
-    state = {
-        username: "",
-        email: "",
-        password: ""
-    };
 
-    handleUsername = event => {
-        this.setState({ username: event.target.value });
-        username = event.target.value;
-    };
-
-    handleEmail = event => {
-        this.setState({ email: event.target.value });
-        em = event.target.value;
-    };
-
-    handlePassword = event => {
-        this.setState({ password: event.target.value });
-        pass = event.target.value;
-    };
-
-   handleSubmit(event) {
+    handleSubmit(event) {
+       var username = document.getElementById("username").value;
+       var email = document.getElementById("email").value;
+       var password = document.getElementById("password").value;
+       var confirm_password = document.getElementById("confirm-password").value;
        var length = 0, numUpper = 0, numNumeric = 0, numSpecial = 0;
-       for (let i = 0; i < pass.length; i++){
+       for (let i = 0; i < password.length; i++){
             length++;
-            if (pass[i] >= '0' && pass[i] <= '9'){
+            if (password[i] >= '0' && password[i] <= '9'){
                 numNumeric++;
-            } else if (pass[i] >= 'A' && pass[i] <= 'Z'){
+            } else if (password[i] >= 'A' && password[i] <= 'Z'){
                 numUpper++;
-            } else if (!(pass[i].toUpperCase() != pass[i].toLowerCase())){
+            } else if (!(password[i].toUpperCase() !== password[i].toLowerCase())){
                 numSpecial++;
             }
        }
        if (length >= 6 && numUpper > 0 && numNumeric > 0 && numSpecial > 0){
-           alert("Password is valid");
+            alert("Password is valid");
+       } else if (password !== confirm_password) {
+           alert("Passwords do not match");
        } else {
-            alert("Password does not meet the requirements");
+           alert("Password does not meet the requirements");
        }
    }
 
@@ -51,27 +38,34 @@ class Register extends Component {
    render() {
        return (
             <div>
+            <Navbar/>    
             <header2>
             <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
-            <h1>Register for an Account</h1>
+            <h2>Register for an Account</h2>
             <header className="App-header">
             <form onSubmit={this.handleSubmit} className="formBackground">
                 <br></br>
                 <label htmlFor="text-input">Enter Username <br></br></label>
-                <input onChange={this.handleUsername} placeholder="Username"/>
+                <input id="username" placeholder="Username"/>
                 <br></br>
                 <label htmlFor="text-input">Enter Email <br></br></label>
-                <input onChange={this.handleEmail} placeholder="Email"/>
+                <input id="email" placeholder="Email"/>
                 <br></br>
 
                 <label htmlFor="password-input">Enter Password <br></br></label>
                 <input
                         type="password"
                         placeholder="Password"
-                        id="password-input"
-                        onChange={this.handlePassword}
+                        id="password"
                 />
                 <small className="text-muted">Password must be at least 6 characters long and contain at least one uppercase, number, and special character</small>
+                <br></br>
+                <label htmlFor="password-input">Confirm Password <br></br></label>
+                <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        id="confirm-password"/>
+            
                 <br/>
                 <input type="submit" value="Register"/>
             </form>
