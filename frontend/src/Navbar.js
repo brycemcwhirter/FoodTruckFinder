@@ -16,7 +16,7 @@ export default class AppNavbar extends Component {
   }
 
   render() {
-    return <Navbar color="dark" dark expand="md" className="navbar">
+    return <div><Navbar color="dark" dark expand="md" className="navbar">
       <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
         <Nav className="ml-auto" navbar>
           <NavItem>
@@ -32,5 +32,6 @@ export default class AppNavbar extends Component {
           </NavItem>
         </Nav>
     </Navbar>
+    </div>
   }
 }

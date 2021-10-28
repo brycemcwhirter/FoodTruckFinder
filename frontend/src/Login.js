@@ -26,17 +26,18 @@ class Login extends Component {
             <form onSubmit={this.handleSubmit} className="formBackground">
                 <br></br>
                 <label htmlFor="text-input">Enter Email <br></br></label>
-                <input id="email" placeholder="Email"/><br></br>
+                <input class="form-control" id="email" placeholder="Email"/><br></br>
 
                 <label htmlFor="password-input">Enter Password <br></br></label>
                 <input
                         type="password"
                         placeholder="Password"
-                        id="password"/>
+                        id="password"
+                        class="form-control"/>
                 <br/>
-                <input type="submit" value="Login"/>
+                <input class="btn btn-secondary" type="submit" value="Login"/>
             </form>
-            <div><small className="text-muted">Don't have an account? <a href="/register">Create Account</a></small></div>
+            <div><small className="muted">Don't have an account? <a href="/register">Create Account</a></small></div>
             </header>
             </header2>
            </div>
