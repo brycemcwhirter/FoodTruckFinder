@@ -29,6 +29,12 @@ public class FoodTruckFinderController {
         return accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
     }
 
+    //Adding a new Account
+    @PostMapping("/accounts")
+    Account newAccount(@RequestBody Account newAccount){
+        return accountRepository.save(newAccount);
+    }
+
 
 
 //    @GetMapping("/")

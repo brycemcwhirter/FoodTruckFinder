@@ -13,10 +13,10 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(AccountRepository repo){
         return args -> {
-            log.info("Adding " + repo.save(new Account("bmw", "bryce@baylor", "sweetBoy")));
-            log.info("Adding " + repo.save(new Account("tp", "ss@baylor", "sweetBoy")));
-            log.info("Adding " + repo.save(new Account("ss", "tp@baylor", "sweetBoy")));
-            log.info("Adding " + repo.save(new Account("mm", "mm@baylor", "sweetBoy")));
+            log.info("Adding " + repo.save(new Account("bmw", "bryce@baylor", "sweetBoy", AccountType.CUSTOMER)));
+            log.info("Adding " + repo.save(new Account("tp", "ss@baylor", "sweetBoy", AccountType.CUSTOMER)));
+            log.info("Adding " + repo.save(new Account("ss", "tp@baylor", "sweetBoy", AccountType.CUSTOMER)));
+            log.info("Adding " + repo.save(new Account("mm", "mm@baylor", "sweetBoy", AccountType.CUSTOMER)));
 
 
 

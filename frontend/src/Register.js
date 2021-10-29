@@ -3,18 +3,29 @@ import avo from './avo.png';
 import './App.css';
 import Navbar from './Navbar';
 
+//Establishing Global Variables for HTTP request
+
+
+
+
+
+
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
 class Register extends Component {
 
     handleSubmit(event) {
+        // establishing variables
        var username = document.getElementById("username").value;
        var email = document.getElementById("email").value;
        var password = document.getElementById("password").value;
        var confirm_password = document.getElementById("confirm-password").value;
        var accountType = document.getElementById("type").value;
        var length = 0, numUpper = 0, numNumeric = 0, numSpecial = 0;
+
+
+        // Testing if Password is Numeric, has an upper case, and a special character
        for (let i = 0; i < password.length; i++){
             length++;
             if (password[i] >= '0' && password[i] <= '9'){
@@ -25,6 +36,9 @@ class Register extends Component {
                 numSpecial++;
             }
        }
+
+
+       //Test for passwords & successfull login 
        if (length >= 6 && numUpper > 0 && numNumeric > 0 && numSpecial > 0){
             alert('Login Successful!');
        } else if (password !== confirm_password) {
@@ -32,7 +46,15 @@ class Register extends Component {
        } else {
            alert("Password does not meet the requirements");
        }
+
+
+       //Creating the post request to HTTP
+       Request.postAccount(username, email, password, accountType);
    }
+
+
+   
+
 
    componentDidMount() {
   
