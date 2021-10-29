@@ -12,33 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class FoodTruckFinderApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(FoodTruckFinderApplication.class, args);
 	}
 
-	@GetMapping("/")
-	public String home(){
-		return String.format("Home Page");
-	}
 
-	@GetMapping("/dashboard")
-	public String dashboard(){
-		return String.format("Dashboard");
-	}
-
-	@GetMapping("/search")
-	public String search(){
-		return String.format("Search");
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String addLogin(@RequestBody String s) {
-		System.out.println(s);
-		return "s";
-	}
-
-
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-	}
 }
