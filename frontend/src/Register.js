@@ -47,9 +47,36 @@ class Register extends Component {
            alert("Password does not meet the requirements");
        }
 
+    
+    
+    var newUser = new Object();
+    newUser.username = username;
+    newUser.email = email;
+    newUser.password = password;
+    newUser.accountType = accountType;
 
-       //Creating the post request to HTTP
-       Request.postAccount(username, email, password, accountType);
+
+    //Making JSON String
+    var jsonString = JSON.stringify(newUser);
+
+    console.log(jsonString);
+
+    fetch('https://localhost:8080/accounts/',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonString
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error)=> {
+        console.log("Error:", error);
+    })
+
+
    }
 
 
