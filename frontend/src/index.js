@@ -3,18 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import RouterConfig from "./Route";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 /*
 This function used to directly load App.js to the root element. Now it has been modified to use the router configuration defined above.
 */
 ReactDOM.render(
  <div>
-    <ul className="navbar">
-      <li><a href="/">Home</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/about">About</a></li>
-    </ul>
     <RouterConfig/>
  </div>,
   

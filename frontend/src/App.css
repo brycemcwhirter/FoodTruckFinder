@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-size: calc(8px + 2vmin);
+  font-size: 15px;
   color: white;
   width: 50%;
 }
@@ -34,30 +34,6 @@ header2 {
   }
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-}
-
 .formBackground{
   display: flex;
   flex-direction: column;
@@ -68,12 +44,12 @@ li a:hover {
   padding-right: 2%;
 }
 
-.text-muted{
-  color: white;
-  font-size: 14px;
-  text-align: center;
+.navbar{
+  border-bottom: ridge;
 }
 
-.center{
+.muted{
+  color: white;
+  font-size: 14px;
   text-align: center;
 }

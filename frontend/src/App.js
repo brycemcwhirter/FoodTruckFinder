@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import avo from './avo.png';
 import './App.css';
+import Navbar from './Navbar';
 class App extends Component {
   
 /*
@@ -9,6 +10,7 @@ Now the App Component just acts as an entry point for other components/pages
    render() {
        return (
          <div>
+           <Navbar/>
            <header2>
            <h2>Rolling Guacamole - Home Page</h2>  
            <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
@@ -17,7 +19,7 @@ Now the App Component just acts as an entry point for other components/pages
            </header>
            </header2>
          </div>
-           );
+      );
    }
 }
 export default App;

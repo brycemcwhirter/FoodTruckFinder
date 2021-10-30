@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-
-/*
-The form which was previously present in the App component has been moved to its own separate component.
-*/
+import Navbar from './Navbar';
+import avo from './avo.png';
+import './App.css';
 
 class About extends Component {
     render() {
         return (
             <div>
+                <Navbar/>
                 <header2>
+                <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
                 <header className="App-header">
-                <h1>About Page</h1>
+                <h2>About Page</h2>
+                <div className="formBackground">
                 <p>Made by  Bryce McWhirter, Sheldon Smith, Malik Mohamedali, and Tom Pechulis</p>
+                </div>
                 </header>
                 </header2>
             </div>
