@@ -1,9 +1,13 @@
 package SoftwareII.FoodTruckFinder.Data.Account;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.json.JSONObject;
+
 import java.util.Objects;
 
 @Entity
@@ -23,6 +27,20 @@ public class Account {
         this.email = e;
         this.password = p;
         this.type = type;
+    }
+
+    public Account(JSONObject newAccount){
+        Logger log = LoggerFactory.getLogger(Account.class);
+        this.username = newAccount.getString("username");
+        this.email = newAccount.getString("email");
+        this.password = newAccount.getString("password");
+        String t = newAccount.getString("type");
+        if (t.equals("CUSTOMER")){
+            this.type = AccountType.CUSTOMER;
+        } else {
+            this.type = AccountType.FOODTRUCKOWNER;
+        }
+        log.info(this.email + " " + this.username);
     }
 
 

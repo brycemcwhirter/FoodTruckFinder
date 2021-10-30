@@ -6,6 +6,10 @@ import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.json.JSONObject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class FoodTruckFinderController {
@@ -31,7 +35,10 @@ public class FoodTruckFinderController {
 
     //Adding a new Account
     @PostMapping("/accounts")
-    Account newAccount(@RequestBody Account newAccount){
+    Account newAccount(@RequestBody String strAccount){
+        Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
+        log.info("Adding Account");
+        Account newAccount = new Account(new JSONObject(strAccount));
         return accountRepository.save(newAccount);
     }
 

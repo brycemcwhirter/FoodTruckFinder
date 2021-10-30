@@ -18,8 +18,6 @@ public class LoadDatabase {
             log.info("Adding " + repo.save(new Account("ss", "tp@baylor", "sweetBoy", AccountType.CUSTOMER)));
             log.info("Adding " + repo.save(new Account("mm", "mm@baylor", "sweetBoy", AccountType.CUSTOMER)));
 
-
-
         };
     }
 }

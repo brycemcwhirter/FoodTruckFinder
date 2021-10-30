@@ -40,11 +40,11 @@ class Register extends Component {
 
        //Test for passwords & successfull login 
        if (length >= 6 && numUpper > 0 && numNumeric > 0 && numSpecial > 0){
-            alert('Login Successful!');
+            //alert('Login Successful!');
        } else if (password !== confirm_password) {
-           alert("Passwords do not match");
+           //alert("Passwords do not match");
        } else {
-           alert("Password does not meet the requirements");
+           //alert("Password does not meet the requirements");
        }
 
     
@@ -53,29 +53,19 @@ class Register extends Component {
     newUser.username = username;
     newUser.email = email;
     newUser.password = password;
-    newUser.accountType = accountType;
+    newUser.type = accountType;
 
 
     //Making JSON String
     var jsonString = JSON.stringify(newUser);
 
-    console.log(jsonString);
-
-    fetch('https://localhost:8080/accounts/',{
+    const requestOptions = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: jsonString
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error)=> {
-        console.log("Error:", error);
-    })
-
+    };
+    fetch('http://localhost:8080/accounts', requestOptions)
+    .then(response=>(response.json()))
 
    }
 
