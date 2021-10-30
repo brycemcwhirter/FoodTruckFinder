@@ -35,12 +35,13 @@ public class Account {
         this.email = newAccount.getString("email");
         this.password = newAccount.getString("password");
         String t = newAccount.getString("type");
-        if (t.equals("CUSTOMER")){
+        log.info(t);
+        if (t.equals("Customer")){
             this.type = AccountType.CUSTOMER;
         } else {
             this.type = AccountType.FOODTRUCKOWNER;
         }
-        log.info(this.email + " " + this.username);
+        log.info(this.email + " " + this.username + " " + this.password + " " + this.type);
     }
 
 

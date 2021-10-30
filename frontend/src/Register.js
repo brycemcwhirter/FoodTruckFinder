@@ -64,7 +64,7 @@ class Register extends Component {
         headers: { 'Content-Type': 'application/json' },
         body: jsonString
     };
-    fetch('http://localhost:8080/accounts', requestOptions)
+    fetch('accounts', requestOptions)
     .then(response=>(response.json()))
 
    }
