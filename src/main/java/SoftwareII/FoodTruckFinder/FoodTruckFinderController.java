@@ -43,7 +43,6 @@ public class FoodTruckFinderController {
     }
 
 
-
 //    @GetMapping("/")
 //    public String home(){
 //        return String.format("Home Page");

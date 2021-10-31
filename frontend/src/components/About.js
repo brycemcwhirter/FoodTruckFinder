@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
-import avo from './avo.png';
-import './App.css';
+import avo from '../images/avo.png';
+import '../App.css';
 
 class About extends Component {
     render() {

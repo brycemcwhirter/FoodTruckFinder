@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import avo from './avo.png';
-import './App.css';
+import avo from '../images/avo.png';
+import '../App.css';
 import Navbar from './Navbar';
 class App extends Component {
   

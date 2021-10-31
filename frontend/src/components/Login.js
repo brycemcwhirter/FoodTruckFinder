@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import avo from './avo.png';
-import './App.css';
+import avo from '../images/avo.png';
+import '../App.css';
 import Navbar from './Navbar';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
@@ -11,7 +11,14 @@ class Login extends Component {
    handleSubmit(event) {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-        alert(email + "\n" + password);
+
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        fetch('accounts', requestOptions)
+        .then(response=>(response.json()))
+        .then(data=> data.response)
    }
    componentDidMount() {
    }

@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import avo from './avo.png';
-import './App.css';
+import  { Redirect } from 'react-router-dom'
+import avo from '../images/avo.png';
+import '../App.css';
 import Navbar from './Navbar';
-
-//Establishing Global Variables for HTTP request
-
-
-
-
-
 
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
-class Register extends Component {
 
-    handleSubmit(event) {
+class Register extends Component {
+    state = {
+        redirect: "false"
+    }
+
+    constructor(){
+        super();
+        this.state = {redirect: "false"};
+    }
+
+    handleSubmit = (e) => {
         // establishing variables
        var username = document.getElementById("username").value;
        var email = document.getElementById("email").value;
@@ -39,46 +42,49 @@ class Register extends Component {
 
 
        //Test for passwords & successfull login 
-       if (length >= 6 && numUpper > 0 && numNumeric > 0 && numSpecial > 0){
+       if (username === "" || email === "" || password === "" || confirm_password === ""){
+           alert("You must fill in every field");
+       } else if (length >= 6 && numUpper > 0 && numNumeric > 0 && numSpecial > 0){
             //alert('Login Successful!');
+            var newUser = new Object();
+            newUser.username = username;
+            newUser.email = email;
+            newUser.password = password;
+            newUser.type = accountType;
+
+            //Making JSON String
+            var jsonString = JSON.stringify(newUser);
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: jsonString
+            };
+            fetch('accounts', requestOptions)
+            .then(() => {
+                //history.push("/login");
+                window.location.replace("/login");
+            })
+
        } else if (password !== confirm_password) {
-           //alert("Passwords do not match");
+           alert("Passwords do not match");
        } else {
-           //alert("Password does not meet the requirements");
+           alert("Password does not meet the requirements");
        }
-
-    
-    
-    var newUser = new Object();
-    newUser.username = username;
-    newUser.email = email;
-    newUser.password = password;
-    newUser.type = accountType;
-
-
-    //Making JSON String
-    var jsonString = JSON.stringify(newUser);
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: jsonString
-    };
-    fetch('accounts', requestOptions)
-    .then(response=>(response.json()))
 
    }
 
-
-   
-
-
    componentDidMount() {
-  
+    //const history = useHistory();
    }
 
    render() {
-       return (
+        const {redirect} = this.state;
+
+        if (redirect === "true"){
+            return <Redirect to="/login" />;
+        }
+        return (
             <div>
             <Navbar/> 
             <header2>
