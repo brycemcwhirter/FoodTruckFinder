@@ -4,8 +4,6 @@
   display: flex;
   flex-direction: column;
   font-size: 15px;
-  color: white;
-  width: 50%;
 }
 
 header2 {
@@ -52,4 +50,33 @@ header2 {
   color: white;
   font-size: 14px;
   text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.left{
+  align-content:flex-start;
+  width:25%;
+}
+.center{
+    width:100%;
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  background-color: #8d9b72;
+  border: outset;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.tablebg{
+  background-color: white;
+  border: groove;
 }

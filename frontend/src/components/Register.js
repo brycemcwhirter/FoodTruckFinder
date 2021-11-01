@@ -8,15 +8,8 @@ import Navbar from './Navbar';
 The form which was previously present in the App component has been moved to its own separate component.
 */
 
+var redirect = "false";
 class Register extends Component {
-    state = {
-        redirect: "false"
-    }
-
-    constructor(){
-        super();
-        this.state = {redirect: "false"};
-    }
 
     handleSubmit = (e) => {
         // establishing variables
@@ -62,9 +55,9 @@ class Register extends Component {
             };
             fetch('accounts', requestOptions)
             .then(() => {
-                //history.push("/login");
-                window.location.replace("/login");
+            
             })
+            redirect = "true";
 
        } else if (password !== confirm_password) {
            alert("Passwords do not match");
@@ -79,7 +72,6 @@ class Register extends Component {
    }
 
    render() {
-        const {redirect} = this.state;
 
         if (redirect === "true"){
             return <Redirect to="/login" />;
@@ -90,8 +82,9 @@ class Register extends Component {
             <header2>
             <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
             <h2>Register for an Account</h2>
-            <header className="App-header">
-            <form onSubmit={this.handleSubmit} className="formBackground">
+            <header className="App-header" style={{width: '50%'}}>
+            <div className="formBackground">
+            <form onSubmit={this.handleSubmit}>
                 <br></br>
                 <label>Enter Username <br></br></label>
                 <input class="form-control" id="username" placeholder="Username"/>
@@ -125,6 +118,7 @@ class Register extends Component {
                 <br/>
                 <input class="btn btn-secondary" type="submit" value="Register"/>
             </form>
+            </div>
             <div><small className="muted">Already have an account? <a href="/login">Login</a></small></div>
             </header>
             </header2>

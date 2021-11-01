@@ -3,6 +3,8 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
+import ManageAccount from './ManageAccount';
+import CustomerDashboard from './CustomerDashboard';
 import App from "./App"
 
 
@@ -18,6 +20,8 @@ Here we define the route path and its corresponding components
                <Route path="/login" component={Login}/>
                <Route path="/register" component={Register}/>
                <Route path="/about" component={About}/>
+               <Route path="/account" component={ManageAccount}/>
+               <Route path="/dashboard" component={CustomerDashboard}/>
            </Switch>
        </BrowserRouter>
    );

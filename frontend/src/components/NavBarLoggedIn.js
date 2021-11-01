@@ -18,14 +18,13 @@ export default class NavbarLoggedIn extends Component {
 
   render() {
     return (<div><Navbar color="dark" dark expand="md" className="navbar">
-    <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
+    <NavbarBrand tag={Link} to="/dashboard">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink tag={Link} to='/account'>Account</NavLink>
+      <NavItem>
+          <NavLink tag={Link} to='/dashboard'>Dashboard</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            tag={Link} to='/about'>About</NavLink>
+          <NavLink tag={Link} to='/account'>Account</NavLink>
         </NavItem>
         <NavItem>
           <NavLink

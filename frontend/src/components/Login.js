@@ -12,13 +12,14 @@ class Login extends Component {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
 
-        const requestOptions = {
+        /*const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         };
         fetch('accounts', requestOptions)
         .then(response=>(response.json()))
-        .then(data=> data.response)
+        .then(data=> data.response)*/
+
    }
    componentDidMount() {
    }
@@ -29,8 +30,9 @@ class Login extends Component {
             <header2>
             <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
             <h2>Login to Account</h2>
-            <header className="App-header">
-            <form onSubmit={this.handleSubmit} className="formBackground">
+            <header className="App-header" style={{width: '50%'}}>
+            <div className="formBackground">
+            <form onSubmit={this.handleSubmit}>
                 <br></br>
                 <label htmlFor="text-input">Enter Email <br></br></label>
                 <input class="form-control" id="email" placeholder="Email"/><br></br>
@@ -44,6 +46,7 @@ class Login extends Component {
                 <br/>
                 <input class="btn btn-secondary" type="submit" value="Login"/>
             </form>
+            </div>
             <div><small className="muted">Don't have an account? <a href="/register">Create Account</a></small></div>
             </header>
             </header2>
