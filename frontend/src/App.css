@@ -80,3 +80,7 @@ header2 {
   background-color: white;
   border: groove;
 }
+
+.checked {
+  color: orange;
+}
