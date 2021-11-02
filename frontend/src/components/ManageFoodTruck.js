@@ -5,7 +5,7 @@ import NavbarLoggedIn from './NavBarLoggedIn';
 The form which was previously present in the App component has been moved to its own separate component.
 */
 
-class AddFoodTruck extends Component {
+class ManageFoodTruck extends Component {
     
    handleSubmit(event) {
         alert("Updated");
@@ -18,7 +18,7 @@ class AddFoodTruck extends Component {
             <div>
             <NavbarLoggedIn/>
             <header2>
-            <h2>Add New Food Truck</h2>
+            <h2>Manage Food Truck</h2>
             <header className="App-header" style={{width: '60%'}}>
             <div className="formBackground"><br></br>
             <form>
@@ -43,23 +43,23 @@ class AddFoodTruck extends Component {
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" class="form-control" id="address" placeholder="1234 Main St"/>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                 <label>City</label>
-                <input type="text" class="form-control" id="city"/>
+                <input type="text" class="form-control" id="inputCity"/>
                 </div>
                 <div class="form-group col-md-4">
                 <label>State</label>
-                <select id="state" class="form-control">
+                <select id="inputState" class="form-control">
                     <option selected>Choose...</option>
                     <option>...</option>
                 </select>
                 </div>
                 <div class="form-group col-md-2">
                 <label>Zip</label>
-                <input type="text" class="form-control" id="zip"/>
+                <input type="text" class="form-control" id="inputZip"/>
                 </div>
             </div>
             <div class="form-row">
@@ -67,8 +67,13 @@ class AddFoodTruck extends Component {
                     <label>Upload Menu</label>
                     <input type="file" id="menu"/>
                 </div>
+                <div class="form-group col-md-6">
+                    <label>Change Route</label>
+                    <input type="text" class="form-control" id="inputZip"/>
+                </div>
             </div>
             <button type="submit" class="btn btn-secondary">Create</button>
+            <button type="button" class="btn btn-secondary" style={{float: "right"}}>Reset Information</button>
             </form>
             </div>
             </header>
@@ -77,4 +82,4 @@ class AddFoodTruck extends Component {
            );
    }
 }
-export default AddFoodTruck;
+export default ManageFoodTruck;
