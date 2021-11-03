@@ -44,6 +44,8 @@ public class Account {
         log.info(this.email + " " + this.username + " " + this.password + " " + this.type);
     }
 
+   
+
 
     public void setUsername(String username) {
         this.username = username;

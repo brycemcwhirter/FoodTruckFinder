@@ -33,6 +33,12 @@ public class FoodTruckFinderController {
         return accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
     }
 
+    @GetMapping("/accounts/{email}")
+    Account getAccountByEmail(@PathVariable String Email){
+        //todo how to get account by email
+        return null;
+    }
+
     //Adding a new Account
     @PostMapping("/accounts")
     Account newAccount(@RequestBody String strAccount){
@@ -43,26 +49,5 @@ public class FoodTruckFinderController {
     }
 
 
-
-//    @GetMapping("/")
-//    public String home(){
-//        return String.format("Home Page");
-//    }
-//
-//    @GetMapping("/dashboard")
-//    public String dashboard(){
-//        return String.format("Dashboard");
-//    }
-//
-//    @GetMapping("/search")
-//    public String search(){
-//        return String.format("Search");
-//    }
-//
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String addLogin(@RequestBody String s) {
-//        System.out.println(s);
-//        return "s";
-//    }
 
 }
