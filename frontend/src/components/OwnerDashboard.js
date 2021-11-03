@@ -22,7 +22,7 @@ class OwnerDashboard extends Component {
             <h2>Owner Dashboard</h2>
             <header className="App-header" style={{width: '60%'}}>
             <div className="formBackground"><br></br>
-            <div style={{textAlign: "right"}}><small className="muted">Add a Food Truck? <a href="/addtruck">Click Here</a></small></div>
+            <div style={{textAlign: "right"}}><small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small></div>
             <h4>Your Food Trucks</h4>
             <div className="tablebg" style={{color: 'black'}}>
             <table class="table table-striped">
