@@ -28,7 +28,7 @@ export default class NavbarLoggedIn extends Component {
         </NavItem>
         <NavItem>
           <NavLink
-            tag={Link} to='/logout'>Logout</NavLink>
+            tag={Link} to='/'>Logout</NavLink>
         </NavItem>
       </Nav>
   </Navbar>

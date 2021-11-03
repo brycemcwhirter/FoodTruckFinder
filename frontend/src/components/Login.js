@@ -11,16 +11,27 @@ class Login extends Component {
    handleSubmit(event) {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
+       var newUser = new Object();
+       //newUser.username = username;
+       newUser.email = email;
+       newUser.password = password;
+       //newUser.type = accountType;
 
-        /*const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        };
-        fetch('accounts', requestOptions)
-        .then(response=>(response.json()))
-        .then(data=> data.response)*/
+       var jsonString = JSON.stringify(newUser);
+        var data;
+       const requestOptions = {
+           method: 'GET',
+           headers: { 'Content-Type': 'application/json' },
+           body: jsonString
+       };
+       fetch('accounts', requestOptions)
+           .then(response => {
+                response.json()
+           }).then(data => data.response)
+       alert(data[0]);
 
    }
+
    componentDidMount() {
    }
    render() {

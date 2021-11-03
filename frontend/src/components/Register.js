@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import  { Redirect } from 'react-router-dom'
 import avo from '../images/avo.png';
 import '../App.css';
 import Navbar from './Navbar';
@@ -12,6 +11,7 @@ var redirect = "false";
 class Register extends Component {
 
     handleSubmit = (e) => {
+
         // establishing variables
        var username = document.getElementById("username").value;
        var email = document.getElementById("email").value;
@@ -55,10 +55,10 @@ class Register extends Component {
             };
             fetch('accounts', requestOptions)
             .then(() => {
-            
+
             })
             redirect = "true";
-
+            this.props.history.push('/login');
        } else if (password !== confirm_password) {
            alert("Passwords do not match");
        } else {
@@ -73,9 +73,10 @@ class Register extends Component {
 
    render() {
 
-        if (redirect === "true"){
-            return <Redirect to="/login" />;
-        }
+        //if (redirect === "true"){
+            //redirect = "false";
+            //this.props.history.push('/login');
+        //}
         return (
             <div>
             <Navbar/> 
