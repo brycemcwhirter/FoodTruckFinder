@@ -3,10 +3,17 @@ import avo from './avo.png';
 import './App.css';
 import Navbar from './Navbar';
 class App extends Component {
+
+  constructor(){
+    super();
+
+    this.state = {
+      loggedInStatus: "FALSE", 
+      user: {}
+    }
+  }
   
-/*
-Now the App Component just acts as an entry point for other components/pages
-*/
+
    render() {
        return (
          <div>

@@ -49,7 +49,7 @@ class Register extends Component {
 
     
     
-    var newUser = new Object();
+    var newUser = {};
     newUser.username = username;
     newUser.email = email;
     newUser.password = password;
