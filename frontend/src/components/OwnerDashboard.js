@@ -62,7 +62,7 @@ class OwnerDashboard extends Component {
           <td>Hours</td>
           <td>{truck.operational}</td>
           <td>
-              <Button size="sm" color="primary" tag={Link} to={"/groups/" + truck.id}>Edit</Button>
+              <button onclick="window.location.href='/page2'" class="btn btn-outline-success btn-sm">Edit</button>
           </td>
             </tr>
           });
