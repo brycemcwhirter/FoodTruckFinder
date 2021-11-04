@@ -16,6 +16,7 @@ class Login extends Component {
     handleSubmit = (event) => {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
+<<<<<<< HEAD
         const { accounts } = this.state;
         var found = false;
         for (let i = 0; i < accounts.length; i++) {
@@ -54,6 +55,33 @@ class Login extends Component {
         }
 
         return (
+=======
+       var newUser = new Object();
+       //newUser.username = username;
+       newUser.email = email;
+       newUser.password = password;
+       //newUser.type = accountType;
+
+       var jsonString = JSON.stringify(newUser);
+        var data;
+       const requestOptions = {
+           method: 'GET',
+           headers: { 'Content-Type': 'application/json' },
+           body: jsonString
+       };
+       fetch('accounts', requestOptions)
+           .then(response => {
+                response.json()
+           }).then(data => data.response)
+       alert(data[0]);
+
+   }
+
+   componentDidMount() {
+   }
+   render() {
+       return (
+>>>>>>> 22c73d6a1877d9ac9a0face84b11909393b504b8
             <div>
                 <BackgroundNotLoggedIn/>
                 <Navbar />

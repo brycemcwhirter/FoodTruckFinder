@@ -6,9 +6,37 @@ The form which was previously present in the App component has been moved to its
 */
 
 class AddFoodTruck extends Component {
-    
-   handleSubmit(event) {
-        alert("Updated");
+
+    handleSubmit = (e) => {
+        // establishing variables
+        var name = document.getElementById("name").value;
+        var type = document.getElementById("type").value;
+        var address = document.getElementById("address").value;
+        var city = document.getElementById("city").value;
+        var state = document.getElementById("state").value;
+        var zipcode = document.getElementById("zip").value;
+
+
+        var newTruck = new Object();
+        newTruck.name = name;
+        newTruck.type = type;
+        newTruck.address = address;
+        newTruck.city = city;
+        newTruck.state = state;
+        newTruck.zipcode = zipcode;
+
+        //Making JSON String
+        var jsonString = JSON.stringify(newTruck);
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: jsonString
+        };
+        fetch('foodtrucks', requestOptions)
+            .then(() => {
+            })
+        alert("Created FoodTruck " + newTruck.name);
+        this.props.history.push('/dashboard/owner');
 
    }
    componentDidMount() {
@@ -22,8 +50,9 @@ class AddFoodTruck extends Component {
             <h2>Add New Food Truck</h2>
             <header className="App-header" style={{width: '60%'}}>
             <div className="formBackground"><br></br>
-            <form>
-            <div class="form-row">
+
+                <form onSubmit={this.handleSubmit}>
+                <div class="form-row">
                 <div class="form-group col-md-6">
                 <label>Food Truck Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Name"/>
@@ -55,6 +84,9 @@ class AddFoodTruck extends Component {
                 <label>State</label>
                 <select id="state" class="form-control">
                     <option selected>Choose...</option>
+                    <option>TX</option>
+                    <option>CA</option>
+                    <option>NY</option>
                     <option>...</option>
                 </select>
                 </div>

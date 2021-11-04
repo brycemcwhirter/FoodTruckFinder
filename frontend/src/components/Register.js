@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Redirect } from 'react-router-dom'
+=======
+>>>>>>> 22c73d6a1877d9ac9a0face84b11909393b504b8
 import avo from '../images/avo.png';
 import '../App.css';
 import Navbar from './Navbar';
@@ -17,6 +20,7 @@ class Register extends Component {
     };
 
     handleSubmit = (e) => {
+
         // establishing variables
         const { accounts } = this.state;
         var username = document.getElementById("username").value;
@@ -70,6 +74,7 @@ class Register extends Component {
                 body: jsonString
             };
             fetch('accounts', requestOptions)
+<<<<<<< HEAD
                 .then(() => {
 
                 })
@@ -82,6 +87,18 @@ class Register extends Component {
         }
 
     }
+=======
+            .then(() => {
+
+            })
+            redirect = "true";
+            this.props.history.push('/login');
+       } else if (password !== confirm_password) {
+           alert("Passwords do not match");
+       } else {
+           alert("Password does not meet the requirements");
+       }
+>>>>>>> 22c73d6a1877d9ac9a0face84b11909393b504b8
 
     async componentDidMount() {
         const response = await fetch('accounts');
@@ -93,9 +110,16 @@ class Register extends Component {
 
         const { isLoading } = this.state;
 
+<<<<<<< HEAD
         if (isLoading) {
             return <p>Loading...</p>;
         }
+=======
+        //if (redirect === "true"){
+            //redirect = "false";
+            //this.props.history.push('/login');
+        //}
+>>>>>>> 22c73d6a1877d9ac9a0face84b11909393b504b8
         return (
             <div>
                 <BackgroundNotLoggedIn />
