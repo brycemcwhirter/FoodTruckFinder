@@ -9,7 +9,8 @@ class OwnerDashboard extends Component {
     state = {
         isLoading: true,
         loggedin: false,
-        currAccount: []
+        currAccount: [],
+        trucks: []
     };
 
     handleSubmit(event) {
@@ -20,14 +21,13 @@ class OwnerDashboard extends Component {
         const body = await response.json();
         const response2 = await fetch('isloggedin');
         const body2 = await response2.json();
-        this.setState({ currAccount: body, isLoading: false, loggedin: body2 });
+        const response3 = await fetch('foodtrucks');
+        const body3 = await response3.json();
+        this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
     render() {
-        const { isLoading } = this.state;
+        const { isLoading, trucks } = this.state;
 
-        /*if (loggedin){
-            this.props.history.push("/");
-        }*/
         if (isLoading) {
             return <p>Loading...</p>;
         }
@@ -56,21 +56,7 @@ class OwnerDashboard extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">Waco Chi</th>
-                                        <td>Drinks</td>
-                                        <td>123 18th Av</td>
-                                        <td>11am - 9pm</td>
-                                        <td><span class="fa fa-star checked" />
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span></td>
-                                        <td>Yes</td>
-                                        <td><form action="/managefoodtruck">
-                                            <input type="submit" value="Manage" />
-                                        </form></td>
-                                    </tr>
+                                
                                 </tbody>
                                 </table>
                             </div>

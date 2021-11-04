@@ -13,6 +13,4 @@ public class FoodTruckFinderApplication {
 
 		SpringApplication.run(FoodTruckFinderApplication.class, args);
 	}
-
-
 }
