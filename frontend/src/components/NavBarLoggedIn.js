@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 
 
 export default class NavbarLoggedIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {isOpen: false};
-    this.toggle = this.toggle.bind(this);
-  }
 
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+  logout(){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    fetch('/logout', requestOptions);
+    alert("Logging Out");
   }
 
   render() {
@@ -28,7 +26,7 @@ export default class NavbarLoggedIn extends Component {
         </NavItem>
         <NavItem>
           <NavLink
-            tag={Link} to='/logout'>Logout</NavLink>
+            onClick={this.logout} tag={Link} to='/'>Logout</NavLink>
         </NavItem>
       </Nav>
   </Navbar>

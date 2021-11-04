@@ -68,7 +68,7 @@ class Register extends Component {
    }
 
    componentDidMount() {
-    //const history = useHistory();
+     
    }
 
    render() {

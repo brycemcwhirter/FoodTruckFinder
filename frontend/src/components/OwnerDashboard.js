@@ -6,14 +6,32 @@ The form which was previously present in the App component has been moved to its
 */
 
 class OwnerDashboard extends Component {
+    state = {
+        isLoading: true,
+        loggedin: false,
+        currAccount: []
+      };
     
    handleSubmit(event) {
         alert("Updated");
-
    }
-   componentDidMount() {
+   async componentDidMount() {
+    const response = await fetch('currentaccount');
+    const body = await response.json();
+    const response2 = await fetch('isloggedin');
+    const body2 = await response2.json();
+    this.setState({ currAccount: body, isLoading: false, loggedin: body2 });
    }
    render() {
+    const {isLoading} = this.state;
+    
+        /*if (loggedin){
+            this.props.history.push("/");
+        }*/
+        if (isLoading){
+            return <p>Loading...</p>;
+        }
+        
        return (
             <div>
             <NavbarLoggedIn/>
@@ -22,7 +40,7 @@ class OwnerDashboard extends Component {
             <h2>Owner Dashboard</h2>
             <header className="App-header" style={{width: '60%'}}>
             <div className="formBackground"><br></br>
-            <div style={{textAlign: "right"}}><small className="muted">Add a Food Truck? <a href="/addtruck">Click Here</a></small></div>
+            <div style={{textAlign: "right"}}><small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small></div>
             <h4>Your Food Trucks</h4>
             <div className="tablebg" style={{color: 'black'}}>
             <table class="table table-striped">
@@ -49,7 +67,9 @@ class OwnerDashboard extends Component {
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span></td>
                 <td>Yes</td>
-                <td><button class="btn btn-outline-primary btn-sm">Edit</button></td>
+                <td><form action="/managefoodtruck">
+                    <input type="submit" value="Manage" />
+                </form></td>
                 </tr>
             </tbody>
             </table>

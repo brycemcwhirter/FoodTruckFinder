@@ -72,7 +72,7 @@ class ManageFoodTruck extends Component {
                     <input type="text" class="form-control" id="inputZip"/>
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary">Create</button>
+            <button type="submit" class="btn btn-secondary">Update</button>
             <button type="button" class="btn btn-secondary" style={{float: "right"}}>Reset Information</button>
             </form>
             </div>

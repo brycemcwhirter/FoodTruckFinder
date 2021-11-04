@@ -7,23 +7,51 @@ The form which was previously present in the App component has been moved to its
 */
 
 class Login extends Component {
+    state = {
+        isLoading: true,
+        accounts: []
+      };
     
-   handleSubmit(event) {
+    handleSubmit = (event) => {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-
-        /*const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        };
-        fetch('accounts', requestOptions)
-        .then(response=>(response.json()))
-        .then(data=> data.response)*/
-
+        const {accounts} = this.state;
+        var found = false;
+        for (let i = 0; i < accounts.length; i++){
+            if (email === accounts[i].email && password === accounts[i].password){
+                var jsonString = JSON.stringify(accounts[i]);
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: jsonString
+                };
+                fetch('setaccount', requestOptions)
+                if (accounts[i].type === 0){
+                    this.props.history.push("/dashboard/customer");
+                } else {
+                    this.props.history.push("/dashboard/owner");
+                }
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            alert("Not found");
+        }
+        
    }
-   componentDidMount() {
+   async componentDidMount() {
+        const response = await fetch('accounts');
+        const body = await response.json();
+        this.setState({ accounts: body, isLoading: false });
    }
    render() {
+        const {accounts, isLoading} = this.state;
+
+        if (isLoading) {
+            return <p>Loading...</p>;
+        }
+
        return (
             <div>
             <Navbar/>

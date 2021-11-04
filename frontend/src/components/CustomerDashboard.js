@@ -6,14 +6,32 @@ The form which was previously present in the App component has been moved to its
 */
 
 class CustomerDashboard extends Component {
-    
+    state = {
+        isLoading: true,
+        loggedin: false,
+        currAccount: []
+      };
+
    handleSubmit(event) {
         alert("Updated");
 
    }
-   componentDidMount() {
+   async componentDidMount() {
+    const response = await fetch('currentaccount');
+    const body = await response.json();
+    const response2 = await fetch('isloggedin');
+    const body2 = await response2.json();
+    this.setState({ currAccount: body, isLoading: false, loggedin: body2 });
    }
    render() {
+    const { isLoading} = this.state;
+    
+    /*if (loggedin){
+        this.props.history.push("/");
+    }*/
+    if (isLoading){
+        return <p>Loading...</p>;
+    }
        return (
             <div>
             <NavbarLoggedIn/>

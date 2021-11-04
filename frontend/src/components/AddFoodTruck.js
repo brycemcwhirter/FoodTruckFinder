@@ -13,6 +13,7 @@ class AddFoodTruck extends Component {
    }
    componentDidMount() {
    }
+
    render() {
        return (
             <div>
