@@ -12,14 +12,16 @@ import java.util.Collection;
 @RestController
 public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
+    Logger log = LoggerFactory.getLogger(FoodTruckController.class);
 
     FoodTruckController(FoodTruckRepository foodTruckRepository){
         this.foodTruckRepository = foodTruckRepository;
     }
 
     //Getting all the Items in the Repo
-    @GetMapping("/foodtrucks")
-    Collection<FoodTruck> all(){
+    @GetMapping("/allfoodtrucks")
+    List<FoodTruck> all(){
+        log.info("Number in DB: " + foodTruckRepository.count());
         return foodTruckRepository.findAll();
     }
 
