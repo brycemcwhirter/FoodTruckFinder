@@ -1,16 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap");
+
+
+
 .App-header {
-  background-color: #a4b63b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: 15px;
-  color: white;
-  width: 50%;
+  background-color: #6fa00f;
+
 }
 
+.App-logo{
+  z-index: 100;
+}
+
+
+.overlay{
+  background: rgba(111, 160, 15, .2);
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
+.color-overlay{
+  height: 100%;
+  width: 100%;
+  background: #6fa00f;
+  opacity: .5;
+  position: absolute;
+}
+
+h1{
+  z-index: 12;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.nav-item{
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.navbar-brand{
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+
+
 header2 {
-  background-color: #a4b63b;
   min-height: 100vh;
+  background-color: #6fa00f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +62,9 @@ header2 {
   /*font-size: calc(10px + 2vmin); */
   color: white;
 }
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -46,10 +93,46 @@ header2 {
 
 .navbar{
   border-bottom: ridge;
+  background-color: #8FCF13;
 }
+
+
 
 .muted{
   color: white;
   font-size: 14px;
   text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.left{
+  align-content:flex-start;
+  width:25%;
+}
+.center{
+    width:100%;
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  background-color: #82857c;
+  border: outset;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.tablebg{
+  background-color: white;
+  border: groove;
+}
+
+.checked {
+  color: orange;
 }
