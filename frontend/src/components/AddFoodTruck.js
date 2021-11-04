@@ -16,7 +16,10 @@ class AddFoodTruck extends Component {
         var state = document.getElementById("state").value;
         var zipcode = document.getElementById("zip").value;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
         var newTruck = new Object();
         newTruck.name = name;
         newTruck.type = type;
@@ -35,13 +38,16 @@ class AddFoodTruck extends Component {
         fetch('foodtrucks', requestOptions)
             .then(() => {
             })
+<<<<<<< HEAD
         alert("Created FoodTruck " + newTruck.name);
+=======
+        alert("Created FoodTruck: " + newTruck.name);
+>>>>>>> main
         this.props.history.push('/dashboard/owner');
 
    }
    componentDidMount() {
    }
-
    render() {
        return (
             <div>

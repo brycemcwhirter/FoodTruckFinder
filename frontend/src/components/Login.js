@@ -27,7 +27,7 @@ class Login extends Component {
                     body: jsonString
                 };
                 fetch('setaccount', requestOptions)
-                if (accounts[i].type === 0) {
+                if (accounts[i].type === 'CUSTOMER') {
                     this.props.history.push("/dashboard/customer");
                 } else {
                     this.props.history.push("/dashboard/owner");
