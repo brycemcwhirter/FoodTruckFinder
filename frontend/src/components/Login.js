@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import avo from '../images/avo.png';
 import '../App.css';
 import Navbar from './Navbar';
+import BackgroundNotLoggedIn from './BackgroundNotLoggedIn';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -54,6 +55,7 @@ class Login extends Component {
 
         return (
             <div>
+                <BackgroundNotLoggedIn/>
                 <Navbar />
                 <header2>
                     <img src={avo} className="App-logo" alt="avo" width="200" height="190" />

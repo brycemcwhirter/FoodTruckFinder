@@ -1,14 +1,46 @@
 .App-header {
-  background-color: #a4b63b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: 15px;
+  background-color: #6fa00f;
+
 }
 
+.App-logo{
+  z-index: 100;
+}
+
+
+.overlay{
+  background: rgba(111, 160, 15, .2);
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+}
+
+.color-overlay{
+  height: 100%;
+  width: 100%;
+  background: #6fa00f;
+  opacity: .5;
+  position: absolute;
+}
+
+h1{
+  z-index: 12;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
 header2 {
-  background-color: #a4b63b;
   min-height: 100vh;
+  background-color: #6fa00f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +48,9 @@ header2 {
   /*font-size: calc(10px + 2vmin); */
   color: white;
 }
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
