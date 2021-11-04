@@ -15,8 +15,9 @@ Now the App Component just acts as an entry point for other components/pages
            <BackgroundNotLoggedIn/>
            <Navbar/>
            <div className="overlay">
-            <h1>Rolling Guacamole</h1>  
-            <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
+            <h1>R</h1>  
+            <img src={avo} className="App-logo" alt="avo" width="50" height="47.5" />
+            <h1>lling Guacamole</h1>
             <div className="color-overlay"></div>
            </div>
          </div>
