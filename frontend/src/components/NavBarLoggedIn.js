@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default class NavbarLoggedIn extends Component {
 
-  logout(){
+  logout() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -16,9 +16,9 @@ export default class NavbarLoggedIn extends Component {
 
   render() {
     return (<div><Navbar color="dark" dark expand="md" className="navbar">
-    <NavbarBrand tag={Link} to="/dashboard/customer">Home</NavbarBrand>
+      <NavbarBrand tag={Link} to="/dashboard/customer">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
-      <NavItem>
+        <NavItem>
           <NavLink tag={Link} to='/dashboard/customer'>Dashboard</NavLink>
         </NavItem>
         <NavItem>
@@ -29,7 +29,7 @@ export default class NavbarLoggedIn extends Component {
             onClick={this.logout} tag={Link} to='/'>Logout</NavLink>
         </NavItem>
       </Nav>
-  </Navbar>
-  </div>)
+    </Navbar>
+    </div>)
   }
 }
