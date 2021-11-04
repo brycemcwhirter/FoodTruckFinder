@@ -13,7 +13,7 @@ class About extends Component {
                 <header className="App-header">
                 <h2>About Page</h2>
                 <div className="formBackground">
-                <p>Made by  Bryce McWhirter, Sheldon Smith, Malik Mohamedali, and Tom Pechulis</p>
+                <p>Made by<br></br>Bryce McWhirter, Sheldon Smith, Malik Mohamedali, and Tom Pechulis</p>
                 </div>
                 </header>
                 </header2>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import avo from '../images/avo.png';
 import '../App.css';
 import Navbar from './Navbar';
+import BackgroundNotLoggedIn from './BackgroundNotLoggedIn';
+
 class App extends Component {
   
 /*
@@ -10,14 +12,14 @@ Now the App Component just acts as an entry point for other components/pages
    render() {
        return (
          <div>
+           <BackgroundNotLoggedIn/>
            <Navbar/>
-           <header2>
-           <h2>Rolling Guacamole - Home Page</h2>  
-           <img src={avo} className="App-logo" alt="avo" width="200" height="190" />
-           <header className="App-header">
-             <h4 className="center">Welcome to the Food Truck Application</h4>
-           </header>
-           </header2>
+           <div className="overlay">
+            <h1>R</h1>  
+            <img src={avo} className="App-logo" alt="avo" width="50" height="47.5" />
+            <h1>lling Guacamole</h1>
+            <div className="color-overlay"></div>
+           </div>
          </div>
       );
    }
