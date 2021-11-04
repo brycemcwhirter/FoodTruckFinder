@@ -28,22 +28,26 @@ class OwnerDashboard extends Component {
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
 
-    foodTruckTable(){
-        const { trucks } = this.state;
-        for (let i = 0; i < trucks.length; i++){
-            return (<tr key={trucks[i].id}>
-          <td>{trucks[i].name}</td>
-          <td>{trucks[i].type}</td>
-          <td>{trucks[i].address}</td>
-          <td>Hours</td>
-          <td>{trucks[i].rating}</td>
-          <td>{trucks[i].operational}</td>
-          <td>
-              <Button size="sm" color="primary" tag={Link} to={"/groups/" + trucks[i].id}>Edit</Button>
-          </td>
-        </tr>)
+      truckRating(truck){
+        if (truck.rating > 0){
+            for (let i = 0; i < truck.rating; i++){
+                return <span class="fa fa-star checked"></span>
+            }
+            for (let i = truck.rating; i < 5; i++){
+                return <span class="fa fa-star"></span>
+            }
+        } else {
+            return <div>Not Yet Rated</div>
         }
-      }
+    };
+
+    truckOperating(truck){
+        if (truck.operational == 0){
+            return <div>Not Currently Operating</div>
+        } else {
+            return <div>Operational</div>
+        }
+    };
 
     render() {
         const { isLoading, trucks } = this.state;
@@ -55,14 +59,12 @@ class OwnerDashboard extends Component {
         const truckList = trucks.map(truck => {
             return <tr key={truck.id}>
               <td>{truck.name}</td>
-              <td>{truck.address}</td>
               <td>{truck.type}</td>
-          <td>{truck.address}</td>
-          <td>{truck.rating}</td>
-          <td>Hours</td>
-          <td>{truck.operational}</td>
+              <td>{truck.address}  {truck.city}, {truck.state}</td>
+          <td>{this.truckRating(truck)}</td>
+          <td>{this.truckOperating(truck)}</td>
           <td>
-              <button onclick="window.location.href='/page2'" class="btn btn-outline-success btn-sm">Edit</button>
+              <button class="btn btn-outline-success btn-sm" tag={Link} to={"/managefoodtruck/" + truck.id}>Edit</button>
           </td>
             </tr>
           });
@@ -84,7 +86,6 @@ class OwnerDashboard extends Component {
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Address</th>
-                                        <th scope="col">Hours</th>
                                         <th scope="col">Rating</th>
                                         <th scope="col">Operating</th>
                                         <th scope="col">Edit</th>

@@ -73,7 +73,7 @@ class Register extends Component {
                 .then(() => {
 
                 })
-            redirect = "true";
+            this.props.history.push("/login");
 
         } else if (password !== confirm_password) {
             alert("Passwords do not match");
