@@ -1,37 +1,39 @@
 import React, { Component } from 'react';
 import '../App.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
+import {Map, GoogleApiWrapper, Marker} from "google-maps-react";
+
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
-
+const mapStyles={
+    width:'50%',
+    height: '50%'
+};
 class CustomerDashboard extends Component {
     state = {
-        isLoading: true,
-        loggedin: false,
-        currAccount: []
-      };
+        stores: [{lat: 31.548, lng: -97.125},
+            {latitude: 31.546, longitude: -97.120},
+            {latitude: 31.551, longitude: -97.118}]
+    }
 
    handleSubmit(event) {
         alert("Updated");
 
    }
-   async componentDidMount() {
-    const response = await fetch('currentaccount');
-    const body = await response.json();
-    const response2 = await fetch('isloggedin');
-    const body2 = await response2.json();
-    this.setState({ currAccount: body, isLoading: false, loggedin: body2 });
+   componentDidMount() {
    }
+   displayMarkers = () => {
+       return this.state.stores.map((store, index) => {
+           return <Marker key={index} id={index} position={{
+               lat: store.latitude,
+               lng: store.longitude
+           }}
+                          onClick={() => console.log("You clicked me!")} />
+       })
+   }
+
    render() {
-    const { isLoading} = this.state;
-    
-    /*if (loggedin){
-        this.props.history.push("/");
-    }*/
-    if (isLoading){
-        return <p>Loading...</p>;
-    }
        return (
             <div>
             <NavbarLoggedIn/>
@@ -94,6 +96,16 @@ class CustomerDashboard extends Component {
             </tbody>
             </table></div>
             </div>
+                <div>
+                    <Map
+                        google={this.props.google}
+                        zoom={14}
+                        style={mapStyles}
+                        initialCenter={{lat: 31.548, lng: -97.125}}
+                    >
+                        {this.displayMarkers()}
+                    </Map>
+                </div>
             </header>
             </div>
             </div>
@@ -102,4 +114,6 @@ class CustomerDashboard extends Component {
            );
    }
 }
-export default CustomerDashboard;
+export default GoogleApiWrapper({
+    apiKey:('AIzaSyD6WCgqYOmICfM4d29CP4_LN65Wk-Q-k-A')
+})(CustomerDashboard);

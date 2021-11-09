@@ -44,7 +44,6 @@ public class FoodTruck {
     public FoodTruck(JSONObject newFoodTruck){
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
-        //this.type = newFoodTruck.getString("type");
         String t = newFoodTruck.getString("type");
         this.address = newFoodTruck.getString("address");
         this.city = newFoodTruck.getString("city");
@@ -54,6 +53,7 @@ public class FoodTruck {
         this.rating = -1;
         this.operational = true;
         this.username = "";
+        log.info("String: " + t);
 
         log.info(this.name + " " + this.type + " " + this.address);
     }

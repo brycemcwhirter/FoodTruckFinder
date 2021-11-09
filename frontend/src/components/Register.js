@@ -17,6 +17,7 @@ class Register extends Component {
     };
 
     handleSubmit = (e) => {
+
         // establishing variables
         const { accounts } = this.state;
         var username = document.getElementById("username").value;
@@ -73,7 +74,7 @@ class Register extends Component {
                 .then(() => {
 
                 })
-            redirect = "true";
+            this.props.history.push("/login");
 
         } else if (password !== confirm_password) {
             alert("Passwords do not match");

@@ -18,6 +18,9 @@ class Login extends Component {
         var password = document.getElementById("password").value;
         const { accounts } = this.state;
         var found = false;
+
+
+        
         for (let i = 0; i < accounts.length; i++) {
             if (email === accounts[i].email && password === accounts[i].password) {
                 var jsonString = JSON.stringify(accounts[i]);
@@ -36,16 +39,27 @@ class Login extends Component {
                 break;
             }
         }
+        
         if (!found) {
             alert("Not found");
+            found = false;
         }
 
+        
+
     }
+
+
+
     async componentDidMount() {
         const response = await fetch('accounts');
         const body = await response.json();
         this.setState({ accounts: body, isLoading: false });
     }
+
+
+
+
     render() {
         const { isLoading } = this.state;
 
