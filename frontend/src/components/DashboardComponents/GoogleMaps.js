@@ -21,22 +21,22 @@ class GoogleMaps extends Component{
                 lat: store.latitude,
                 lng: store.longitude
             }}
-                           onClick={() => console.log("You clicked me!")} />
+            onClick={() => console.log("You clicked me!")} />
         })
     }
 
     render(){
         return(
             <div>
-                    <Map
-                        google={this.props.google}
-                        zoom={14}
-                        style={mapStyles}
-                        initialCenter={{lat: 31.548, lng: -97.125}}
-                    >
-                        {this.displayMarkers()}
-                    </Map>
-                </div>
+                <Map
+                    google={this.props.google}
+                    zoom={14}
+                    style={mapStyles}
+                    initialCenter={{lat: 31.548, lng: -97.125}}
+                >
+                    {this.displayMarkers()}
+                </Map>
+            </div>
         )
     }
 }

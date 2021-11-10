@@ -18,8 +18,9 @@ class CustomerDashboard extends Component {
 
    handleSubmit(event) {
         alert("Updated");
-
    }
+
+   
    componentDidMount() {
    }
    
@@ -28,24 +29,18 @@ class CustomerDashboard extends Component {
        return (
             <div>
             <NavbarLoggedIn/>
+            
             <header2>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-                    <div className="wrapper">
-                    <Sidebar/>
-                    <div id="content" className="center">
-            <header className="App-header">
-            <h2 style={{textAlign: "center"}}>Customer Dashboard</h2><br></br>
 
-                <div className="formBackground" style={{width: '75%'}}><br></br>
-                        <SearchFoodTruck/>
+                <div class="row">
+                    <div class="col">
                         <Table/>
+                    </div>
+                    <div class="col">
+                        <GoogleMaps/>
+                    </div>
                 </div>
-
-                <GoogleMaps/>
                 
-            </header>
-            </div>
-            </div>
             </header2>
            </div>
            );
