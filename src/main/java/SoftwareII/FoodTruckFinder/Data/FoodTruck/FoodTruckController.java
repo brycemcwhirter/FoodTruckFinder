@@ -1,14 +1,12 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
 import SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound;
-import SoftwareII.FoodTruckFinder.FoodTruckFinderController;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Collection;
 @RestController
 public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
@@ -17,6 +15,10 @@ public class FoodTruckController {
 
     FoodTruckController(FoodTruckRepository foodTruckRepository){
         this.foodTruckRepository = foodTruckRepository;
+    }
+
+    public FoodTruck getTruckByID(Long id){
+        return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
     }
 
     //Getting all the Items in the Repo

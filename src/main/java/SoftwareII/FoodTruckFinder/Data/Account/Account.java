@@ -18,7 +18,6 @@ import SoftwareII.FoodTruckFinder.Data.Review.*;
 @Entity
 public class Account {
 
-
     private @Id @GeneratedValue Long id;
     private String username;
     private String email;
@@ -26,6 +25,8 @@ public class Account {
     private AccountType accountType;
     private FoodTruckType typePreference;
     private Integer pricePreference;
+    @OneToMany
+    private List<Review> reviews = new ArrayList<>();
 
     Account() {};
 
@@ -34,6 +35,20 @@ public class Account {
         this.email = e;
         this.password = p;
         this.accountType = type;
+    }
+
+    public Account(String username, String email, String password, AccountType accountType,
+            FoodTruckType typePreference, Integer pricePreference) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.accountType = accountType;
+        this.typePreference = typePreference;
+        this.pricePreference = pricePreference;
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
     }
 
     public Account(JSONObject newAccount){

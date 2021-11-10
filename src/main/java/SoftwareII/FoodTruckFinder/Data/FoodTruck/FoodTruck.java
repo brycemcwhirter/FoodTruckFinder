@@ -5,17 +5,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder.In;
-import java.util.List;
-import java.util.ArrayList;
 
-import SoftwareII.FoodTruckFinder.FoodTruckFinderController;
 import SoftwareII.FoodTruckFinder.Data.Account.*;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Entity
 public class FoodTruck {
-
 
     private @Id
     @GeneratedValue
@@ -31,6 +29,8 @@ public class FoodTruck {
     private Integer priceRange;
     @ManyToOne
     private Account owner;
+    @OneToMany
+    private List<Review> reviews = new ArrayList<>();
 
     public FoodTruck() {};
 
@@ -41,6 +41,24 @@ public class FoodTruck {
         this.city = c;
         this.state = s;
         this.zipcode = z;
+    }
+
+    public FoodTruck(String name, FoodTruckType type, String address, String city, String state, String zipcode,
+            Integer rating, Boolean operational, Integer priceRange, Account owner) {
+        this.name = name;
+        this.type = type;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.rating = rating;
+        this.operational = operational;
+        this.priceRange = priceRange;
+        this.owner = owner;
+    }
+
+    public void addReview(Review review){
+        reviews.add(review);
     }
 
     public FoodTruck(JSONObject newFoodTruck){

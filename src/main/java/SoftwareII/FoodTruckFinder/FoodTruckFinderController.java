@@ -1,7 +1,7 @@
 package SoftwareII.FoodTruckFinder;
 
-import SoftwareII.FoodTruckFinder.Data.Account.Account;
-import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
+import SoftwareII.FoodTruckFinder.Data.Account.*;
+import SoftwareII.FoodTruckFinder.Data.Review.*;
 import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,6 +90,12 @@ public class FoodTruckFinderController {
         currentAccount = accountToUpdate;
         log.info("Updated Account: " + currentAccount.getUsername() + " " + currentAccount.getEmail());
         return accountRepository.save(accountToUpdate);
+    }
+
+    @PostMapping("/addreview/{id}")
+    void addReview(@PathVariable Long id, @RequestBody Review review){
+        Account ac = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+        ac.addReview(review);
     }
 
 }
