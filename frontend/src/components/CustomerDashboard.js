@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
-import {Map, GoogleApiWrapper, Marker} from "google-maps-react";
+import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 
 /*
 The form which was previously present in the App component has been moved to its own separate component.

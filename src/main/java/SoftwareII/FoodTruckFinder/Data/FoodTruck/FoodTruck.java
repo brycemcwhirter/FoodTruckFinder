@@ -1,17 +1,17 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder.In;
+import java.util.List;
+import java.util.ArrayList;
 
 import SoftwareII.FoodTruckFinder.FoodTruckFinderController;
-
+import SoftwareII.FoodTruckFinder.Data.Account.*;
+import SoftwareII.FoodTruckFinder.Data.Review.*;
 
 @Entity
 public class FoodTruck {
@@ -20,7 +20,6 @@ public class FoodTruck {
     private @Id
     @GeneratedValue
     Long id;
-    private String username;
     private String name;
     private FoodTruckType type;
     private String address;
@@ -29,6 +28,9 @@ public class FoodTruck {
     private String zipcode;
     private Integer rating;
     private Boolean operational;
+    private Integer priceRange;
+    @ManyToOne
+    private Account owner;
 
     public FoodTruck() {};
 
@@ -49,10 +51,10 @@ public class FoodTruck {
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
+        this.priceRange = newFoodTruck.getInt("priceRange");
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
-        this.username = "";
         log.info("String: " + t);
 
         log.info(this.name + " " + this.type + " " + this.address);
@@ -72,11 +74,11 @@ public class FoodTruck {
         return rating;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPriceRange(Integer priceRange) {
+        this.priceRange = priceRange;
     }
-    public String getUsername() {
-        return username;
+    public Integer getPriceRange() {
+        return priceRange;
     }
 
     @Override

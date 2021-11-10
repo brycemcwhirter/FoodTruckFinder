@@ -35,7 +35,6 @@ public class FoodTruckController {
     //Adding a new food truck
     @PostMapping("/foodtrucks")
     FoodTruck newFoodTruck(@RequestBody String strFoodTruck){
-        Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
         log.info("Adding FoodTruck");
         FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck));
         return foodTruckRepository.save(newFoodTruck);
@@ -47,9 +46,7 @@ public class FoodTruckController {
         FoodTruck trucktoUpdate = foodTruckRepository.findById(updatingFoodtruck.getId())
             .orElseThrow(() -> new FoodTruckNotFound(updatingFoodtruck.getId()));
         trucktoUpdate.setId(updatingFoodtruck.getId());
-        if (newTruck.getString("name") != ""){
-            trucktoUpdate.setUsername(newTruck.getString("name"));
-        }
+        
         if (newTruck.getString("address") != ""){
             trucktoUpdate.setAddress(newTruck.getString("address"));
         }
