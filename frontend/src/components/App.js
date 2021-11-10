@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import avo from '../images/avo.png';
-import '../App.css';
 import Navbar from './Navbar';
 import BackgroundNotLoggedIn from './BackgroundNotLoggedIn';
 

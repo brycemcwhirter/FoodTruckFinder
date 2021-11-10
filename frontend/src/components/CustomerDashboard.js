@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 
 
@@ -25,22 +25,30 @@ class CustomerDashboard extends Component {
 
    render() {
        return (
-            <div>
+           <div className="backgroundDashboard">
             <NavbarLoggedIn/>
 
-            <div class="row">
-                <div class="col-md-6 border"><Table/></div>
-                <div class="col-md-6 border"><GoogleMaps/></div>
+            <div class="container-fluid">
+
+            <div class="row justify-content-center header-for-dashboard">
+                <h1>Dashboard</h1>
             </div>
 
 
-            {/*
-             <Table/>
-            <GoogleMaps/>
-            */}
-           
-                
-           </div>
+            <div class="row justify-content-center table-map-style">
+
+                <div class="col">
+                    <Table/>
+                </div>
+                <div class="col-6">
+                    <GoogleMaps/>
+                </div>     
+            </div>  
+
+            
+
+            </div>
+            </div>
            );
    }
 }
