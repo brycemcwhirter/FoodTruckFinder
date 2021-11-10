@@ -9,9 +9,7 @@ import SearchFoodTruck from './DashboardComponents/SearchFoodTrucks';
 import Table from './DashboardComponents/Table'
 import GoogleMaps from './DashboardComponents/GoogleMaps'
 
-/*
-The form which was previously present in the App component has been moved to its own separate component.
-*/
+
 
 class CustomerDashboard extends Component {
     
@@ -29,19 +27,19 @@ class CustomerDashboard extends Component {
        return (
             <div>
             <NavbarLoggedIn/>
-            
-            <header2>
 
-                <div class="row">
-                    <div class="col">
-                        <Table/>
-                    </div>
-                    <div class="col">
-                        <GoogleMaps/>
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col-md-6 border"><Table/></div>
+                <div class="col-md-6 border"><GoogleMaps/></div>
+            </div>
+
+
+            {/*
+             <Table/>
+            <GoogleMaps/>
+            */}
+           
                 
-            </header2>
            </div>
            );
    }
