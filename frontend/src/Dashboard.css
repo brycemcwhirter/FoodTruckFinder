@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap");
+
+*{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.backgroundDashboard{
+    background-color: #6fa00f;
+}
+
+.tableColors{
+    background-color: #A9EB2A;
+
+}
+
+.header-for-dashboard { 
+    margin-top:20px; 
+    margin-bottom: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+}
+
+
+
+.table-map-style{
+   padding: 50px;
+   padding-top: 20px;
+   padding-bottom: 100%;
+}
+
+
+/*Table Styles*/
+.my-custom-scrollbar {
+position: relative;
+height: 500px;
+overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+display: block;
+}
