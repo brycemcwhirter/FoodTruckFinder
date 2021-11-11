@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -72,10 +72,8 @@ class OwnerDashboard extends Component {
         return (
             <div>
                 <NavbarLoggedIn />
-                <header2>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                     <h2>Owner Dashboard</h2>
-                    <header className="App-header" style={{ width: '60%' }}>
                         <div className="formBackground"><br></br>
                         <div style={{ textAlign: "right" }}><small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small></div>
                         <h4>Your Food Trucks</h4>
@@ -97,8 +95,6 @@ class OwnerDashboard extends Component {
                                 </table>
                             </div>
                         </div>
-                    </header>
-                </header2>
             </div>
         );
     }

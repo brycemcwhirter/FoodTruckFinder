@@ -4,10 +4,8 @@ import NavbarLoggedIn from './NavBarLoggedIn';
 
 
 /* import Dashboard Components*/
-import Sidebar from './DashboardComponents/Sidebar'
-import SearchFoodTruck from './DashboardComponents/SearchFoodTrucks';
-import Table from './DashboardComponents/Table'
-import GoogleMaps from './DashboardComponents/GoogleMaps'
+import Table from './CustomerDashboard/CustomerTable'
+import GoogleMaps from './CustomerDashboard/GoogleMaps'
 
 
 
@@ -45,6 +43,9 @@ class CustomerDashboard extends Component {
                 </div>     
             </div>  
 
+            <div>
+                
+            </div>
             
 
             </div>
