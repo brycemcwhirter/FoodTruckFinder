@@ -2,6 +2,7 @@ package SoftwareII.FoodTruckFinder;
 
 import SoftwareII.FoodTruckFinder.Data.Account.*;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 import SoftwareII.FoodTruckFinder.Exceptions.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,12 @@ public class FoodTruckFinderController {
 
     private final AccountRepository accountRepository;
     private final ReviewRepository reviewRepository;
+    private final FoodTruckRepository foodTruckRepository;
 
-    FoodTruckFinderController(AccountRepository accountRepository, ReviewRepository reviewRepository){
+    FoodTruckFinderController(AccountRepository accountRepository, ReviewRepository reviewRepository, FoodTruckRepository foodTruckRepository){
         this.accountRepository = accountRepository;
         this.reviewRepository = reviewRepository;
+        this.foodTruckRepository = foodTruckRepository;
     }
 
     @PostMapping("/setaccount")
@@ -103,6 +106,28 @@ public class FoodTruckFinderController {
             }
         }
         accountRepository.deleteById(id);
+    }
+
+    @PostMapping("/subscribetotruck/{accountID}/{truckID}")
+    void subscribeToTruck(@PathVariable Long accountID, @PathVariable Long truckID){
+        FoodTruck foodTruck = foodTruckRepository.getById(truckID);
+        Account account = accountRepository.getById(accountID);
+        foodTruck.addSubscriber(account);
+        account.addSubscribedTruck(foodTruck);
+        foodTruckRepository.save(foodTruck);
+        accountRepository.save(account);
+    }
+
+    @GetMapping("/gettrucksubscribers/{id}")
+    List<Account> getSubscribers(@PathVariable Long id){
+        FoodTruck foodTruck = foodTruckRepository.getById(id);
+        return foodTruck.getSubscribers();
+    }
+
+    @GetMapping("/getsubscriptions/{id}")
+    List<FoodTruck> getSubscriptions(@PathVariable Long id){
+        Account account = accountRepository.getById(id);
+        return account.getSubscribedTrucks();
     }
 
 }

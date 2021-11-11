@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
 
 import SoftwareII.FoodTruckFinder.Data.Account.*;
 
@@ -25,6 +27,32 @@ public class FoodTruck {
     private Integer priceRange;
     @ManyToOne
     private Account owner;
+    @ManyToMany(mappedBy = "subscribedTrucks")
+    private List<Account> subscribers;
+
+    public void addSubscriber(Account account){
+        subscribers.add(account);
+    }
+
+    public List<Account> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(List<Account> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
 
     public FoodTruck() {};
 

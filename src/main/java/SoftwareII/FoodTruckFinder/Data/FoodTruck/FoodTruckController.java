@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
 @RestController
 public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
@@ -84,5 +85,17 @@ public class FoodTruckController {
             }
         }
         foodTruckRepository.deleteById(id);
+    }
+
+    @GetMapping("/getownertrucks/{id}")
+    List<FoodTruck> getFoodTrucksByOwner(@PathVariable Long id){
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> ownedTrucks = new ArrayList<>();
+        for (int i = 0; i < allTrucks.size(); i++){
+            if (allTrucks.get(i).getOwner().getId() == id){
+                ownedTrucks.add(allTrucks.get(i));
+            }
+        }
+        return ownedTrucks;
     }
 }

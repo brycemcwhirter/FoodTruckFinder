@@ -2,9 +2,6 @@ package SoftwareII.FoodTruckFinder.Data.Account;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.*;
 
 import org.json.JSONObject;
@@ -25,6 +22,38 @@ public class Account {
     private AccountType accountType;
     private FoodTruckType typePreference;
     private Integer pricePreference;
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
+        inverseJoinColumns = @JoinColumn(name = "account_id"))
+    private List<FoodTruck> subscribedTrucks;
+
+    public void addSubscribedTruck(FoodTruck truck){
+        subscribedTrucks.add(truck);
+    }
+
+    public FoodTruckType getTypePreference() {
+        return typePreference;
+    }
+
+    public void setTypePreference(FoodTruckType typePreference) {
+        this.typePreference = typePreference;
+    }
+
+    public Integer getPricePreference() {
+        return pricePreference;
+    }
+
+    public void setPricePreference(Integer pricePreference) {
+        this.pricePreference = pricePreference;
+    }
+
+    public List<FoodTruck> getSubscribedTrucks() {
+        return subscribedTrucks;
+    }
+
+    public void setSubscribedTrucks(List<FoodTruck> subscribedTrucks) {
+        this.subscribedTrucks = subscribedTrucks;
+    }
 
     Account() {};
 
