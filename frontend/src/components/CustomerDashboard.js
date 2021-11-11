@@ -9,17 +9,23 @@ import SearchFoodTruck from './DashboardComponents/SearchFoodTrucks';
 import Table from './DashboardComponents/Table'
 import GoogleMaps from './DashboardComponents/GoogleMaps'
 
-
-
 class CustomerDashboard extends Component {
-    
+    state = {
+        currAccount: [],
+        foodtrucks: []
+    };    
 
    handleSubmit(event) {
         alert("Updated");
    }
 
    
-   componentDidMount() {
+   async componentDidMount() {
+        /*const acctresponse = await fetch('currentaccount');          // get account info (i.e. food preference and budget)
+        const acctbody = await acctresponse.json();
+        const response = await fetch('recommendedTrucks', acctbody); // send account info to backend to get 5 recommended trucks
+        const body = await response.json();
+        this.setState({ foodtrucks: body, currAccount: acctbody});*/
    }
    
 

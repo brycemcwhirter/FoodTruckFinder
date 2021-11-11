@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import CustomerDashboard from '../CustomerDashboard';
 import SearchFoodTruck from './SearchFoodTrucks';
-
+// import {array} from '../CustomerDashboard';
 
 class Table extends Component{
     render(){
@@ -25,7 +26,19 @@ class Table extends Component{
                 <th scope="col">Rating</th>
                 </tr>
             </thead>
-            <tbody className="tableColors">
+            
+            {/*
+                <tr>
+                <th scope="row">{array[i].name}</th>
+                <td>{array[i].type}</td>
+                <td>{array[i].address}</td>
+                <td>{array[i].rating}</td>
+                {/*<td>{foodtruck[i].hours}</td>    // how is this data claimed?
+                </tr>
+                */
+            }
+
+            < tbody className="tableColors" >
                 <tr>
                 <th scope="row">Waco Chi</th>
                 <td>Drinks</td>
@@ -169,8 +182,6 @@ class Table extends Component{
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span></td>
                 </tr>
-                
-
             </tbody>
         </table>
     </div>
