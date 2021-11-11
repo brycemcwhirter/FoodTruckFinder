@@ -2,9 +2,15 @@ package SoftwareII.FoodTruckFinder;
 
 import SoftwareII.FoodTruckFinder.Data.Account.Account;
 import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckRepository;
 import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
+import SoftwareII.FoodTruckFinder.FoodTruckServices.*;
+
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 
@@ -18,9 +24,11 @@ public class FoodTruckFinderController {
     Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
 
     private final AccountRepository accountRepository;
+    private final FoodTruckRepository foodTruckRepository;
 
-    FoodTruckFinderController(AccountRepository accountRepository){
+    FoodTruckFinderController(AccountRepository accountRepository, FoodTruckRepository foodTruckRepository){
         this.accountRepository = accountRepository;
+        this.foodTruckRepository = foodTruckRepository;
     }
 
     @PostMapping("/setaccount")
@@ -52,8 +60,26 @@ public class FoodTruckFinderController {
 
     //Getting all the Items in the Repo
     @GetMapping("/accounts")
-    List<Account> all(){
+    List<Account> allAccounts(){
         return accountRepository.findAll();
+    }
+
+    @GetMapping("/recommendedTrucks")
+    List<FoodTruck> recommendedTrucks(@RequestBody String preferences) {
+        SortFoodTrucks sort = new SortFoodTrucks();
+        List<FoodTruck> trucks = foodTruckRepository.findAll();
+        List<FoodTruck> recommended = new ArrayList<FoodTruck>();
+        JSONObject pref = new JSONObject(preferences);
+        JSONArray jsonArr = pref.getJSONArray(""); // proper key for array? not sure what JSON looks like
+
+        trucks = sort                                  // sort trucks by user pref
+                .sortRecommended
+                        (trucks, jsonArr.get(0).toString(), jsonArr.get(1).toString(), Integer.parseInt(jsonArr.get(2).toString()));
+
+        for (int i = 0; i < 5; i++) {                  // only add top 5 to list to send back to frontend
+            recommended.add(trucks.get(i));
+        }
+        return recommended;
     }
 
     //Finding One Item in Account Repository

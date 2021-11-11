@@ -23,6 +23,7 @@ public class FoodTruck {
     private String username;
     private String name;
     private FoodTruckType type;
+    private FoodTruckPrice price;
     private String address;
     private String city;
     private String state;
@@ -32,9 +33,10 @@ public class FoodTruck {
 
     public FoodTruck() {};
 
-    public FoodTruck(String n, FoodTruckType t, String a, String c, String s, String z){
+    public FoodTruck(String n, FoodTruckType t, FoodTruckPrice p, String a, String c, String s, String z){
         this.name = n;
         this.type = t;
+        this.price = p;
         this.address = a;
         this.city = c;
         this.state = s;
@@ -45,11 +47,13 @@ public class FoodTruck {
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
         String t = newFoodTruck.getString("type");
+        String p = newFoodTruck.getString("price");
         this.address = newFoodTruck.getString("address");
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
         this.type = FoodTruckType.getType(t);
+        this.price = FoodTruckPrice.getPrice(p);
         this.rating = -1;
         this.operational = true;
         this.username = "";
@@ -68,7 +72,7 @@ public class FoodTruck {
     public void setRating(Integer rating) {
         this.rating = rating;
     }
-    public Integer setRating() {
+    public Integer getRating() {
         return rating;
     }
 
@@ -114,6 +118,14 @@ public class FoodTruck {
 
     public void setType(FoodTruckType type) {
         this.type = type;
+    }
+
+    public FoodTruckPrice getPrice() {
+        return price;
+    }
+
+    public void setPrice(FoodTruckPrice price) {
+        this.price = price;
     }
 
     public String getAddress() {
