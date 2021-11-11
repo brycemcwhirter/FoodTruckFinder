@@ -4,6 +4,20 @@ import SearchFoodTruck from './SearchFoodTrucks';
 // import {array} from '../CustomerDashboard';
 
 class Table extends Component{
+
+    generateHTMLRecommendedTrucks(){
+        //loop 
+
+            //getting parameters of every food truck
+
+            // creating an html table rows
+
+            //
+    }
+
+
+
+
     render(){
         return(
         
