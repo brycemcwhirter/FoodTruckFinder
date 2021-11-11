@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.json.JSONObject;
 
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 import SoftwareII.FoodTruckFinder.Data.Account.*;
@@ -25,6 +26,13 @@ public class Review {
         this.notes = notes;
         this.account = account;
         this.foodtruck = foodtruck;
+    }
+
+    public Review(JSONObject newReview, FoodTruck foodTruck, Account account) {
+        this.rating = newReview.getInt("rating");
+        this.notes = newReview.getString("notes");
+        this.foodtruck = foodTruck;
+        this.account = account;
     }
     
     public Long getId() {

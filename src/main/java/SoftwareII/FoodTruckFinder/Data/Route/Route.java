@@ -1,9 +1,12 @@
 package SoftwareII.FoodTruckFinder.Data.Route;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.json.JSONObject;
 
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 
@@ -12,7 +15,7 @@ public class Route {
 
 
     private @Id @GeneratedValue Long id;
-    @ManyToOne 
+    @ManyToOne(cascade = {CascadeType.ALL})
     private FoodTruck foodTruck;
     private Integer numInRoute;
     private String latitude;
@@ -25,6 +28,13 @@ public class Route {
         this.numInRoute = numRoute;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public Route(JSONObject newRoute, FoodTruck foodTruck) {
+        this.numInRoute = newRoute.getInt("numInRoute");
+        this.latitude = newRoute.getString("latitude");
+        this.longitude = newRoute.getString("longitude");
+        this.foodTruck = foodTruck;
     }
 
     public Long getId() {

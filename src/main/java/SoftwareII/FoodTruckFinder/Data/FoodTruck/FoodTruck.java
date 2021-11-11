@@ -7,10 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 
 import SoftwareII.FoodTruckFinder.Data.Account.*;
-import SoftwareII.FoodTruckFinder.Data.Review.*;
-
-import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 public class FoodTruck {
@@ -29,8 +25,6 @@ public class FoodTruck {
     private Integer priceRange;
     @ManyToOne
     private Account owner;
-    @OneToMany
-    private List<Review> reviews = new ArrayList<>();
 
     public FoodTruck() {};
 
@@ -55,10 +49,6 @@ public class FoodTruck {
         this.operational = operational;
         this.priceRange = priceRange;
         this.owner = owner;
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
     }
 
     public FoodTruck(JSONObject newFoodTruck){

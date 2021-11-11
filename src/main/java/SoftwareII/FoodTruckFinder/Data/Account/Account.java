@@ -25,8 +25,6 @@ public class Account {
     private AccountType accountType;
     private FoodTruckType typePreference;
     private Integer pricePreference;
-    @OneToMany
-    private List<Review> reviews = new ArrayList<>();
 
     Account() {};
 
@@ -45,10 +43,6 @@ public class Account {
         this.accountType = accountType;
         this.typePreference = typePreference;
         this.pricePreference = pricePreference;
-    }
-
-    public void addReview(Review review){
-        reviews.add(review);
     }
 
     public Account(JSONObject newAccount){

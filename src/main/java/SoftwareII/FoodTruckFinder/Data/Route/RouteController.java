@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
+import org.json.JSONObject;
 
-import com.mysql.cj.x.protobuf.MysqlxCursor.Fetch;
 
 @RestController
 public class RouteController {
@@ -40,6 +40,18 @@ public class RouteController {
             }
         }
         return truckRoutes;
+    }
+
+    @PostMapping("/addroute/{id}")
+    Route addRoute(@RequestBody String routeStr, @PathVariable Long id){
+        FoodTruck foodTruck = foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
+        Route newRoute = new Route(new JSONObject(routeStr), foodTruck);
+        return routeRepository.save(newRoute);
+    }
+
+    @PostMapping("/removeroute/{id}")
+    void removeRoute(@PathVariable Long id){
+        routeRepository.deleteById(id);
     }
 
 }

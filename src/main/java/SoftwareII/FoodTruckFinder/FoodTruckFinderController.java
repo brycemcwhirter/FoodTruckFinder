@@ -92,10 +92,4 @@ public class FoodTruckFinderController {
         return accountRepository.save(accountToUpdate);
     }
 
-    @PostMapping("/addreview/{id}")
-    void addReview(@PathVariable Long id, @RequestBody Review review){
-        Account ac = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
-        ac.addReview(review);
-    }
-
 }
