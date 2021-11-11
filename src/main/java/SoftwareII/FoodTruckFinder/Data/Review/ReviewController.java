@@ -78,4 +78,9 @@ public class ReviewController {
         }
         return foodTruck;
     }
+
+    @PostMapping("/removereview/{id}")
+    void removeReview(@PathVariable Long id){
+        reviewRepository.deleteById(id);
+    }
 }
