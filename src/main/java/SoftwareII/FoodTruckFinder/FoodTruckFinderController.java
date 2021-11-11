@@ -2,7 +2,7 @@ package SoftwareII.FoodTruckFinder;
 
 import SoftwareII.FoodTruckFinder.Data.Account.*;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
-import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
+import SoftwareII.FoodTruckFinder.Exceptions.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +18,11 @@ public class FoodTruckFinderController {
     Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
 
     private final AccountRepository accountRepository;
+    private final ReviewRepository reviewRepository;
 
-    FoodTruckFinderController(AccountRepository accountRepository){
+    FoodTruckFinderController(AccountRepository accountRepository, ReviewRepository reviewRepository){
         this.accountRepository = accountRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @PostMapping("/setaccount")
@@ -90,6 +92,17 @@ public class FoodTruckFinderController {
         currentAccount = accountToUpdate;
         log.info("Updated Account: " + currentAccount.getUsername() + " " + currentAccount.getEmail());
         return accountRepository.save(accountToUpdate);
+    }
+
+    @PostMapping("/removeaccount/{id}")
+    void removeAccount(@PathVariable Long id){
+        List<Review> allReviews = reviewRepository.findAll();
+        for (int i = 0; i < allReviews.size(); i++){
+            if (allReviews.get(i).getAccount().getId() == id){
+                reviewRepository.delete(allReviews.get(i));
+            }
+        }
+        accountRepository.deleteById(id);
     }
 
 }

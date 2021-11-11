@@ -1,7 +1,6 @@
 package SoftwareII.FoodTruckFinder.Data.Route;
 
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckController;
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckRepository;
 import SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound;
 import SoftwareII.FoodTruckFinder.Exceptions.RouteNotFound;
