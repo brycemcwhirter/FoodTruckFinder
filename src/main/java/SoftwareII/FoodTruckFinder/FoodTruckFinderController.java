@@ -74,7 +74,7 @@ public class FoodTruckFinderController {
 
         trucks = sort                                  // sort trucks by user pref
                 .sortRecommended
-                        (trucks, jsonArr.get(0).toString(), jsonArr.get(1).toString(), Integer.parseInt(jsonArr.get(2).toString()));
+                        (trucks, jsonArr.get(0).toString(), jsonArr.get(1).toString());
 
         for (int i = 0; i < 5; i++) {                  // only add top 5 to list to send back to frontend
             recommended.add(trucks.get(i));

@@ -11,7 +11,7 @@ import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
 
 public class SortFoodTrucks {
 
-    public List<FoodTruck> sortRecommended(List<FoodTruck> l, String type, String price, int rating) {
+    public List<FoodTruck> sortRecommended(List<FoodTruck> l, String type, String price) {
         FoodTruck temp;
         boolean sorted = false;
 

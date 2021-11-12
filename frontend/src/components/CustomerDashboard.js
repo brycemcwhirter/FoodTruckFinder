@@ -42,10 +42,13 @@ class CustomerDashboard extends Component {
 
 
             <div class="row justify-content-center table-map-style">
-
+                {/*
                 <div class="col">
+
+                    
                     <Table/>
                 </div>
+                */}
                 <div class="col-6">
                     <GoogleMaps/>
                 </div>     

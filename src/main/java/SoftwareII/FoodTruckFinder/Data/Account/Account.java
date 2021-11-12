@@ -20,7 +20,7 @@ public class Account {
     private String password;
     private AccountType type;
 
-    Account() {};
+    public Account() {};
 
     public Account(String u, String e, String p, AccountType type){
         this.username = u;
