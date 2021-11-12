@@ -15,7 +15,7 @@ class Table extends Component{
         
 
 
-        <table class="table table-striped table-hover tableColors">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                 <th scope="col">Name</th>
