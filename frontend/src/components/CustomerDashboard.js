@@ -17,8 +17,8 @@ class CustomerDashboard extends Component {
    }
 
    
-   componentDidMount() {
-   }
+    componentDidMount() {
+    }
    
 
    render() {

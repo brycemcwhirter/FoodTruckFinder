@@ -1,9 +1,59 @@
 import React, { Component } from 'react';
 import SearchFoodTruck from './SearchFoodTrucks';
+import { Link } from 'react-router-dom';
 
 
 class Table extends Component{
+
+    state = {
+        isLoading: true,
+        trucks: [],
+        currAccount: []
+    }
+
+
+
+    async componentDidMount(){
+        const acctresponse = await fetch('currentaccount');          // get account info (i.e. food preference and budget)
+        const acctbody = await acctresponse.json();
+
+        const response = await fetch('/allfoodtrucks');
+
+
+        //const response = await fetch('/recommendedTrucks', acctbody); // send account info to backend to get 5 recommended trucks
+        const body = await response.json();
+        this.setState({ isLoading: false, trucks: body, currAccount: acctbody});
+    }
+
+
     render(){
+
+        const {isLoading, trucks} = this.state;
+
+        if (isLoading) {
+            return <p>Loading...</p>;
+        }
+
+        const truckList = trucks.map(truck => {
+            return (<tr key={truck.id}>
+              <td>{truck.name}</td>
+              <td>{truck.type}</td>
+              <td>{truck.address}  {truck.city}, {truck.state}</td>
+              <td>9 to 5 TEST</td>
+              <td>BLAH BLAH</td>
+          
+          
+            </tr>
+            )
+        });
+
+
+
+
+
+
+
+
         return(
         
         <div>
@@ -26,28 +76,9 @@ class Table extends Component{
                 </tr>
             </thead>
             <tbody className="tableColors">
-                <tr>
-                <th scope="row">Waco Chi</th>
-                <td>Drinks</td>
-                <td>123 18th Av</td>
-                <td>11am - 9pm</td>
-                <td><span class="fa fa-star checked"/>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span></td>
-                </tr>
-                <tr>
-                <th scope="row">Pop's Lemonade</th>
-                <td>Drinks</td>
-                <td>456 Speight Ave</td>
-                <td>10am - 8:30pm</td>
-                <td><span class="fa fa-star checked"/>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span></td>
-                </tr>
+                
+
+                {truckList}
                 
                 
 
