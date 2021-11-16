@@ -1,5 +1,6 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
+import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
 import SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound;
 import SoftwareII.FoodTruckFinder.FoodTruckFinderController;
 import org.json.JSONObject;
@@ -8,15 +9,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Collection;
+
+
 @RestController
 public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
+    private final AccountRepository accountRepository;
+
+
     FoodTruck updatingFoodtruck;
     Logger log = LoggerFactory.getLogger(FoodTruckController.class);
 
-    FoodTruckController(FoodTruckRepository foodTruckRepository){
+    FoodTruckController(FoodTruckRepository foodTruckRepository, AccountRepository accountRepository){
         this.foodTruckRepository = foodTruckRepository;
+        this.accountRepository = accountRepository;
     }
 
     //Getting all the Items in the Repo
@@ -31,6 +37,29 @@ public class FoodTruckController {
     FoodTruck getFoodTruckByID(@PathVariable Long id){
         return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
     }
+
+
+    // Finding Recommended Food Trucks when a user opens Dashboard
+    @GetMapping("/recommendedtrucks/{username}")
+    List<FoodTruck> recommendedTrucks(@PathVariable String username){
+        log.info("Getting Recommended Food Trucks for " + username);
+
+        return foodTruckRepository.findAll();
+    }
+
+
+    // Finding Food Trucks by a search term
+    @GetMapping("/searchtrucks/{truckname}")
+    List <FoodTruck> searchTrucks(@PathVariable String truckname){
+        log.info("Searching for trucks with name" + truckname);
+
+        // return foodTruckRepository.findByName(truckname);
+
+        return foodTruckRepository.findAll();
+    }
+
+
+
 
     //Adding a new food truck
     @PostMapping("/foodtrucks")
@@ -63,4 +92,7 @@ public class FoodTruckController {
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
         return foodTruckRepository.save(trucktoUpdate);
     }
+
+
+
 }

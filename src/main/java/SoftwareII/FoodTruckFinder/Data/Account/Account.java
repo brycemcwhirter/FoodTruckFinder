@@ -20,6 +20,10 @@ public class Account {
     private String password;
     private AccountType type;
 
+
+
+
+
     Account() {};
 
     public Account(String u, String e, String p, AccountType type){
