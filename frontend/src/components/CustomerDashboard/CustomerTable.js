@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SearchFoodTruck from './SearchFoodTrucks';
-import { Link } from 'react-router-dom';
 
 
 class Table extends Component{
@@ -14,13 +13,12 @@ class Table extends Component{
 
 
     async componentDidMount(){
-        const acctresponse = await fetch('currentaccount');          // get account info (i.e. food preference and budget)
+        const acctresponse = await fetch('/currentaccount');          // get account info (i.e. food preference and budget)
         const acctbody = await acctresponse.json();
 
-        const response = await fetch('/allfoodtrucks');
+        const username = acctbody.username;
 
-
-        //const response = await fetch('/recommendedTrucks', acctbody); // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/recommendedtrucks/'+username, acctbody);  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
         this.setState({ isLoading: false, trucks: body, currAccount: acctbody});
     }

@@ -29,6 +29,10 @@ export default class NavbarLoggedIn extends Component {
           <NavLink
             onClick={this.logout} tag={Link} to='/'>Logout</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+           tag={Link} to='/profile'>Profile</NavLink>
+        </NavItem>
       </Nav>
     </Navbar>
     )
