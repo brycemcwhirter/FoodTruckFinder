@@ -24,7 +24,7 @@ public class FoodTruck {
     private String zipcode;
     private Integer rating;
     private Boolean operational;
-    private Integer priceRange;
+    private FoodTruckPrice priceRange;
     @ManyToOne
     private Account owner;
     @ManyToMany(mappedBy = "subscribedTrucks")
@@ -66,7 +66,7 @@ public class FoodTruck {
     }
 
     public FoodTruck(String name, FoodTruckType type, String address, String city, String state, String zipcode,
-            Integer rating, Boolean operational, Integer priceRange, Account owner) {
+            Integer rating, Boolean operational, FoodTruckPrice priceRange, Account owner) {
         this.name = name;
         this.type = type;
         this.address = address;
@@ -87,7 +87,8 @@ public class FoodTruck {
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
-        this.priceRange = newFoodTruck.getInt("priceRange");
+        String priceRangeStr = newFoodTruck.getString("priceRange");
+        this.priceRange = FoodTruckPrice.getPrice(priceRangeStr);
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
@@ -110,10 +111,10 @@ public class FoodTruck {
         return rating;
     }
 
-    public void setPriceRange(Integer priceRange) {
+    public void setPriceRange(FoodTruckPrice priceRange) {
         this.priceRange = priceRange;
     }
-    public Integer getPriceRange() {
+    public FoodTruckPrice getPriceRange() {
         return priceRange;
     }
 

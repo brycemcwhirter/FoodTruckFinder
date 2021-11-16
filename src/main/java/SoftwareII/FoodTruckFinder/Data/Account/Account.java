@@ -21,7 +21,7 @@ public class Account {
     private String password;
     private AccountType accountType;
     private FoodTruckType typePreference;
-    private Integer pricePreference;
+    private FoodTruckPrice pricePreference;
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
         inverseJoinColumns = @JoinColumn(name = "account_id"))
@@ -39,11 +39,11 @@ public class Account {
         this.typePreference = typePreference;
     }
 
-    public Integer getPricePreference() {
+    public FoodTruckPrice getPricePreference() {
         return pricePreference;
     }
 
-    public void setPricePreference(Integer pricePreference) {
+    public void setPricePreference(FoodTruckPrice pricePreference) {
         this.pricePreference = pricePreference;
     }
 
@@ -69,7 +69,7 @@ public class Account {
     }
 
     public Account(String username, String email, String password, AccountType accountType,
-            FoodTruckType typePreference, Integer pricePreference) {
+            FoodTruckType typePreference, FoodTruckPrice pricePreference) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -92,6 +92,8 @@ public class Account {
         } else {
             this.accountType = AccountType.FOODTRUCKOWNER;
         }
+        this.typePreference = null;
+        this.pricePreference = FoodTruckPrice.$;
         log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }
 
