@@ -3,6 +3,7 @@ package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
 import SoftwareII.FoodTruckFinder.Data.Route.*;
 import SoftwareII.FoodTruckFinder.Exceptions.*;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
+
+
 @RestController
 public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
@@ -40,6 +43,29 @@ public class FoodTruckController {
     FoodTruck getFoodTruckByID(@PathVariable Long id){
         return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
     }
+
+
+    // Finding Recommended Food Trucks when a user opens Dashboard
+    @GetMapping("/recommendedtrucks/{username}")
+    List<FoodTruck> recommendedTrucks(@PathVariable String username){
+        log.info("Getting Recommended Food Trucks for " + username);
+
+        return foodTruckRepository.findAll();
+    }
+
+
+    // Finding Food Trucks by a search term
+    @GetMapping("/searchtrucks/{truckname}")
+    List <FoodTruck> searchTrucks(@PathVariable String truckname){
+        log.info("Searching for trucks with name" + truckname);
+
+        // return foodTruckRepository.findByName(truckname);
+
+        return foodTruckRepository.findAll();
+    }
+
+
+
 
     //Adding a new food truck
     @PostMapping("/foodtrucks")
@@ -98,4 +124,5 @@ public class FoodTruckController {
         }
         return ownedTrucks;
     }
+
 }

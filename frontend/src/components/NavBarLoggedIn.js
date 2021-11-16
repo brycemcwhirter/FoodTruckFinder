@@ -15,7 +15,8 @@ export default class NavbarLoggedIn extends Component {
   }
 
   render() {
-    return (<div><Navbar color="dark" dark expand="md" className="navbar">
+    return (
+      <Navbar color="dark" dark expand="md" className="navbar">
       <NavbarBrand tag={Link} to="/dashboard/customer">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
         <NavItem>
@@ -28,8 +29,12 @@ export default class NavbarLoggedIn extends Component {
           <NavLink
             onClick={this.logout} tag={Link} to='/'>Logout</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+           tag={Link} to='/profile'>Profile</NavLink>
+        </NavItem>
       </Nav>
     </Navbar>
-    </div>)
+    )
   }
 }
