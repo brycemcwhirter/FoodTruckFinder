@@ -1,26 +1,21 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.criteria.CriteriaBuilder.In;
+import javax.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
 
-import SoftwareII.FoodTruckFinder.FoodTruckFinderController;
-
+import SoftwareII.FoodTruckFinder.Data.Account.*;
 
 @Entity
 public class FoodTruck {
 
-
     private @Id
     @GeneratedValue
     Long id;
-    private String username;
     private String name;
     private FoodTruckType type;
     private String address;
@@ -29,6 +24,35 @@ public class FoodTruck {
     private String zipcode;
     private Integer rating;
     private Boolean operational;
+    private Integer priceRange;
+    @ManyToOne
+    private Account owner;
+    @ManyToMany(mappedBy = "subscribedTrucks")
+    private List<Account> subscribers;
+
+    public void addSubscriber(Account account){
+        subscribers.add(account);
+    }
+
+    public List<Account> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(List<Account> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
 
     public FoodTruck() {};
 
@@ -41,6 +65,20 @@ public class FoodTruck {
         this.zipcode = z;
     }
 
+    public FoodTruck(String name, FoodTruckType type, String address, String city, String state, String zipcode,
+            Integer rating, Boolean operational, Integer priceRange, Account owner) {
+        this.name = name;
+        this.type = type;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.rating = rating;
+        this.operational = operational;
+        this.priceRange = priceRange;
+        this.owner = owner;
+    }
+
     public FoodTruck(JSONObject newFoodTruck){
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
@@ -49,10 +87,10 @@ public class FoodTruck {
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
+        this.priceRange = newFoodTruck.getInt("priceRange");
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
-        this.username = "";
         log.info("String: " + t);
 
         log.info(this.name + " " + this.type + " " + this.address);
@@ -72,11 +110,11 @@ public class FoodTruck {
         return rating;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPriceRange(Integer priceRange) {
+        this.priceRange = priceRange;
     }
-    public String getUsername() {
-        return username;
+    public Integer getPriceRange() {
+        return priceRange;
     }
 
     @Override
