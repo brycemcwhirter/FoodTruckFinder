@@ -13,6 +13,16 @@ class Login extends Component {
         accounts: []
     };
 
+
+    async componentDidMount() {
+        const response = await fetch('accounts');
+        const body = await response.json();
+        this.setState({ accounts: body, isLoading: false });
+    }
+
+
+    
+
     handleSubmit = (event) => {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
@@ -51,11 +61,7 @@ class Login extends Component {
 
 
 
-    async componentDidMount() {
-        const response = await fetch('accounts');
-        const body = await response.json();
-        this.setState({ accounts: body, isLoading: false });
-    }
+    
 
 
 

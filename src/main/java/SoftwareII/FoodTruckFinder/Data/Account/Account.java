@@ -55,6 +55,10 @@ public class Account {
         this.subscribedTrucks = subscribedTrucks;
     }
 
+
+
+
+
     Account() {};
 
     public Account(String u, String e, String p, AccountType type){

@@ -10,6 +10,7 @@ import AddFoodTruck from './AddFoodTruck';
 import ManageFoodTruck from './ManageFoodTruck';
 import ViewCustomer from './ViewCustomer';
 import ViewFoodTruck from './ViewFoodTruck';
+import Profile from './Profile';
 import App from "./App"
 
 
@@ -26,6 +27,7 @@ Here we define the route path and its corresponding components
                <Route path="/register" component={Register}/>
                <Route path="/about" component={About}/>
                <Route path="/account" component={ManageAccount}/>
+               <Route path="/profile" component={Profile}/>
                <Route path="/dashboard/customer" component={CustomerDashboard}/>
                <Route path="/dashboard/owner" component={OwnerDashboard}/>
                <Route path="/addfoodtruck" component={AddFoodTruck}/>
