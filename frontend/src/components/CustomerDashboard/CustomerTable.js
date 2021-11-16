@@ -16,9 +16,9 @@ class Table extends Component{
         const acctresponse = await fetch('/currentaccount');          // get account info (i.e. food preference and budget)
         const acctbody = await acctresponse.json();
 
-        const username = acctbody.username;
+        const id = acctbody.id;
 
-        const response = await fetch('/recommendedtrucks/'+username, acctbody);  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/recommendedtrucks/'+id, acctbody);  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
         this.setState({ isLoading: false, trucks: body, currAccount: acctbody});
     }

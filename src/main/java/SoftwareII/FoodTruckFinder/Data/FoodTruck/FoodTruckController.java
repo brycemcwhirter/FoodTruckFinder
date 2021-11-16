@@ -40,9 +40,9 @@ public class FoodTruckController {
 
 
     // Finding Recommended Food Trucks when a user opens Dashboard
-    @GetMapping("/recommendedtrucks/{username}")
-    List<FoodTruck> recommendedTrucks(@PathVariable String username){
-        log.info("Getting Recommended Food Trucks for " + username);
+    @GetMapping("/recommendedtrucks/{id}")
+    List<FoodTruck> recommendedTrucks(@PathVariable Long id){
+        log.info("Getting Recommended Food Trucks for " + id);
 
         return foodTruckRepository.findAll();
     }
