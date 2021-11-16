@@ -1,5 +1,8 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
+import SoftwareII.FoodTruckFinder.Data.Account.Account;
+import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.Services.SortFoodTrucks;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
 import SoftwareII.FoodTruckFinder.Data.Route.*;
 import SoftwareII.FoodTruckFinder.Exceptions.*;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @RestController
@@ -18,13 +22,16 @@ public class FoodTruckController {
     private final FoodTruckRepository foodTruckRepository;
     private final ReviewRepository reviewRepository;
     private final RouteRepository routeRepository;
+    private final AccountRepository accountRepository;
+
     FoodTruck updatingFoodtruck;
     Logger log = LoggerFactory.getLogger(FoodTruckController.class);
 
-    FoodTruckController(FoodTruckRepository foodTruckRepository, ReviewRepository reviewRepository, RouteRepository routeRepository){
+    FoodTruckController(FoodTruckRepository foodTruckRepository, ReviewRepository reviewRepository, RouteRepository routeRepository, AccountRepository accountRepository){
         this.foodTruckRepository = foodTruckRepository;
         this.reviewRepository = reviewRepository;
         this.routeRepository = routeRepository;
+        this.accountRepository = accountRepository;
     }
 
     public FoodTruck getTruckByID(Long id){
@@ -50,7 +57,30 @@ public class FoodTruckController {
     List<FoodTruck> recommendedTrucks(@PathVariable Long id){
         log.info("Getting Recommended Food Trucks for " + id);
 
-        return foodTruckRepository.findAll();
+        SortFoodTrucks sort = new SortFoodTrucks();
+        List<FoodTruck> trucks = foodTruckRepository.findAll();
+        List<FoodTruck> recommended = new ArrayList<FoodTruck>();
+
+
+        //Get The Account from the ID
+        Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+
+
+        // Get the prefs & price ranges w/ that account
+        String pricePref = a.getPricePreference().toString();
+        String typePref = a.getTypePreference().toString();
+        
+
+        trucks = sort                                  // sort trucks by user pref
+                .sortRecommended
+                        (trucks, typePref, pricePref);
+
+        for (int i = 0; i < 5; i++) {                  // only add top 5 to list to send back to frontend
+            recommended.add(trucks.get(i));
+        }
+        return recommended;
+
+
     }
 
 
