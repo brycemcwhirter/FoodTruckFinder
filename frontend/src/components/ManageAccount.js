@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
@@ -73,12 +73,13 @@ class ManageAccount extends Component {
             <div>
                 <NavbarLoggedIn />
                 <header2>
+                    <br></br>
                     <h2>Manage Account</h2>
                     <header className="App-header" style={{ width: '50%' }}>
                         <div className="formBackground"><br></br>
                             <h5>Username: {currAccount.username}</h5>
                             <h5>Email: {currAccount.email} </h5><br></br>
-                            <h6>Update Information</h6>
+                            <h5>Update Information</h5>
                             <form onSubmit={this.handleSubmit}>
                                 <label htmlFor="text-input">Update Username: </label><br></br>
                                 <input class="form-control" id="username" placeholder={currAccount.username} /><br></br>
@@ -87,8 +88,32 @@ class ManageAccount extends Component {
                                 <label htmlFor="text-input">Confirm Password: </label><br></br>
                                 <input type="password" class="form-control" id="confirm_password" /><br></br>
 
-                                <input class="btn btn-secondary" type="submit" value="Update" />
+                                
                             </form>
+
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+
+                                    <option selected>Update Food Type</option>
+                                    <option value="1">American</option>
+                                    <option value="2">Mexican</option>
+                                    <option value="3">Asian</option>
+                                    <option value="3">Seafood</option>
+                                    <option value="3">Indian</option>
+                                    <option value="3">German</option>
+                                </select>
+                                
+                                
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+
+                                    <option selected>Update Price Range</option>
+                                    <option value="1">$</option>
+                                    <option value="2">$$</option>
+                                    <option value="3">$$$</option>
+                                </select>
+                                <br></br>
+
+
+                                <input class="btn btn-secondary" type="submit" value="Update" />
                         </div>
                     </header>
                 </header2>
