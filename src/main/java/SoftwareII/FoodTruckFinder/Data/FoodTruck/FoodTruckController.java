@@ -69,7 +69,7 @@ public class FoodTruckController {
         // Get the prefs & price ranges w/ that account
         String pricePref = a.getPricePreference().toString();
         String typePref = a.getTypePreference().toString();
-        
+
 
         trucks = sort                                  // sort trucks by user pref
                 .sortRecommended
