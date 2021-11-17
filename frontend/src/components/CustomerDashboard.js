@@ -3,11 +3,10 @@ import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 
 
+
 /* import Dashboard Components*/
-import Sidebar from './DashboardComponents/Sidebar'
-import SearchFoodTruck from './DashboardComponents/SearchFoodTrucks';
-import Table from './DashboardComponents/Table'
-import GoogleMaps from './DashboardComponents/GoogleMaps'
+import Table from './CustomerDashboard/CustomerTable'
+import GoogleMaps from './CustomerDashboard/GoogleMaps'
 
 class CustomerDashboard extends Component {
     state = {
@@ -20,6 +19,7 @@ class CustomerDashboard extends Component {
    }
 
    
+<<<<<<< HEAD
    async componentDidMount() {
         /*const acctresponse = await fetch('currentaccount');          // get account info (i.e. food preference and budget)
         const acctbody = await acctresponse.json();
@@ -27,6 +27,10 @@ class CustomerDashboard extends Component {
         const body = await response.json();
         this.setState({ foodtrucks: body, currAccount: acctbody});*/
    }
+=======
+    componentDidMount() {
+    }
+>>>>>>> 588b58d31af9453e4ad071c479b34f51f6c0eda2
    
 
    render() {
@@ -54,6 +58,9 @@ class CustomerDashboard extends Component {
                 </div>     
             </div>  
 
+            <div>
+                
+            </div>
             
 
             </div>
@@ -62,4 +69,6 @@ class CustomerDashboard extends Component {
    }
 }
 
+
 export default CustomerDashboard;
+

@@ -2,23 +2,62 @@ package SoftwareII.FoodTruckFinder.Data.Account;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.json.JSONObject;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.util.Objects;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import SoftwareII.FoodTruckFinder.Data.Review.*;
 
 @Entity
 public class Account {
-
 
     private @Id @GeneratedValue Long id;
     private String username;
     private String email;
     private String password;
-    private AccountType type;
+    private AccountType accountType;
+    private FoodTruckType typePreference;
+    private FoodTruckPrice pricePreference;
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
+        inverseJoinColumns = @JoinColumn(name = "account_id"))
+    private List<FoodTruck> subscribedTrucks;
+
+    public void addSubscribedTruck(FoodTruck truck){
+        subscribedTrucks.add(truck);
+    }
+
+    public FoodTruckType getTypePreference() {
+        return typePreference;
+    }
+
+    public void setTypePreference(FoodTruckType typePreference) {
+        this.typePreference = typePreference;
+    }
+
+    public FoodTruckPrice getPricePreference() {
+        return pricePreference;
+    }
+
+    public void setPricePreference(FoodTruckPrice pricePreference) {
+        this.pricePreference = pricePreference;
+    }
+
+    public List<FoodTruck> getSubscribedTrucks() {
+        return subscribedTrucks;
+    }
+
+    public void setSubscribedTrucks(List<FoodTruck> subscribedTrucks) {
+        this.subscribedTrucks = subscribedTrucks;
+    }
+
+
+
+
 
     public Account() {};
 
@@ -26,7 +65,17 @@ public class Account {
         this.username = u;
         this.email = e;
         this.password = p;
-        this.type = type;
+        this.accountType = type;
+    }
+
+    public Account(String username, String email, String password, AccountType accountType,
+            FoodTruckType typePreference, FoodTruckPrice pricePreference) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.accountType = accountType;
+        this.typePreference = typePreference;
+        this.pricePreference = pricePreference;
     }
 
     public Account(JSONObject newAccount){
@@ -35,13 +84,17 @@ public class Account {
         this.email = newAccount.getString("email");
         this.password = newAccount.getString("password");
         String t = newAccount.getString("type");
+        this.typePreference = null;
+        this.pricePreference = null;
         log.info(t);
         if (t.equals("Customer")){
-            this.type = AccountType.CUSTOMER;
+            this.accountType = AccountType.CUSTOMER;
         } else {
-            this.type = AccountType.FOODTRUCKOWNER;
+            this.accountType = AccountType.FOODTRUCKOWNER;
         }
-        log.info(this.email + " " + this.username + " " + this.password + " " + this.type);
+        this.typePreference = null;
+        this.pricePreference = FoodTruckPrice.$;
+        log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }
 
 
@@ -64,12 +117,12 @@ public class Account {
         return email;
     }
 
-    public AccountType getType() {
-        return type;
+    public AccountType getAccountType() {
+        return accountType;
     }
 
-    public void setType(AccountType type) {
-        this.type = type;
+    public void setAccountType(AccountType type) {
+        this.accountType = type;
     }
 
     public Long getId() {
@@ -87,7 +140,7 @@ public class Account {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", type=" + type +
+                ", type=" + accountType +
                 '}';
     }
 
@@ -96,11 +149,11 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(id, account.id) && Objects.equals(username, account.username) && Objects.equals(email, account.email) && Objects.equals(password, account.password) && type == account.type;
+        return Objects.equals(id, account.id) && Objects.equals(username, account.username) && Objects.equals(email, account.email) && Objects.equals(password, account.password) && accountType == account.accountType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, password, type);
+        return Objects.hash(id, username, email, password, accountType);
     }
 }

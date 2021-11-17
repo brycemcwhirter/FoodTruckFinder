@@ -118,4 +118,37 @@ public class FoodTruckFinderController {
         return accountRepository.save(accountToUpdate);
     }
 
+    /* @PostMapping("/removeaccount/{id}")
+    void removeAccount(@PathVariable Long id) {
+        List<Review> allReviews = reviewRepository.findAll();
+        for (int i = 0; i < allReviews.size(); i++) {
+            if (allReviews.get(i).getAccount().getId() == id) {
+                reviewRepository.delete(allReviews.get(i));
+            }
+        }
+        accountRepository.deleteById(id);
+    }*/
+
+    @PostMapping("/subscribetotruck/{accountID}/{truckID}")
+    void subscribeToTruck(@PathVariable Long accountID, @PathVariable Long truckID){
+        FoodTruck foodTruck = foodTruckRepository.getById(truckID);
+        Account account = accountRepository.getById(accountID);
+        foodTruck.addSubscriber(account);
+        account.addSubscribedTruck(foodTruck);
+        foodTruckRepository.save(foodTruck);
+        accountRepository.save(account);
+    }
+
+    @GetMapping("/gettrucksubscribers/{id}")
+    List<Account> getSubscribers(@PathVariable Long id){
+        FoodTruck foodTruck = foodTruckRepository.getById(id);
+        return foodTruck.getSubscribers();
+    }
+
+    @GetMapping("/getsubscriptions/{id}")
+    List<FoodTruck> getSubscriptions(@PathVariable Long id){
+        Account account = accountRepository.getById(id);
+        return account.getSubscribedTrucks();
+    }
+
 }

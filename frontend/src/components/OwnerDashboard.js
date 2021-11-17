@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ class OwnerDashboard extends Component {
         const body = await response.json();
         const response2 = await fetch('isloggedin');
         const body2 = await response2.json();
-        const response3 = await fetch('/allfoodtrucks');
+        const response3 = await fetch('/getownertrucks/2');
         const body3 = await response3.json();
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
@@ -67,20 +67,43 @@ class OwnerDashboard extends Component {
               <button class="btn btn-outline-success btn-sm" tag={Link} to={"/managefoodtruck/" + truck.id}>Edit</button>
           </td>
             </tr>
-          });
+        });
 
         return (
-            <div>
+            <div className="backgroundDashboard">
                 <NavbarLoggedIn />
-                <header2>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-                    <h2>Owner Dashboard</h2>
-                    <header className="App-header" style={{ width: '60%' }}>
-                        <div className="formBackground"><br></br>
-                        <div style={{ textAlign: "right" }}><small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small></div>
-                        <h4>Your Food Trucks</h4>
-                        <div className="tablebg" style={{ color: 'black' }}>
-                            <table class="table table-striped">
+
+
+                    <div class="container-fluid">
+        
+                    <div class="row justify-content-center header-for-dashboard">
+                        <h1>Owner Dashboard</h1>
+                    </div>
+
+
+
+                    <div>
+
+                        <h4 class="row justify-content-center header-for-dashboard">Your Food Trucks</h4>
+
+                        <div class="row justify-content-center">
+                            <small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small>
+                        </div>
+
+                        
+                        
+                    </div>
+
+                        <div class="row justify-content-center table-map-style">
+
+
+                        <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
+
+                        
+
+
+                        <table class="table table-striped table-hover owner-table-style">
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
@@ -91,14 +114,18 @@ class OwnerDashboard extends Component {
                                         <th scope="col">Edit</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="tableColors">
                                     {truckList}
                                 </tbody>
-                                </table>
-                            </div>
+                        </table>
+
                         </div>
-                    </header>
-                </header2>
+
+
+                    </div>
+
+
+                        </div>
             </div>
         );
     }
