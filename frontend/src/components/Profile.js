@@ -37,12 +37,9 @@ class Profile extends Component{
             <div class="row justify-content-center table-map-style">
 
 
-                <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
-
                     <FoodTruckFollowing/>
 
-                </div>
-            
+                
             </div>
                    
             </div>  

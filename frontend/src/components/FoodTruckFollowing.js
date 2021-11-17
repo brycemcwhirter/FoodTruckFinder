@@ -40,9 +40,25 @@ class FoodTruckFollowing extends Component{
             )
         });
 
+
+
         if(isLoading){
             return(
                 <h1>loading....</h1>
+            )
+        }
+
+
+        if(truckList.length === 0){
+            return(
+                <div>
+                
+                <h2>You're not following any food trucks yet</h2>
+
+                <h3>Click on Dashboard to go follow some trucks</h3>
+
+                </div>
+                
             )
         }
 
@@ -50,7 +66,7 @@ class FoodTruckFollowing extends Component{
 
         <div>
 
-
+        <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
         <table class="table table-striped table-hover owner-table-style">
             <thead>
                 <tr>
@@ -70,6 +86,7 @@ class FoodTruckFollowing extends Component{
 
             </tbody>
         </table>
+        </div>
     </div>
         );
     }
