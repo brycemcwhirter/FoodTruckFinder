@@ -72,6 +72,11 @@ public class FoodTruckFinderController {
         return currentAccount;
     }
 
+    @GetMapping("/currentaccountid")
+    Long getAccountID(){
+        return currentAccount.getId();
+    }
+
     //Adding a new Account
     @PostMapping("/accounts")
     Account newAccount(@RequestBody String strAccount){
@@ -91,6 +96,14 @@ public class FoodTruckFinderController {
         }
         if (newAccount.getString("email") != ""){
             accountToUpdate.setEmail(newAccount.getString("email"));
+        }
+        if (!newAccount.getString("typePref").equals("None")){
+            log.info("Updating Type Preference to " + newAccount.getString("typePref"));
+            accountToUpdate.setTypePreference(FoodTruckType.getType(newAccount.getString("typePref")));
+        }
+        if (!newAccount.getString("pricePref").equals("None")){
+            log.info("Updating Price Preference to " + newAccount.getString("pricePref"));
+            accountToUpdate.setPricePreference(FoodTruckPrice.getPrice(newAccount.getString("pricePref")));
         }
         currentAccount = accountToUpdate;
         log.info("Updated Account: " + currentAccount.getUsername() + " " + currentAccount.getEmail());

@@ -55,10 +55,6 @@ public class Account {
         this.subscribedTrucks = subscribedTrucks;
     }
 
-
-
-
-
     Account() {};
 
     public Account(String u, String e, String p, AccountType type){
@@ -92,8 +88,18 @@ public class Account {
         } else {
             this.accountType = AccountType.FOODTRUCKOWNER;
         }
-        this.typePreference = null;
-        this.pricePreference = FoodTruckPrice.$;
+        String pricePreference;
+        if ((pricePreference = newAccount.getString("pricePref")) == null){
+            this.pricePreference = FoodTruckPrice.$;
+        } else {
+            this.pricePreference = FoodTruckPrice.getPrice(pricePreference);
+        }
+        String typePreference;
+        if ((typePreference = newAccount.getString("typePref")) == null){
+            this.typePreference = FoodTruckType.AMERICAN;
+        } else {
+            this.typePreference = FoodTruckType.getType(typePreference);
+        }
         log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }
 
