@@ -3,7 +3,7 @@ package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 import java.util.Objects;
 
 public enum FoodTruckType {
-    AMERICAN, ITALIAN, MEXICAN, ASIAN, SEAFOOD, INDIAN, GERMAN, DRINKS;
+    AMERICAN, ITALIAN, MEXICAN, ASIAN, SEAFOOD, INDIAN, GERMAN, DRINKS, GENERAL;
 
     public static FoodTruckType getType(String s){
         if(Objects.equals(s, "American")){

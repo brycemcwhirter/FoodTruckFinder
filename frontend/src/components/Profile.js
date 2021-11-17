@@ -3,6 +3,7 @@ import '../App.css'
 import NavbarLoggedIn from './NavBarLoggedIn';
 
 import Table from './CustomerDashboard/CustomerTable'
+import FoodTruckFollowing from './FoodTruckFollowing';
 
 
 class Profile extends Component{
@@ -35,12 +36,15 @@ class Profile extends Component{
 
             <div class="row justify-content-center table-map-style">
 
-                <div class="col">
-                    <h1>List of Trucks Following</h1>
+
+                <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
+
+                    <FoodTruckFollowing/>
+
                 </div>
-                <div class="col-6">
-                    
-                </div>     
+            
+            </div>
+                   
             </div>  
 
             <div>
@@ -49,7 +53,7 @@ class Profile extends Component{
             
 
             </div>
-            </div>
+        
            );
         
     }

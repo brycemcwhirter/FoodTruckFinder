@@ -16,6 +16,9 @@ public class FoodTruck {
     private @Id
     @GeneratedValue
     Long id;
+
+
+
     private String name;
     private FoodTruckType type;
     private String address;
@@ -25,10 +28,20 @@ public class FoodTruck {
     private Integer rating;
     private Boolean operational;
     private FoodTruckPrice priceRange;
+
+
+
+
     @ManyToOne
     private Account owner;
+
+
+
     @ManyToMany(mappedBy = "subscribedTrucks")
     private List<Account> subscribers;
+
+
+
 
     public void addSubscriber(Account account){
         subscribers.add(account);
@@ -148,6 +161,9 @@ public class FoodTruck {
     }
 
     public FoodTruckType getType() {
+        if(type.equals(null)){
+            type = FoodTruckType.GENERAL;
+        }
         return type;
     }
 
@@ -156,6 +172,11 @@ public class FoodTruck {
     }
 
     public String getAddress() {
+
+        if(address.isEmpty()){
+            return "not specified";
+        }
+
         return address;
     }
 
@@ -164,6 +185,11 @@ public class FoodTruck {
     }
 
     public String getCity() {
+
+        if(city.isEmpty()){
+            return "not specified";
+        }
+
         return city;
     }
 
@@ -172,6 +198,11 @@ public class FoodTruck {
     }
 
     public String getState() {
+
+        if(state.isEmpty()){
+            return "not specified";
+        }
+
         return state;
     }
 
@@ -180,11 +211,20 @@ public class FoodTruck {
     }
 
     public String getZipcode() {
+
+        if(zipcode.isEmpty()){
+            return "not specified";
+        }
+
+
         return zipcode;
     }
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+
+
 
 }
