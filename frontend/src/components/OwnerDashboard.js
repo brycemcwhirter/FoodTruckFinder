@@ -23,7 +23,7 @@ class OwnerDashboard extends Component {
         const body = await response.json();
         const response2 = await fetch('isloggedin');
         const body2 = await response2.json();
-        const response3 = await fetch('/getownertrucks/2');
+        const response3 = await fetch('/getownertrucks/11');
         const body3 = await response3.json();
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }

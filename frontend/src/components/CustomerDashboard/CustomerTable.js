@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import SearchFoodTruck from './SearchFoodTrucks';
 
+import GoogleMaps from './GoogleMaps'
 
 class Table extends Component{
 
     state = {
         isLoading: true,
         trucks: [],
-        currAccount: []
+        currAccount: [],
+        id: -1
     }
 
 
@@ -16,17 +18,23 @@ class Table extends Component{
         const acctresponse = await fetch('/currentaccount');          // get account info (i.e. food preference and budget)
         const acctbody = await acctresponse.json();
 
-        const id = acctbody.id;
+        const uid = acctbody.id;
+        const jsonBody = JSON.stringify(uid);
 
-        const response = await fetch('/recommendedtrucks/'+id, acctbody);  // send account info to backend to get 5 recommended trucks
+        /*const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-type': 'application/json' },
+            body: jsonBody
+        };*/
+        const response = await fetch('/recommendedTrucks');  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        this.setState({ isLoading: false, trucks: body, currAccount: acctbody});
+        this.setState({ isLoading: false, trucks: body, currAccount: acctbody, id: uid});
     }
 
 
     render(){
 
-        const {isLoading, trucks} = this.state;
+        const {isLoading, trucks, id} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -61,8 +69,6 @@ class Table extends Component{
         <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{color: 'black'}}>
 
         
-
-
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -74,16 +80,16 @@ class Table extends Component{
                 </tr>
             </thead>
             <tbody className="tableColors">
-                
 
                 {truckList}
                 
-                
 
             </tbody>
-        </table>
+        </table>    
     </div>
     </div>
+    
+    
 )
     }
 }

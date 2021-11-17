@@ -19,18 +19,9 @@ class CustomerDashboard extends Component {
    }
 
    
-<<<<<<< HEAD
-   async componentDidMount() {
-        /*const acctresponse = await fetch('currentaccount');          // get account info (i.e. food preference and budget)
-        const acctbody = await acctresponse.json();
-        const response = await fetch('recommendedTrucks', acctbody); // send account info to backend to get 5 recommended trucks
-        const body = await response.json();
-        this.setState({ foodtrucks: body, currAccount: acctbody});*/
+   componentDidMount() {
+
    }
-=======
-    componentDidMount() {
-    }
->>>>>>> 588b58d31af9453e4ad071c479b34f51f6c0eda2
    
 
    render() {
@@ -46,13 +37,9 @@ class CustomerDashboard extends Component {
 
 
             <div class="row justify-content-center table-map-style">
-                {/*
-                <div class="col">
-
-                    
+                <div class="col-6">
                     <Table/>
                 </div>
-                */}
                 <div class="col-6">
                     <GoogleMaps/>
                 </div>     
