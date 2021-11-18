@@ -22,6 +22,16 @@ class ViewFoodTruck extends Component {
         this.props.history.push("/reviewtruck");
    }
 
+   subscribe(){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    
+    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
+    alert("You are now subscribed to the food truck!");
+   }
+
    async componentDidMount() {
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
@@ -69,6 +79,8 @@ class ViewFoodTruck extends Component {
                 <button class="btn btn-secondary">View Menu</button>
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
+                <div class="divider"/>
+                <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>
             </div><br></br>
             <div>
                 <h4>Reviews:</h4>
