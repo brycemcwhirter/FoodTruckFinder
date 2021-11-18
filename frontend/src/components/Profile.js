@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css'
 import NavbarLoggedIn from './NavBarLoggedIn';
-
+import FoodTruckFollowing from './FoodTruckFollowing';
 
 class Profile extends Component{
 
