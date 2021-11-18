@@ -30,7 +30,7 @@ class Profile extends Component{
             <div class="container-fluid">
 
             <div class="row justify-content-center header-for-dashboard">
-                <h1>Hi {currAccount.username}</h1>
+                <h1>Profile</h1>
             </div>
 
 

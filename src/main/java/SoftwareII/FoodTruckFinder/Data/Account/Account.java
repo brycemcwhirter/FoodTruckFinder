@@ -25,7 +25,7 @@ public class Account {
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
         inverseJoinColumns = @JoinColumn(name = "account_id"))
-    private List<FoodTruck> subscribedTrucks;
+    private List<FoodTruck> subscribedTrucks = new ArrayList<FoodTruck>();
 
     public void addSubscribedTruck(FoodTruck truck){
         subscribedTrucks.add(truck);

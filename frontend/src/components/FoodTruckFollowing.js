@@ -24,9 +24,13 @@ class FoodTruckFollowing extends Component{
             return (<tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.address}  {truck.city}, {truck.state}</td>
-              <td>9 to 5 TEST</td>
-              <td>BLAH BLAH</td>  
+              <td>{truck.priceRange}</td>
+              <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{this.truckRating(truck)}</td>
+              <td>
+                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
+              </td>
+          
             </tr>
             )
         });
