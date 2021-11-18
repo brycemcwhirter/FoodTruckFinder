@@ -91,6 +91,7 @@ class ManageAccount extends Component {
                                 <input class="form-control" id="username" placeholder={currAccount.username} /><br></br>
                                 <label htmlFor="text-input">Update Email: </label><br></br>
                                 <input class="form-control" id="email" placeholder={currAccount.email} /><br></br>
+                                <label htmlFor="text-input">Update Type Preference: </label><br></br>
                                 <select class="form-control form-select" id="typePref">
                                     <option value="None">Select...</option>
                                     <option>American</option>
@@ -102,7 +103,7 @@ class ManageAccount extends Component {
                                     <option>Drinks</option>
                                 </select> <br></br>
                                 
-                                
+                                <label htmlFor="text-input">Update Price Preference: </label><br></br>
                                 <select class="form-control form-select" id="pricePref">
                                     <option value="None">Select...</option>
                                     <option>$</option>

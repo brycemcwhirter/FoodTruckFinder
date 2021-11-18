@@ -71,7 +71,7 @@ public class FoodTruckController {
                 .sortRecommended
                         (trucks, typePref, pricePref);
 
-        for (int i = 0; i < 5; i++) {                  // only add top 5 to list to send back to frontend
+        for (int i = 0; i < Math.min(5, trucks.size()); i++) {                  // only add top 5 to list to send back to frontend
             recommended.add(trucks.get(i));
         }
         return recommended;
