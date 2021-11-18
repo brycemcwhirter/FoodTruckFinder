@@ -18,12 +18,18 @@ class OwnerDashboard extends Component {
     handleSubmit(event) {
         alert("Updated");
     }
+
+    updateTruck(id){
+        localStorage.setItem("TruckID", id);
+        this.props.history.push('/managefoodtruck');
+    }
+
     async componentDidMount() {
         const response = await fetch('currentaccount');
         const body = await response.json();
         const response2 = await fetch('isloggedin');
         const body2 = await response2.json();
-        const response3 = await fetch('/allfoodtrucks');
+        const response3 = await fetch('/getownertrucks/' + localStorage.getItem("UserID"));
         const body3 = await response3.json();
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
@@ -49,8 +55,17 @@ class OwnerDashboard extends Component {
         }
     };
 
+
     render() {
         const { isLoading, trucks } = this.state;
+
+        if (localStorage.getItem("UserID") == null){
+            alert("You must be logged in to view this page");
+            this.props.history.push("/");
+        } else if (localStorage.getItem("Role") == "CUSTOMER"){
+            alert("You must be a food truck owner in order to view this page");
+            this.props.history.push("/dashboard/customer");
+        }
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -60,14 +75,16 @@ class OwnerDashboard extends Component {
             return <tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.address}  {truck.city}, {truck.state}</td>
+              <td>{truck.priceRange}</td>
+              <td>{truck.address},  {truck.city}, {truck.state}</td>
           <td>{this.truckRating(truck)}</td>
           <td>{this.truckOperating(truck)}</td>
           <td>
-              <button class="btn btn-outline-success btn-sm" tag={Link} to={"/managefoodtruck/" + truck.id}>Edit</button>
+              <button class="btn btn-outline-secondary btn-sm" onClick={() => this.updateTruck(truck.id)}>Edit</button>
           </td>
             </tr>
         });
+        
 
         return (
             <div className="backgroundDashboard">
@@ -81,18 +98,13 @@ class OwnerDashboard extends Component {
                         <h1>Owner Dashboard</h1>
                     </div>
 
-
-
                     <div>
 
-                        <h4 class="row justify-content-center header-for-dashboard">Your Food Trucks</h4>
+                        <div class="row justify-content-center header-for-dashboard">Your Food Trucks</div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-end" style={{paddingRight: "80px"}}>
                             <small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small>
-                        </div>
-
-                        
-                        
+                        </div>   
                     </div>
 
                         <div class="row justify-content-center table-map-style">
@@ -108,6 +120,7 @@ class OwnerDashboard extends Component {
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
+                                        <th scope="col">Price</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Rating</th>
                                         <th scope="col">Operating</th>

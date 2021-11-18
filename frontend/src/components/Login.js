@@ -39,8 +39,10 @@ class Login extends Component {
                     headers: { 'Content-Type': 'application/json' },
                     body: jsonString
                 };
-                fetch('setaccount', requestOptions)
-                if (accounts[i].type === 'CUSTOMER') {
+                localStorage.setItem("UserID", accounts[i].id);
+                localStorage.setItem("Role", accounts[i].accountType);
+                //fetch('setaccount', requestOptions)
+                if (accounts[i].accountType === 'CUSTOMER') {
                     this.props.history.push("/dashboard/customer");
                 } else {
                     this.props.history.push("/dashboard/owner");
