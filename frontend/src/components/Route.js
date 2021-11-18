@@ -12,6 +12,8 @@ import ViewCustomer from './ViewCustomer';
 import ViewFoodTruck from './ViewFoodTruck';
 import Profile from './Profile';
 import App from "./App"
+import ManageRoutes from './ManageRoutes';
+import ReviewTruck from './ReviewTruck';
 
 
 export default function RouterConfig() {
@@ -34,6 +36,8 @@ Here we define the route path and its corresponding components
                <Route path="/managefoodtruck" component={ManageFoodTruck}/>
                <Route path="/viewcustomer" component={ViewCustomer}/>
                <Route path="/viewfoodtruck" component={ViewFoodTruck}/>
+               <Route path="/manageroutes" component={ManageRoutes}/>
+               <Route path="/reviewtruck" component={ReviewTruck}/>
            </Switch>
        </BrowserRouter>
    );

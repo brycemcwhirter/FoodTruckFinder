@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../../App.css';
+import CustomerDashboard from '../CustomerDashboard';
 import SearchFoodTruck from './SearchFoodTrucks';
 
 import GoogleMaps from './GoogleMaps'
@@ -8,33 +10,65 @@ class Table extends Component{
     state = {
         isLoading: true,
         trucks: [],
-        currAccount: [],
-        id: -1
+        trucksAll: []
     }
 
 
 
     async componentDidMount(){
-        const acctresponse = await fetch('/currentaccount');          // get account info (i.e. food preference and budget)
-        const acctbody = await acctresponse.json();
-
-        const uid = acctbody.id;
-        const jsonBody = JSON.stringify(uid);
-
-        /*const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-type': 'application/json' },
-            body: jsonBody
-        };*/
-        const response = await fetch('/recommendedTrucks');  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        this.setState({ isLoading: false, trucks: body, currAccount: acctbody, id: uid});
+        const response2 = await fetch('allfoodtrucks');
+        const body2 = await response2.json();
+        this.setState({ isLoading: false, trucks: body, trucksAll: body2});
     }
+
+    viewTruck(id){
+        localStorage.setItem("TruckID", id);
+        localStorage.setItem("Action", "viewTruck");
+    }
+
+    async search(){
+        const {trucks} = this.state;
+
+        var searchStr = document.getElementById("search").value;
+        if (searchStr == ""){
+            localStorage.setItem("ValidSearch", 0);
+            alert("Please type in a name in the search bar");
+        } else {
+            var found = -1;
+            for (let i = 0; i < trucks.length; i++){
+                if (trucks[i].name == searchStr){
+                    found = i;
+                }
+            }
+            if (found >= 0){
+                localStorage.setItem("ValidSearch", 1);
+                localStorage.setItem("TruckID", trucks[found].id);
+            } else {
+                alert("Not Found");
+                localStorage.setItem("ValidSearch", 0);
+            }        
+        }
+
+    }
+
+    truckRating(truck){
+        if (truck.rating > 0){
+            for (let i = 0; i < truck.rating; i++){
+                return <span class="fa fa-star checked"></span>
+            }
+            for (let i = truck.rating; i < 5; i++){
+                return <span class="fa fa-star"></span>
+            }
+        } else {
+            return <div>Not Yet Rated</div>
+        }
+    };
 
 
     render(){
-
-        const {isLoading, trucks, id} = this.state;
+        const {isLoading, trucks} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -44,39 +78,37 @@ class Table extends Component{
             return (<tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.address}  {truck.city}, {truck.state}</td>
-              <td>9 to 5 TEST</td>
-              <td>BLAH BLAH</td>
-          
+              <td>{truck.priceRange}</td>
+              <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{this.truckRating(truck)}</td>
+              <td>
+                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
+              </td>
           
             </tr>
             )
         });
 
-
-
-
-
-
-
-
         return(
         
         <div>
-        <SearchFoodTruck/>
+        <><form class="form-inline my-2 my-lg-0">
+                <input class="form-control-lg mr-sm-2" id="search" type="text" placeholder="Search Food Trucks" aria-label="Search" />
+                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/viewfoodtruck">Search</a>
+            </form><br></br></>
 
 
         <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{color: 'black'}}>
 
-        
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
+                <th scope="col">Price</th>
                 <th scope="col">Address</th>
-                <th scope="col">Hours</th>
                 <th scope="col">Rating</th>
+                <th scope="col">View</th>
                 </tr>
             </thead>
             <tbody className="tableColors">
@@ -85,7 +117,8 @@ class Table extends Component{
                 
 
             </tbody>
-        </table>    
+        </table>
+        
     </div>
     </div>
     

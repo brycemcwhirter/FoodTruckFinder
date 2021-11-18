@@ -15,7 +15,7 @@ class CustomerDashboard extends Component {
     };    
 
    handleSubmit(event) {
-        alert("Updated");
+        alert("Test");
    }
 
    
@@ -25,6 +25,7 @@ class CustomerDashboard extends Component {
    
 
    render() {
+       
        return (
            <div className="backgroundDashboard">
             <NavbarLoggedIn/>

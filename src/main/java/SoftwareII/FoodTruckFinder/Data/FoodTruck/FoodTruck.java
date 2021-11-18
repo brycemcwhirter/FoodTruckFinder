@@ -16,6 +16,9 @@ public class FoodTruck {
     private @Id
     @GeneratedValue
     Long id;
+
+
+
     private String name;
     private FoodTruckType type;
     private FoodTruckPrice price;
@@ -26,10 +29,20 @@ public class FoodTruck {
     private Integer rating;
     private Boolean operational;
     private FoodTruckPrice priceRange;
+
+
+
+
     @ManyToOne
     private Account owner;
+
+
+
     @ManyToMany(mappedBy = "subscribedTrucks")
     private List<Account> subscribers;
+
+
+
 
     public void addSubscriber(Account account){
         subscribers.add(account);
@@ -81,7 +94,7 @@ public class FoodTruck {
         this.owner = owner;
     }
 
-    public FoodTruck(JSONObject newFoodTruck){
+    public FoodTruck(JSONObject newFoodTruck, Account owner){
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
         String t = newFoodTruck.getString("type");
@@ -90,15 +103,15 @@ public class FoodTruck {
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
-        String priceRangeStr = newFoodTruck.getString("priceRange");
+        String priceRangeStr = newFoodTruck.getString("price");
         this.priceRange = FoodTruckPrice.getPrice(priceRangeStr);
         this.type = FoodTruckType.getType(t);
         this.price = FoodTruckPrice.getPrice(p);
         this.rating = -1;
         this.operational = true;
-        log.info("String: " + t);
+        this.owner = owner;
 
-        log.info(this.name + " " + this.type + " " + this.address);
+        log.info("Adding Truck: " + this.name + " " + this.type + " " + this.address);
     }
 
     public void setOperational(Boolean op) {
@@ -152,6 +165,9 @@ public class FoodTruck {
     }
 
     public FoodTruckType getType() {
+        if(type.equals(null)){
+            type = FoodTruckType.GENERAL;
+        }
         return type;
     }
 
@@ -168,6 +184,11 @@ public class FoodTruck {
     }
 
     public String getAddress() {
+
+        if(address.isEmpty()){
+            return "not specified";
+        }
+
         return address;
     }
 
@@ -176,6 +197,11 @@ public class FoodTruck {
     }
 
     public String getCity() {
+
+        if(city.isEmpty()){
+            return "not specified";
+        }
+
         return city;
     }
 
@@ -184,6 +210,11 @@ public class FoodTruck {
     }
 
     public String getState() {
+
+        if(state.isEmpty()){
+            return "not specified";
+        }
+
         return state;
     }
 
@@ -192,11 +223,20 @@ public class FoodTruck {
     }
 
     public String getZipcode() {
+
+        if(zipcode.isEmpty()){
+            return "not specified";
+        }
+
+
         return zipcode;
     }
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+
+
 
 }
