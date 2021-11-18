@@ -33,7 +33,7 @@ class Profile extends Component{
 
             <div class="row justify-content-center table-map-style">
 
-                
+                <FoodTruckFollowing/>
             </div>  
 
             <div>
