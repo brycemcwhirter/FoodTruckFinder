@@ -41,7 +41,6 @@ class Login extends Component {
                 };
                 localStorage.setItem("UserID", accounts[i].id);
                 localStorage.setItem("Role", accounts[i].accountType);
-                alert(localStorage.getItem("Role"));
                 //fetch('setaccount', requestOptions)
                 if (accounts[i].accountType === 'CUSTOMER') {
                     this.props.history.push("/dashboard/customer");

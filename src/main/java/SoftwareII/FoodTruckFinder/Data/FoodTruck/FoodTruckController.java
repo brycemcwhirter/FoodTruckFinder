@@ -34,10 +34,6 @@ public class FoodTruckController {
         this.accountRepository = accountRepository;
     }
 
-    public FoodTruck getTruckByID(Long id){
-        return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
-    }
-
     //Getting all the Items in the Repo
     @GetMapping("/allfoodtrucks")
     List<FoodTruck> all(){
@@ -95,8 +91,6 @@ public class FoodTruckController {
     }
 
 
-
-
     //Adding a new food truck
     @PostMapping("/foodtrucks/{id}")
     FoodTruck newFoodTruck(@RequestBody String strFoodTruck, @PathVariable Long id){
@@ -128,6 +122,13 @@ public class FoodTruckController {
         }
         if (newTruck.getString("price") != "" && !newTruck.getString("price").equals("Select...")){
             trucktoUpdate.setPriceRange(FoodTruckPrice.getPrice(newTruck.getString("price")));
+        }
+        if (newTruck.getString("operational") != "" && !newTruck.getString("operational").equals("Select...")){
+            if (newTruck.getString("operational").equals("Yes"))
+                trucktoUpdate.setOperational(true);
+            else{
+                trucktoUpdate.setOperational(false);
+            }
         }
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
         return foodTruckRepository.save(trucktoUpdate);

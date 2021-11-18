@@ -9,8 +9,7 @@ class ManageAccount extends Component {
     state = {
         isLoading: true,
         currAccount: [],
-        accounts: [],
-        loggedin: false
+        accounts: []
     };
 
     handleSubmit = (event) => {
@@ -52,7 +51,7 @@ class ManageAccount extends Component {
                 headers: { 'Content-Type': 'application/json' },
                 body: jsonString
             };
-            fetch('updateaccount', requestOptions)
+            fetch('updateaccount/' + localStorage.getItem("UserID"), requestOptions)
         }
     }
     async componentDidMount() {
@@ -61,17 +60,15 @@ class ManageAccount extends Component {
         const body = await response.json();
         const response2 = await fetch('accounts');
         const body2 = await response2.json();
-        const response3 = await fetch('isloggedin');
-        const body3 = await response3.json();
-        this.setState({ currAccount: body, isLoading: false, accounts: body2, loggedin: body3 });
+        this.setState({ currAccount: body, isLoading: false, accounts: body2 });
     }
 
     render() {
         const { currAccount, isLoading } = this.state;
 
         if (localStorage.getItem("UserID") == null){
-            alert("You must be logged in to view this page");
             this.props.history.push("/");
+            alert("You must be logged in to view this page");
         }
         if (isLoading) {
             return <p>Loading...</p>;

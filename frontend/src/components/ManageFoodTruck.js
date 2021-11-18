@@ -20,6 +20,7 @@ class ManageFoodTruck extends Component {
         updatedTruck.state = document.getElementById("inputState").value;
         updatedTruck.zipcode = document.getElementById("inputZip").value;
         updatedTruck.price = document.getElementById("inputPrice").value;
+        updatedTruck.operational = document.getElementById("inputOperational").value;
 
         var jsonString = JSON.stringify(updatedTruck);
 
@@ -36,12 +37,24 @@ class ManageFoodTruck extends Component {
    resetInfo(){
         const { truck } = this.state;
         document.getElementById("name").value = "";
-        document.getElementById("type").value = "";
+        document.getElementById("type").value = "Select...";
         document.getElementById("inputAddress").value = truck.address;
         document.getElementById("inputCity").value = "";
         document.getElementById("inputState").value = truck.state;
         document.getElementById("inputZip").value = "";
-        document.getElementById("inputPrice").value = truck.priceRange;
+        document.getElementById("inputPrice").value = "Select...";
+        document.getElementById("inputOperational").value = "Select...";
+   }
+
+   deleteTruck(){
+        alert("Deleting Truck");
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        fetch('removefoodtruck/'+localStorage.getItem("TruckID"), requestOptions);
+        localStorage.removeItem("TruckID");
+        this.props.history.push("/dashboard/owner");
    }
 
    async componentDidMount() {
@@ -119,17 +132,30 @@ class ManageFoodTruck extends Component {
                         <option>$$$</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
+                    <label>Operational</label>
+                    <select id="inputOperational" class="form-control">
+                        <option hidden>Select...</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
                     <label>Change Route</label>
                     <input type="text" class="form-control" id="inputZip"/>
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>
-            <button type="button" class="btn btn-secondary" style={{float: "right"}} onClick={() => this.resetInfo()}>Reset Information</button>
+            <div class="divider"/>
+            <button type="button" class="btn btn-secondary" onClick={() => this.resetInfo()}>Reset Information</button>
+            <button type="button" class="btn btn-danger" style={{float: "right"}} onClick={() => this.deleteTruck()}>Delete Truck</button>
+            
+            
             </form>
             </div>
             </header>
             </header2>
+            
            </div>
            );
    }

@@ -98,18 +98,13 @@ class OwnerDashboard extends Component {
                         <h1>Owner Dashboard</h1>
                     </div>
 
-
-
                     <div>
 
-                        <h4 class="row justify-content-center header-for-dashboard">Your Food Trucks</h4>
+                        <div class="row justify-content-center header-for-dashboard">Your Food Trucks</div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-end" style={{paddingRight: "80px"}}>
                             <small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small>
-                        </div>
-
-                        
-                        
+                        </div>   
                     </div>
 
                         <div class="row justify-content-center table-map-style">
