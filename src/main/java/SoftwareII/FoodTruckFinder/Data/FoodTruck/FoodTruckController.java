@@ -37,6 +37,7 @@ public class FoodTruckController {
     //Getting all the Items in the Repo
     @GetMapping("/allfoodtrucks")
     List<FoodTruck> all(){
+        log.info("Getting all trucks");
         return foodTruckRepository.findAll();
     }
 
@@ -91,13 +92,19 @@ public class FoodTruckController {
 
 
     // Finding Food Trucks by a search term
-    @GetMapping("/searchtrucks/{truckname}")
-    List <FoodTruck> searchTrucks(@PathVariable String truckname){
-        log.info("Searching for trucks with name" + truckname);
+    @GetMapping("/search/{id}")
+    int searchTrucks(@PathVariable Long id){
+        log.info("Searching for trucks with name" + id);
 
         // return foodTruckRepository.findByName(truckname);
+        /*List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        for (int i = 0; i < allTrucks.size(); i++){
+            if (allTrucks.get(i).getName().equals(truckname)){
+                return allTrucks.get(i);
+            }
+        }*/
 
-        return foodTruckRepository.findAll();
+        return -1;
     }
 
 

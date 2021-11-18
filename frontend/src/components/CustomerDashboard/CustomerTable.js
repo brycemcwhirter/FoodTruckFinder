@@ -9,6 +9,7 @@ class Table extends Component{
     state = {
         isLoading: true,
         trucks: [],
+        trucksAll: []
     }
 
 
@@ -16,12 +17,39 @@ class Table extends Component{
     async componentDidMount(){
         const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        this.setState({ isLoading: false, trucks: body});
+        const response2 = await fetch('allfoodtrucks');
+        const body2 = await response2.json();
+        this.setState({ isLoading: false, trucks: body, trucksAll: body2});
     }
 
     viewTruck(id){
         localStorage.setItem("TruckID", id);
         localStorage.setItem("Action", "viewTruck");
+    }
+
+    async search(){
+        const {trucks} = this.state;
+
+        var searchStr = document.getElementById("search").value;
+        if (searchStr == ""){
+            localStorage.setItem("ValidSearch", 0);
+            alert("Please type in a name in the search bar");
+        } else {
+            var found = -1;
+            for (let i = 0; i < trucks.length; i++){
+                if (trucks[i].name == searchStr){
+                    found = i;
+                }
+            }
+            if (found >= 0){
+                localStorage.setItem("ValidSearch", 1);
+                localStorage.setItem("TruckID", trucks[found].id);
+            } else {
+                alert("Not Found");
+                localStorage.setItem("ValidSearch", 0);
+            }        
+        }
+
     }
 
     truckRating(truck){
@@ -63,7 +91,10 @@ class Table extends Component{
         return(
         
         <div>
-        <SearchFoodTruck/>
+        <><form class="form-inline my-2 my-lg-0">
+                <input class="form-control-lg mr-sm-2" id="search" type="text" placeholder="Search Food Trucks" aria-label="Search" />
+                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/viewfoodtruck">Search</a>
+            </form><br></br></>
 
 
         <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{color: 'black'}}>
@@ -88,6 +119,7 @@ class Table extends Component{
 
             </tbody>
         </table>
+        
     </div>
     </div>
 )

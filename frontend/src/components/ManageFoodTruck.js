@@ -32,6 +32,7 @@ class ManageFoodTruck extends Component {
         };
         fetch('updatetruck/'+localStorage.getItem("TruckID"), requestOptions)
         localStorage.removeItem("TruckID");
+        localStorage.removeItem("Action");
         this.props.history.push("/dashboard/owner");
    }
 
@@ -55,6 +56,7 @@ class ManageFoodTruck extends Component {
         };
         fetch('removefoodtruck/'+localStorage.getItem("TruckID"), requestOptions);
         localStorage.removeItem("TruckID");
+        localStorage.removeItem("Action");
         this.props.history.push("/dashboard/owner");
    }
 
@@ -79,6 +81,9 @@ class ManageFoodTruck extends Component {
         } else if (localStorage.getItem("Role") == "CUSTOMER"){
             alert("You must be a food truck owner in order to view this page");
             this.props.history.push("/dashboard/customer");
+        } else if (localStorage.getItem("Action") != "manageTruck"){
+            alert("You must go to this page through the owner dashboard");
+            this.props.history.push("/dashboard/owner");
         }
 
         const routesList = routes.map(route => {
