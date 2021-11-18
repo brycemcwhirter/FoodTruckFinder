@@ -29,10 +29,10 @@ public class SortFoodTrucks {
         }
 
         sorted = false;
-        while (!sorted) { // sort by specialty
+        while (!sorted) { // sort by rating
             sorted = true;
             for (int i = 0; i < l.size()-1; i++) {
-                if (!((l.get(i)).getType().toString().equals(type)) && l.get(i + 1).getType().toString().equals(type)) {
+                if ((l.get(i)).getRating() < (l.get(i + 1).getRating())) {
                     temp = l.get(i);
                     l.set(i, l.get(i + 1));
                     l.set(i + 1, temp);
@@ -42,10 +42,10 @@ public class SortFoodTrucks {
         }
 
         sorted = false;
-        while (!sorted) { // sort by rating
+        while (!sorted) { // sort by specialty
             sorted = true;
             for (int i = 0; i < l.size()-1; i++) {
-                if ((l.get(i)).getRating() > (l.get(i + 1).getRating())) {
+                if (!((l.get(i)).getType().toString().equals(type)) && l.get(i + 1).getType().toString().equals(type)) {
                     temp = l.get(i);
                     l.set(i, l.get(i + 1));
                     l.set(i + 1, temp);

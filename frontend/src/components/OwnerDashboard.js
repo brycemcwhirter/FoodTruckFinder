@@ -35,14 +35,20 @@ class OwnerDashboard extends Component {
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
 
-      truckRating(truck){
+    truckRating(truck){
         if (truck.rating > 0){
-            for (let i = 0; i < truck.rating; i++){
-                return <span class="fa fa-star checked"></span>
+            if (truck.rating == 1){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            } else if (truck.rating == 2){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 3){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 4){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 5){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div>
             }
-            for (let i = truck.rating; i < 5; i++){
-                return <span class="fa fa-star"></span>
-            }
+            
         } else {
             return <div>Not Yet Rated</div>
         }
