@@ -10,7 +10,8 @@ class ViewFoodTruck extends Component {
     state = {
         isLoading: true,
         truck: [],
-        reviews: []
+        reviews: [],
+        routes: []
     };
     
    handleSubmit(event) {
@@ -21,6 +22,20 @@ class ViewFoodTruck extends Component {
    makeReview(){
         this.props.history.push("/reviewtruck");
    }
+
+   hasRoutes(){
+        const { routes } = this.state;
+        if (routes.length == 0){
+            return <div>This food truck does not have any stops within their route currently</div>
+        }
+   }
+
+   hasReviews(){
+    const { reviews } = this.state;
+    if (reviews.length == 0){
+        return <div>This food truck does not have any reviews</div>
+    }
+}
 
    subscribe(){
     /*const requestOptions = {
@@ -37,10 +52,12 @@ class ViewFoodTruck extends Component {
         const body = await response.json();
         const response2 = await fetch('/getreviewsbytruck/' + localStorage.getItem("TruckID"));
         const body2 = await response2.json();
-        this.setState({ isLoading: false, truck: body, reviews: body2 });
+        const response3 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
+        const body3 = await response3.json();
+        this.setState({ isLoading: false, truck: body, reviews: body2, routes: body3});
    }
    render() {
-        const { isLoading, truck, reviews } = this.state;
+        const { isLoading, truck, reviews, routes } = this.state;
 
         if (localStorage.getItem("UserID") == null){
             alert("You must be logged in to view this page");
@@ -54,6 +71,13 @@ class ViewFoodTruck extends Component {
         if (isLoading) {
             return <p>Loading...</p>;
         }
+
+
+        const routeList = routes.map((route, index) => {
+            return <div>
+            Stop {index+1}: {route.latitude}, {route.longitude}
+          </div>
+        });
 
         const reviewList = reviews.map(review => {
             return <div class="card">
@@ -87,7 +111,15 @@ class ViewFoodTruck extends Component {
                 <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>
             </div><br></br>
             <div>
+                <h4>Routes:</h4>
+                {this.hasRoutes()}
+                <div style={{borderStyle: "solid"}, {backgroundColor: "white"}}>
+                {routeList}
+                </div>
+            </div><br></br>
+            <div>
                 <h4>Reviews:</h4>
+                {this.hasReviews()}
                 <h6>Number of Reviews: {reviews.length}</h6>
                 {reviewList}
             </div>

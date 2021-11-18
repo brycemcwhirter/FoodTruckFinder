@@ -23,6 +23,7 @@ class Table extends Component{
     }
 
     viewTruck(id){
+        localStorage.setItem("ValidSearch", 1);
         localStorage.setItem("TruckID", id);
         localStorage.setItem("Action", "viewTruck");
     }
