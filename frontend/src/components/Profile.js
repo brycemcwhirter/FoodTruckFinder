@@ -28,7 +28,7 @@ class Profile extends Component{
             <div class="container-fluid">
 
             <div class="row justify-content-center header-for-dashboard">
-                <h1>poop{userName}</h1>
+                <h1>{userName}</h1>
             </div>
 
 
