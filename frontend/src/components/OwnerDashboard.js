@@ -21,6 +21,7 @@ class OwnerDashboard extends Component {
 
     updateTruck(id){
         localStorage.setItem("TruckID", id);
+        localStorage.setItem("Action", "manageTruck");
         this.props.history.push('/managefoodtruck');
     }
 
