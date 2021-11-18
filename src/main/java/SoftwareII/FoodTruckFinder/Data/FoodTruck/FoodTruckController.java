@@ -49,7 +49,7 @@ public class FoodTruckController {
     }
 
 
-    @GetMapping("/subscribedTrucks/{id}")
+    @GetMapping("/subscribedtrucks/{id}")
     List<FoodTruck> subscribedTrucks(@PathVariable Long id){
         log.info("Getting Subscribed Food Trucks for user:" + id);
 
