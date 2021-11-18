@@ -124,9 +124,7 @@ public class FoodTruck {
     public void setRating(Integer rating) {
         this.rating = rating;
     }
-    public Integer getRating() {
-        return rating;
-    }
+
 
     public void setPriceRange(FoodTruckPrice priceRange) {
         this.priceRange = priceRange;

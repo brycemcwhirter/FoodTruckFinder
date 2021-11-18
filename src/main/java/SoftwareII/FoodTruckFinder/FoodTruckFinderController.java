@@ -5,7 +5,9 @@ import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckRepository;
 import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
-import SoftwareII.FoodTruckFinder.FoodTruckServices.*;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.Services.*;
+
 
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
