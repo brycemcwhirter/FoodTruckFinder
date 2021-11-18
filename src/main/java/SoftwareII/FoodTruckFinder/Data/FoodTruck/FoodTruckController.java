@@ -105,23 +105,30 @@ public class FoodTruckController {
         return foodTruckRepository.save(newFoodTruck);
     }
 
-    @PostMapping("/updatetruck")
-    FoodTruck updateAccount(@RequestBody String strTruck){
+    @PostMapping("/updatetruck/{id}")
+    FoodTruck updateAccount(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
-        FoodTruck trucktoUpdate = foodTruckRepository.findById(updatingFoodtruck.getId())
-            .orElseThrow(() -> new FoodTruckNotFound(updatingFoodtruck.getId()));
-        trucktoUpdate.setId(updatingFoodtruck.getId());
+        FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
+            .orElseThrow(() -> new FoodTruckNotFound(id));
         
+        if (newTruck.getString("name") != ""){
+            trucktoUpdate.setName(newTruck.getString("name"));
+        }
+        if (newTruck.getString("type") != "" && !newTruck.getString("type").equals("Select...")){
+            trucktoUpdate.setType(FoodTruckType.getType(newTruck.getString("type")));
+        }
         if (newTruck.getString("address") != ""){
             trucktoUpdate.setAddress(newTruck.getString("address"));
         }
         if (newTruck.getString("city") != ""){
             trucktoUpdate.setCity(newTruck.getString("city"));
         }
-        if (newTruck.getString("zip") != ""){
-            trucktoUpdate.setZipcode(newTruck.getString("zip"));
+        if (newTruck.getString("zipcode") != ""){
+            trucktoUpdate.setZipcode(newTruck.getString("zipcode"));
         }
-        updatingFoodtruck = null;
+        if (newTruck.getString("price") != "" && !newTruck.getString("price").equals("Select...")){
+            trucktoUpdate.setPriceRange(FoodTruckPrice.getPrice(newTruck.getString("price")));
+        }
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
         return foodTruckRepository.save(trucktoUpdate);
     }

@@ -36,8 +36,11 @@ class ViewFoodTruck extends Component {
             <div className="formBackground" style={{width: '75%'}}><br></br>
             <h2 style={{textAlign: "center"}}>Food Truck Details</h2><br></br>
             <button class="btn btn-secondary btn-sm" style={{width: "15%"}}>Current Menu</button>
+            <button class="btn btn-secondary btn-sm" style={{width: "15%"}}>Create a Review</button>
+            
             <h5 style={{textAlign: "center"}}>Reviews</h5>
             </div>
+            
             </header>
             </div>
             </div>

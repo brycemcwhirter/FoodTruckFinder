@@ -64,6 +64,7 @@ public class FoodTruckFinderController {
     //Finding One Item in Account Repository
     @GetMapping("/accounts/{id}")
     Account getAccountByID(@PathVariable Long id){
+        log.info("Getting Account for ID: " + id);
         return accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
     }
 

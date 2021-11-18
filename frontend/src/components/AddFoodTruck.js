@@ -33,7 +33,7 @@ class AddFoodTruck extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: jsonString
         };
-        fetch('foodtrucks/19', requestOptions)
+        fetch('foodtrucks/'+localStorage.getItem("UserID"), requestOptions)
             .then(() => {
             })
         alert("Created FoodTruck: " + newTruck.name);

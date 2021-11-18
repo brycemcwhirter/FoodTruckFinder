@@ -56,7 +56,8 @@ class ManageAccount extends Component {
         }
     }
     async componentDidMount() {
-        const response = await fetch('currentaccount');
+        //alert(localStorage.getItem("UserID"));
+        const response = await fetch('accounts/' + localStorage.getItem("UserID"));
         const body = await response.json();
         const response2 = await fetch('accounts');
         const body2 = await response2.json();
@@ -68,7 +69,10 @@ class ManageAccount extends Component {
     render() {
         const { currAccount, isLoading } = this.state;
 
-        
+        if (localStorage.getItem("UserID") == null){
+            alert("You must be logged in to view this page");
+            this.props.history.push("/");
+        }
         if (isLoading) {
             return <p>Loading...</p>;
         }

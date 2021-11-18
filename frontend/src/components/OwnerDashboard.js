@@ -19,12 +19,17 @@ class OwnerDashboard extends Component {
         alert("Updated");
     }
 
+    updateTruck(id){
+        localStorage.setItem("TruckID", id);
+        this.props.history.push('/managefoodtruck');
+    }
+
     async componentDidMount() {
         const response = await fetch('currentaccount');
         const body = await response.json();
         const response2 = await fetch('isloggedin');
         const body2 = await response2.json();
-        const response3 = await fetch('/getownertrucks/19');
+        const response3 = await fetch('/getownertrucks/' + localStorage.getItem("UserID"));
         const body3 = await response3.json();
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
     }
@@ -54,6 +59,14 @@ class OwnerDashboard extends Component {
     render() {
         const { isLoading, trucks } = this.state;
 
+        if (localStorage.getItem("UserID") == null){
+            alert("You must be logged in to view this page");
+            this.props.history.push("/");
+        } else if (localStorage.getItem("Role") == "CUSTOMER"){
+            alert("You must be a food truck owner in order to view this page");
+            this.props.history.push("/dashboard/customer");
+        }
+
         if (isLoading) {
             return <p>Loading...</p>;
         }
@@ -67,7 +80,7 @@ class OwnerDashboard extends Component {
           <td>{this.truckRating(truck)}</td>
           <td>{this.truckOperating(truck)}</td>
           <td>
-              <button class="btn btn-outline-secondary btn-sm" >Edit</button>
+              <button class="btn btn-outline-secondary btn-sm" onClick={() => this.updateTruck(truck.id)}>Edit</button>
           </td>
             </tr>
         });

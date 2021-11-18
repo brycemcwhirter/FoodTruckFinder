@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 export default class NavbarLoggedIn extends Component {
 
   logout() {
-    const requestOptions = {
+    /*const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     };
-    fetch('/logout', requestOptions);
+    fetch('/logout', requestOptions);*/
+    localStorage.removeItem("UserID");
+    localStorage.removeItem("Role");
     alert("Logging Out");
   }
 
