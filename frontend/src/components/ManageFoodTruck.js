@@ -7,7 +7,8 @@ The form which was previously present in the App component has been moved to its
 
 class ManageFoodTruck extends Component {
     state = {
-        truck: []
+        truck: [],
+        routes: []
     };
 
     
@@ -57,14 +58,30 @@ class ManageFoodTruck extends Component {
         this.props.history.push("/dashboard/owner");
    }
 
+   manageRoutes(){
+       this.props.history.push("/manageroutes");
+   }
+
    async componentDidMount() {
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
-        this.setState({ truck: body});
+        const response2 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
+        const body2 = await response2.json();
+        this.setState({ truck: body, routes: body2});
    }
 
    render() {
-        const { truck } = this.state;
+        const { truck, routes } = this.state;
+
+        const routesList = routes.map(route => {
+            return <div>
+                <label>Route: </label>
+                <label>Longitude: </label>
+                <input type="text" class="form-control" placeholder={route.longitude}/>
+                <label>Latitude: </label>
+                <input type="text" class="form-control" placeholder={route.latitude}/>
+            </div>
+        });
        
        return (
             <div>
@@ -140,14 +157,12 @@ class ManageFoodTruck extends Component {
                         <option>No</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Change Route</label>
-                    <input type="text" class="form-control" id="inputZip"/>
-                </div>
-            </div>
+            </div><br></br>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>
             <div class="divider"/>
             <button type="button" class="btn btn-secondary" onClick={() => this.resetInfo()}>Reset Information</button>
+            <div class="divider"/>
+            <button type="button" class="btn btn-info" onClick={() => this.manageRoutes()}>Manage Routes</button>
             <button type="button" class="btn btn-danger" style={{float: "right"}} onClick={() => this.deleteTruck()}>Delete Truck</button>
             
             

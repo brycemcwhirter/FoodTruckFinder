@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 export default class NavbarLoggedIn extends Component {
 
   logout() {
-    localStorage.removeItem("UserID");
-    localStorage.removeItem("Role");
+    localStorage.clear();
     alert("Logging Out");
   }
 
