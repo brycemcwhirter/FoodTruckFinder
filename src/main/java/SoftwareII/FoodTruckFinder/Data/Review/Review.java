@@ -29,7 +29,18 @@ public class Review {
     }
 
     public Review(JSONObject newReview, FoodTruck foodTruck, Account account) {
-        this.rating = newReview.getInt("rating");
+        String ratingStr = newReview.getString("rating");
+        if (ratingStr.equals("1 Star")){
+            this.rating = 1;
+        } else if (ratingStr.equals("2 Stars")){
+            this.rating = 2;
+        } else if (ratingStr.equals("3 Stars")) {
+            this.rating = 3;
+        }else if (ratingStr.equals("4 Stars")){
+            this.rating = 4;
+        }else {
+            this.rating = 5;
+        }
         this.notes = newReview.getString("notes");
         this.foodtruck = foodTruck;
         this.account = account;

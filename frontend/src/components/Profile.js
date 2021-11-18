@@ -6,19 +6,18 @@ import NavbarLoggedIn from './NavBarLoggedIn';
 class Profile extends Component{
 
     state = {
-        userName: "",
         currAccount:[]
     }
 
     async componentDidMount(){
-        const acctresponse = await fetch('/currentaccount');          // get account info (i.e. food preference and budget)
-        const acctbody = await acctresponse.json();
-        this.setState({userName: acctbody.userName, currAccount:acctbody});
+        const response = await fetch('currentaccount');
+        const body = await response.json();
+        this.setState({ currAccount : body});
     }
 
     render(){
 
-        const {userName, currAccount} = this.state;
+        const {currAccount} = this.state;
 
 
         return(
@@ -28,7 +27,7 @@ class Profile extends Component{
             <div class="container-fluid">
 
             <div class="row justify-content-center header-for-dashboard">
-                <h1>{userName}</h1>
+                <h1>Hi {currAccount.username}</h1>
             </div>
 
 

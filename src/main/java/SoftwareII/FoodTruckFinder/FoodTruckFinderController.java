@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 public class FoodTruckFinderController {
-    Account currentAccount;
-    Boolean isLoggedIn = false;
     Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
 
     private final AccountRepository accountRepository;
@@ -28,33 +26,6 @@ public class FoodTruckFinderController {
         this.foodTruckRepository = foodTruckRepository;
     }
 
-    @PostMapping("/setaccount")
-    Account setAccount(@RequestBody String strAccount){
-        JSONObject accountInfo = new JSONObject(strAccount);
-        List<Account> accounts = accountRepository.findAll();
-        for (int i = 0; i < accounts.size(); i++){
-            if (accountInfo.getString("email").equals(accounts.get(i).getEmail())){
-                this.currentAccount = accounts.get(i);
-            }
-        }
-        isLoggedIn = true;
-        log.info("Account Logged In for " + currentAccount.getUsername() + " " + currentAccount.getId());
-        return currentAccount;
-    }
-
-    @GetMapping("/isloggedin")
-    Boolean isLoggedIn(){
-        return isLoggedIn;
-    }
-
-    @PostMapping("/logout")
-    String logout(){
-        currentAccount = null;
-        isLoggedIn = false;
-        log.info("Logged out");
-        return "Logged Out";
-    }
-
     //Getting all the Items in the Repo
     @GetMapping("/accounts")
     List<Account> all(){
@@ -64,13 +35,10 @@ public class FoodTruckFinderController {
     //Finding One Item in Account Repository
     @GetMapping("/accounts/{id}")
     Account getAccountByID(@PathVariable Long id){
+        log.info("Getting Account for ID: " + id);
         return accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
     }
 
-    @GetMapping("/currentaccount")
-    Account getAccount(){
-        return currentAccount;
-    }
 
     //Adding a new Account
     @PostMapping("/accounts")
@@ -80,20 +48,26 @@ public class FoodTruckFinderController {
         return accountRepository.save(newAccount);
     }
 
-    @PostMapping("/updateaccount")
-    Account updateAccount(@RequestBody String strAccount){
+    @PostMapping("/updateaccount/{id}")
+    Account updateAccount(@RequestBody String strAccount, @PathVariable Long id){
         JSONObject newAccount = new JSONObject(strAccount);
-        Account accountToUpdate = accountRepository.findById(currentAccount.getId())
-            .orElseThrow(() -> new AccountNotFound(currentAccount.getId()));
-        accountToUpdate.setId(currentAccount.getId());
+        Account accountToUpdate = accountRepository.findById(id)
+            .orElseThrow(() -> new AccountNotFound(id));
         if (newAccount.getString("username") != ""){
             accountToUpdate.setUsername(newAccount.getString("username"));
         }
         if (newAccount.getString("email") != ""){
             accountToUpdate.setEmail(newAccount.getString("email"));
         }
-        currentAccount = accountToUpdate;
-        log.info("Updated Account: " + currentAccount.getUsername() + " " + currentAccount.getEmail());
+        if (!newAccount.getString("typePref").equals("None")){
+            log.info("Updating Type Preference to " + newAccount.getString("typePref"));
+            accountToUpdate.setTypePreference(FoodTruckType.getType(newAccount.getString("typePref")));
+        }
+        if (!newAccount.getString("pricePref").equals("None")){
+            log.info("Updating Price Preference to " + newAccount.getString("pricePref"));
+            accountToUpdate.setPricePreference(FoodTruckPrice.getPrice(newAccount.getString("pricePref")));
+        }
+        log.info("Updated Account: " + accountToUpdate.getUsername() + " " + accountToUpdate.getEmail());
         return accountRepository.save(accountToUpdate);
     }
 

@@ -17,15 +17,15 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(AccountRepository repo, FoodTruckRepository repo2, RouteRepository repo3, ReviewRepository repo4){
         return args -> {
-            /*Account testOwner = new Account("TestUser", "test@baylor.edu", "Password1!", AccountType.FOODTRUCKOWNER, FoodTruckType.ASIAN, 2);
+            /*Account testOwner = new Account("SheldonS", "sheldon_smith2@baylor.edu", "Password1!", AccountType.FOODTRUCKOWNER, FoodTruckType.ASIAN, FoodTruckPrice.$);
             log.info("Adding " + repo.save(testOwner));
-            Account testCustomer = new Account("TestCustomer", "test2@baylor.edu", "Password1!", AccountType.CUSTOMER, FoodTruckType.SEAFOOD, 1);
+            Account testCustomer = new Account("TestCustomer", "test2@baylor.edu", "Password1!", AccountType.CUSTOMER, FoodTruckType.SEAFOOD, FoodTruckPrice.$$);
             log.info("Adding " + repo.save(testCustomer));
-            FoodTruck testTruck = new FoodTruck("Best Food Truck", FoodTruckType.AMERICAN, "1001 Speight Ave", "Waco", "TX", "76706", -1, true, 1, testOwner);
+            FoodTruck testTruck = new FoodTruck("Best Food Truck", FoodTruckType.AMERICAN, "1001 Speight Ave", "Waco", "TX", "76706", -1, true, FoodTruckPrice.$, testOwner);
             log.info("Adding " + repo2.save(testTruck));
-            FoodTruck testTruck2 = new FoodTruck("Avg Food Truck", FoodTruckType.SEAFOOD, "1002 Speight Ave", "Waco", "TX", "76706", -1, true, 3, testOwner);
+            FoodTruck testTruck2 = new FoodTruck("Avg Food Truck", FoodTruckType.SEAFOOD, "1002 Speight Ave", "Waco", "TX", "76706", -1, true, FoodTruckPrice.$$$, testOwner);
             log.info("Adding " + repo2.save(testTruck2));
-            log.info("Adding " + repo2.save(new FoodTruck("Okay Food Truck", FoodTruckType.MEXICAN, "123 Rhythm Ln", "Houston", "TX", "77040", -1, true, 2, testOwner)));
+            log.info("Adding " + repo2.save(new FoodTruck("Okay Food Truck", FoodTruckType.MEXICAN, "123 Rhythm Ln", "Houston", "TX", "77040", -1, true, FoodTruckPrice.$$, testOwner)));
             log.info("Adding " + repo3.save(new Route(testTruck, 1, "31.548","-97.125")));
             log.info("Adding " + repo3.save(new Route(testTruck, 2, "31.546","-97.120")));
             log.info("Adding " + repo3.save(new Route(testTruck, 3, "31.551","-97.118")));

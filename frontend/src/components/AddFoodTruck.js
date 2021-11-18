@@ -15,6 +15,7 @@ class AddFoodTruck extends Component {
         var city = document.getElementById("city").value;
         var state = document.getElementById("state").value;
         var zipcode = document.getElementById("zip").value;
+        var price = document.getElementById("price").value;
 
         var newTruck = new Object();
         newTruck.name = name;
@@ -23,6 +24,7 @@ class AddFoodTruck extends Component {
         newTruck.city = city;
         newTruck.state = state;
         newTruck.zipcode = zipcode;
+        newTruck.price = price;
 
         //Making JSON String
         var jsonString = JSON.stringify(newTruck);
@@ -31,7 +33,7 @@ class AddFoodTruck extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: jsonString
         };
-        fetch('foodtrucks', requestOptions)
+        fetch('foodtrucks/'+localStorage.getItem("UserID"), requestOptions)
             .then(() => {
             })
         alert("Created FoodTruck: " + newTruck.name);
@@ -97,6 +99,14 @@ class AddFoodTruck extends Component {
                 <div class="form-group col-md-4">
                     <label>Upload Menu</label>
                     <input type="file" id="menu"/>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Price Type</label>
+                    <select id="price" class="form-control">
+                        <option>$</option>
+                        <option>$$</option>
+                        <option>$$$</option>
+                    </select>
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary">Create</button>
