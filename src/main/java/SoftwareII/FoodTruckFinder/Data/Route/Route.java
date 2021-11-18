@@ -1,10 +1,6 @@
 package SoftwareII.FoodTruckFinder.Data.Route;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.json.JSONObject;
 
@@ -15,7 +11,7 @@ public class Route {
 
 
     private @Id @GeneratedValue Long id;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     private FoodTruck foodTruck;
     private Integer numInRoute;
     private String latitude;

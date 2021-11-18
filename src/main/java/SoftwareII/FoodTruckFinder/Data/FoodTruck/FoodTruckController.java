@@ -34,10 +34,6 @@ public class FoodTruckController {
         this.accountRepository = accountRepository;
     }
 
-    public FoodTruck getTruckByID(Long id){
-        return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
-    }
-
     //Getting all the Items in the Repo
     @GetMapping("/allfoodtrucks")
     List<FoodTruck> all(){
@@ -85,7 +81,7 @@ public class FoodTruckController {
                 .sortRecommended
                         (trucks, typePref, pricePref);
 
-        for (int i = 0; i < 5; i++) {                  // only add top 5 to list to send back to frontend
+        for (int i = 0; i < Math.min(5, trucks.size()); i++) {                  // only add top 5 to list to send back to frontend
             recommended.add(trucks.get(i));
         }
         return recommended;
@@ -105,33 +101,45 @@ public class FoodTruckController {
     }
 
 
-
-
     //Adding a new food truck
-    @PostMapping("/foodtrucks")
-    FoodTruck newFoodTruck(@RequestBody String strFoodTruck){
+    @PostMapping("/foodtrucks/{id}")
+    FoodTruck newFoodTruck(@RequestBody String strFoodTruck, @PathVariable Long id){
         log.info("Adding FoodTruck");
-        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck));
+        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck),accountRepository.getById(id));
         return foodTruckRepository.save(newFoodTruck);
     }
 
-    @PostMapping("/updatetruck")
-    FoodTruck updateAccount(@RequestBody String strTruck){
+    @PostMapping("/updatetruck/{id}")
+    FoodTruck updateAccount(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
-        FoodTruck trucktoUpdate = foodTruckRepository.findById(updatingFoodtruck.getId())
-            .orElseThrow(() -> new FoodTruckNotFound(updatingFoodtruck.getId()));
-        trucktoUpdate.setId(updatingFoodtruck.getId());
+        FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
+            .orElseThrow(() -> new FoodTruckNotFound(id));
         
+        if (newTruck.getString("name") != ""){
+            trucktoUpdate.setName(newTruck.getString("name"));
+        }
+        if (newTruck.getString("type") != "" && !newTruck.getString("type").equals("Select...")){
+            trucktoUpdate.setType(FoodTruckType.getType(newTruck.getString("type")));
+        }
         if (newTruck.getString("address") != ""){
             trucktoUpdate.setAddress(newTruck.getString("address"));
         }
         if (newTruck.getString("city") != ""){
             trucktoUpdate.setCity(newTruck.getString("city"));
         }
-        if (newTruck.getString("zip") != ""){
-            trucktoUpdate.setZipcode(newTruck.getString("zip"));
+        if (newTruck.getString("zipcode") != ""){
+            trucktoUpdate.setZipcode(newTruck.getString("zipcode"));
         }
-        updatingFoodtruck = null;
+        if (newTruck.getString("price") != "" && !newTruck.getString("price").equals("Select...")){
+            trucktoUpdate.setPriceRange(FoodTruckPrice.getPrice(newTruck.getString("price")));
+        }
+        if (newTruck.getString("operational") != "" && !newTruck.getString("operational").equals("Select...")){
+            if (newTruck.getString("operational").equals("Yes"))
+                trucktoUpdate.setOperational(true);
+            else{
+                trucktoUpdate.setOperational(false);
+            }
+        }
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
         return foodTruckRepository.save(trucktoUpdate);
     }

@@ -10,6 +10,8 @@ public enum FoodTruckType {
             return AMERICAN;
         }else if(Objects.equals(s, "Mexican")){
             return MEXICAN;
+        }else if(Objects.equals(s, "Italian")){
+            return ITALIAN;    
         }else if(Objects.equals(s, "Asian")){
             return ASIAN;
         }else if(Objects.equals(s, "Seafood")){

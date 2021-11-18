@@ -92,7 +92,7 @@ public class FoodTruck {
         this.owner = owner;
     }
 
-    public FoodTruck(JSONObject newFoodTruck){
+    public FoodTruck(JSONObject newFoodTruck, Account owner){
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
         String t = newFoodTruck.getString("type");
@@ -100,14 +100,14 @@ public class FoodTruck {
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
         this.zipcode = newFoodTruck.getString("zipcode");
-        String priceRangeStr = newFoodTruck.getString("priceRange");
+        String priceRangeStr = newFoodTruck.getString("price");
         this.priceRange = FoodTruckPrice.getPrice(priceRangeStr);
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
-        log.info("String: " + t);
+        this.owner = owner;
 
-        log.info(this.name + " " + this.type + " " + this.address);
+        log.info("Adding Truck: " + this.name + " " + this.type + " " + this.address);
     }
 
     public void setOperational(Boolean op) {
