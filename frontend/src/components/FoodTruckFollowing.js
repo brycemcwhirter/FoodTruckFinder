@@ -7,19 +7,12 @@ class FoodTruckFollowing extends Component{
     state = {
         isLoading: true,
         trucks: [],
-        currAccount: []
     }
 
     async componentDidMount(){
-        const acctresponse = await fetch('/currentaccount');
-        const acctbody = await acctresponse.json();
-
-        const id = acctbody.id;
-
-
-        const response = await fetch('/subscribedTrucks/'+id)
+        const response = await fetch('/subscribedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        this.setState({ isLoading: false, trucks: body, currAccount: acctbody});
+        this.setState({ isLoading: false, trucks: body});
     }
 
     render(){
@@ -33,9 +26,7 @@ class FoodTruckFollowing extends Component{
               <td>{truck.type}</td>
               <td>{truck.address}  {truck.city}, {truck.state}</td>
               <td>9 to 5 TEST</td>
-              <td>BLAH BLAH</td>
-          
-          
+              <td>BLAH BLAH</td>  
             </tr>
             )
         });
