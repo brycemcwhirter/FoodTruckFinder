@@ -49,6 +49,16 @@ public class FoodTruckController {
     }
 
 
+    @GetMapping("/subscribedTrucks/{id}")
+    List<FoodTruck> subscribedTrucks(@PathVariable Long id){
+        log.info("Getting Subscribed Food Trucks for user:" + id);
+
+        Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+
+        return a.getSubscribedTrucks();
+    }
+
+
     // Finding Recommended Food Trucks when a user opens Dashboard
     @GetMapping("/recommendedtrucks/{id}")
     List<FoodTruck> recommendedTrucks(@PathVariable Long id){

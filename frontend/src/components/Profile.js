@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../App.css'
 import NavbarLoggedIn from './NavBarLoggedIn';
 
+import Table from './CustomerDashboard/CustomerTable'
+import FoodTruckFollowing from './FoodTruckFollowing';
+
 
 class Profile extends Component{
 
@@ -10,7 +13,7 @@ class Profile extends Component{
     }
 
     async componentDidMount(){
-        const response = await fetch('currentaccount');
+        const response = await fetch('/currentaccount');
         const body = await response.json();
         this.setState({ currAccount : body});
     }
@@ -33,11 +36,12 @@ class Profile extends Component{
 
             <div class="row justify-content-center table-map-style">
 
-                <div class="col">
-                </div>
-                <div class="col-6">
-                    
-                </div>     
+
+                    <FoodTruckFollowing/>
+
+                
+            </div>
+                   
             </div>  
 
             <div>
@@ -46,7 +50,7 @@ class Profile extends Component{
             
 
             </div>
-            </div>
+        
            );
         
     }
