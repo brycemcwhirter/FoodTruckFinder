@@ -53,7 +53,7 @@ class Table extends Component{
               <td>{truck.address},  {truck.city}, {truck.state}</td>
               <td>{this.truckRating(truck)}</td>
               <td>
-                <button class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)}>View Page</button>
+                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
               </td>
           
             </tr>

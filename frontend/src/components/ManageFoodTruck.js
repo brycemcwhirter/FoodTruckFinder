@@ -73,6 +73,14 @@ class ManageFoodTruck extends Component {
    render() {
         const { truck, routes } = this.state;
 
+        if (localStorage.getItem("UserID") == null){
+            this.props.history.push("/");
+            alert("You must be logged in to view this page");
+        } else if (localStorage.getItem("Role") == "CUSTOMER"){
+            alert("You must be a food truck owner in order to view this page");
+            this.props.history.push("/dashboard/customer");
+        }
+
         const routesList = routes.map(route => {
             return <div>
                 <label>Route: </label>

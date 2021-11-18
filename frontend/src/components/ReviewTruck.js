@@ -51,6 +51,11 @@ class ReviewTruck extends Component {
     render() {
         const { truck, isLoading } = this.state;
 
+        if (localStorage.getItem("UserID") == null){
+            this.props.history.push("/");
+            alert("You must be logged in to view this page");
+        }
+
         if (isLoading) {
             return <p>Loading...</p>;
         }
