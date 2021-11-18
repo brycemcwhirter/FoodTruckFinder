@@ -23,12 +23,12 @@ class ViewFoodTruck extends Component {
    }
 
    subscribe(){
-    /*const requestOptions = {
+    const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     };
     
-    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);*/
+    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
     alert("You are now subscribed to the food truck!");
    }
 
