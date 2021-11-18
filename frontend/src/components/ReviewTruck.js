@@ -22,8 +22,6 @@ class ReviewTruck extends Component {
     }
 
 
-    
-
     handleSubmit = (event) => {
         var review = new Object();
         review.rating = document.getElementById("rating").value;

@@ -23,12 +23,12 @@ class ViewFoodTruck extends Component {
    }
 
    subscribe(){
-    const requestOptions = {
+    /*const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     };
     
-    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
+    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);*/
     alert("You are now subscribed to the food truck!");
    }
 
@@ -46,6 +46,10 @@ class ViewFoodTruck extends Component {
             alert("You must be logged in to view this page");
             this.props.history.push("/");
         } 
+
+        if (localStorage.getItem("ValidSearch") == "0"){
+            this.props.history.push("/dashboard/customer");
+        }
 
         if (isLoading) {
             return <p>Loading...</p>;
