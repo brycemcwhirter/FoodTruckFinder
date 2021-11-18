@@ -33,11 +33,7 @@ class Profile extends Component{
 
             <div class="row justify-content-center table-map-style">
 
-                <div class="col">
-                </div>
-                <div class="col-6">
-                    
-                </div>     
+                
             </div>  
 
             <div>
