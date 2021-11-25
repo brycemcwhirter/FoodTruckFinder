@@ -63,10 +63,12 @@ public class ReviewController {
     }
 
     @PostMapping("/updaterating/{id}")
-    FoodTruck updateRating(@PathVariable Long id){
+    void updateRating(@PathVariable Long id){
         int numReviews = 0, totalPoints = 0;
         FoodTruck foodTruck = foodTruckRepository.getById(id);
         List<Review> allReviews = reviewRepository.findAll();
+
+        log.info("Updating rating for " + foodTruck.getName());
         for (int i = 0; i < allReviews.size(); i++){
             if (allReviews.get(i).getFoodtruck().getId() == id){
                 numReviews++;
@@ -74,9 +76,11 @@ public class ReviewController {
             }
         }
         if (numReviews > 0){
-            foodTruck.setRating(totalPoints/numReviews);
+            log.info("Total points = " + totalPoints);
+            log.info("Num reviews = " + numReviews);
+            foodTruck.setRating(Math.floorDiv(totalPoints,numReviews));
+            foodTruckRepository.save(foodTruck);
         }
-        return foodTruck;
     }
 
     @PostMapping("/removereview/{id}")

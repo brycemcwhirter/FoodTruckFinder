@@ -100,6 +100,7 @@ class ManageAccount extends Component {
                                     <option>Seafood</option>
                                     <option>Indian</option>
                                     <option>German</option>
+                                    <option>Italian</option>
                                     <option>Drinks</option>
                                 </select> <br></br>
                                 

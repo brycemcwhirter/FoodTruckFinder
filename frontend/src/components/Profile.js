@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css'
 import NavbarLoggedIn from './NavBarLoggedIn';
-
-import Table from './CustomerDashboard/CustomerTable'
 import FoodTruckFollowing from './FoodTruckFollowing';
-
 
 class Profile extends Component{
 
@@ -36,12 +33,7 @@ class Profile extends Component{
 
             <div class="row justify-content-center table-map-style">
 
-
-                    <FoodTruckFollowing/>
-
-                
-            </div>
-                   
+                <FoodTruckFollowing/>
             </div>  
 
             <div>

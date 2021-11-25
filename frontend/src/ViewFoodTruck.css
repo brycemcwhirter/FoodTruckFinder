@@ -1,0 +1,27 @@
+.view-foodtruck-style{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: none;
+
+    background-color: #6fa00f;
+    height: 100vh;
+    gap: 50px;
+
+}
+
+.FoodTruck-info { 
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    flex-grow: 4;
+}
+
+.FoodTruck-info > h1 { 
+    font-size: 75px;
+}
+
+.view-foodtruck-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
