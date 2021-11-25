@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../ViewFoodTruck.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
 import GoogleMaps from './CustomerDashboard/GoogleMaps'
 /*
@@ -89,21 +89,18 @@ class ViewFoodTruck extends Component {
         });
        
        return (
-        <div className="backgroundDashboard">
+           <>
         <NavbarLoggedIn />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <div className="view-foodtruck-style">
 
-
-            <div class="container-fluid">
-
-            <div class="row justify-content-center header-for-dashboard">
-                <h1>View Food Truck</h1>
+            <div className="FoodTruck-info">
+                <h1>{truck.name}</h1> <br></br>
+                <h5>{truck.type} | {truck.priceRange} </h5>
+                <h5>{truck.address}, {truck.city}, {truck.state}</h5>
             </div>
-            <header className="App-header" style={{width: '60%'}}>
-            <div className="formBackground"><br></br>
-            <h5>Name: {truck.name}, Type: {truck.type}, Price: {truck.priceRange}, Location: {truck.address}, {truck.city}, {truck.state}</h5>
 
-            <div>
+
+            <div className="view-foodtruck-buttons">
                 <button class="btn btn-secondary">View Menu</button>
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
@@ -124,12 +121,10 @@ class ViewFoodTruck extends Component {
                 {reviewList}
             </div>
             
-            </div>  
-            </header> 
             
               
             </div>
-        </div>
+            </>
         );
    }
 }

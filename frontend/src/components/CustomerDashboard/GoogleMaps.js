@@ -9,6 +9,18 @@ const mapStyles={
 
 class GoogleMaps extends Component{
 
+    //Get the Addresses from the Database
+
+    //for loop, return each address as a marker. 
+
+    /*
+    <Marker
+    title={'The marker`s title will appear as a tooltip.'}
+    name={'SOMA'}
+    position={{lat: 37.778519, lng: -122.405640}} />
+    */
+    
+
     state = {
         stores: [{lat: 31.548, lng: -97.125},
             {latitude: 31.546, longitude: -97.120},
