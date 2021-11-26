@@ -1,0 +1,26 @@
+@keyframes title-sequence{
+    from {font-size: 0em;}
+    to {font-size: 2em;}
+
+}
+
+
+h1{
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    animation-name: title-sequence;
+    animation-duration: 2s;
+}
+
+img{
+    animation-name: title-sequence;
+    animation-duration: 2s;
+
+}
+
+
+title{
+    animation-name: title-sequence;
+    animation-duration: 5s;
+
+}
+

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import avo from '../images/avo.png';
 import Navbar from './Navbar';
 import BackgroundNotLoggedIn from './BackgroundNotLoggedIn';
+import './Home.css'
 
 class App extends Component {
   
@@ -18,6 +19,7 @@ Now the App Component just acts as an entry point for other components/pages
             <img src={avo} className="App-logo" alt="avo" width="50" height="47.5" />
             <h1>lling Guacamole</h1>
             <div className="color-overlay"></div>
+
            </div>
          </div>
       );

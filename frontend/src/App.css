@@ -8,7 +8,6 @@
   flex-direction: column;
   font-size: 15px;
   background-color: #6fa00f;
-
 }
 
 .App-logo{
@@ -96,10 +95,7 @@ header2 {
   padding-right: 2%;
 }
 
-.navbar{
-  border-bottom: ridge;
-  background-color: #8FCF13;
-}
+
 
 
 

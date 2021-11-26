@@ -1,0 +1,29 @@
+@keyframes fade-in {
+    from{
+        background-color: white;
+    }
+    
+
+    to{
+        background-color: #8FCF13;
+    }
+}
+
+.navbar-style{
+    border-bottom: ridge;
+    background-color: #8FCF13;
+    animation-name: fade-in;
+    animation-duration: 2s;
+
+}
+
+navItem:hover{
+    background-color: white;
+    color: #8FCF13;
+
+}
+
+NavbarBrand{
+    color: white;
+
+}

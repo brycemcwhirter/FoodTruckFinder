@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import "../Navbar.css"
+
 
 export default class AppNavbar extends Component {
   constructor(props) {
@@ -19,10 +21,10 @@ export default class AppNavbar extends Component {
   render() {
     return (
     <div>
-      <Navbar dark expand="md" className="navbar">
-    <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
+      <Navbar dark expand="md" className="navbar-style">
+    <NavbarBrand class="NavbarBrand" tag={Link} to="/">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
-        <NavItem>
+        <NavItem class="navItem">
           <NavLink tag={Link} to='/login'>Login</NavLink>
         </NavItem>
         <NavItem>
