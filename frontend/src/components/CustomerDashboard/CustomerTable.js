@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import '../../App.css';
-<<<<<<< HEAD
-import CustomerDashboard from '../CustomerDashboard';
-import SearchFoodTruck from './SearchFoodTrucks';
-
-import GoogleMaps from './GoogleMaps'
-=======
->>>>>>> 45f93a6b0f7ee20a3d593c9299b3956d64c14d0c
 
 class Table extends Component{
 
@@ -135,14 +128,8 @@ class Table extends Component{
                 </tr>
             </thead>
             <tbody className="tableColors">
-<<<<<<< HEAD
-
-                {truckList}
-                
-=======
                 
                 {truckList}
->>>>>>> 45f93a6b0f7ee20a3d593c9299b3956d64c14d0c
 
             </tbody>
         </table>
