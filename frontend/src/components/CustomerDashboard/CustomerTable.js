@@ -49,7 +49,6 @@ class Table extends Component{
 
     nearbyTrucks = (event) => {
         const {account} = this.state;
-        alert(account.username);
         if (account.cityPreference == null){
             localStorage.setItem("ValidSearch", 0);
             alert("You do not have a peference city");
