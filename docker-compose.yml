@@ -1,0 +1,46 @@
+version: '3'
+services:
+  mysql-standalone:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_USER=sa
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=FoodTruck
+    ports:
+      - "3306:3306"
+    networks:
+      - shared-network
+  backend:
+    container_name: foodtruckfinder_backend
+    restart: unless-stopped
+    image: foodtruckfinder_backend_prod:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - shared-network
+    depends_on:
+      - mysql-standalone
+    ports:
+      - '8080:8080'
+
+  frontend:
+    container_name: foodtruckfinder_frontend
+    restart: unless-stopped
+    image: foodtruckfinder_frontend_prod:1.0.0
+    build:
+      context: frontend
+      target: Production
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - shared-network
+    depends_on:
+      - backend
+
+
+networks:
+  shared-network:

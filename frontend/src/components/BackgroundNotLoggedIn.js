@@ -30,6 +30,8 @@ class BackgroundNotLoggedIn extends Component{
         )
     }
 
+
+
 }
 
 export default BackgroundNotLoggedIn
