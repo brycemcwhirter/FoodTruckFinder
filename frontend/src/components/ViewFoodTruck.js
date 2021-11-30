@@ -47,6 +47,18 @@ class ViewFoodTruck extends Component {
     alert("You are now subscribed to the food truck!");
    }
 
+   deleteReview(id){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    fetch('removereview/'+id, requestOptions);
+    fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
+    window.location.reload();
+    
+   }
+
+
    async componentDidMount() {
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
@@ -55,6 +67,11 @@ class ViewFoodTruck extends Component {
         const response3 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
         const body3 = await response3.json();
         this.setState({ isLoading: false, truck: body, reviews: body2, routes: body3});
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
@@ -80,9 +97,14 @@ class ViewFoodTruck extends Component {
         });
 
         const reviewList = reviews.map(review => {
+            if (review.account.id == localStorage.getItem("UserID")){
+                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+            } else {
+                var button = "";
+            }
             return <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username}</h5>
+              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
               <p class="card-text">{review.notes}</p>
             </div>
           </div>
