@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import '../../App.css';
-<<<<<<< HEAD
-import CustomerDashboard from '../CustomerDashboard';
-import SearchFoodTruck from './SearchFoodTrucks';
 
-import GoogleMaps from './GoogleMaps'
-=======
->>>>>>> 45f93a6b0f7ee20a3d593c9299b3956d64c14d0c
-
-class Table extends Component{
+class GuestTable extends Component{
 
     state = {
         isLoading: true,
         trucks: [],
-        account: []
     }
 
 
 
     async componentDidMount(){
-        const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/allfoodtrucks/');  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        const response2 = await fetch('/accounts/' + localStorage.getItem("UserID"));
-        const body2 = await response2.json();
-        this.setState({ isLoading: false, trucks: body, account: body2});
+        this.setState({ isLoading: false, trucks: body});
     }
 
     viewTruck(id){
@@ -47,21 +37,6 @@ class Table extends Component{
 
     }
 
-    nearbyTrucks = (event) => {
-        const {account} = this.state;
-        alert(account.username);
-        if (account.cityPreference == null){
-            localStorage.setItem("ValidSearch", 0);
-            alert("You do not have a peference city");
-        } else {
-            localStorage.setItem("ValidSearch", 1); 
-            localStorage.setItem("SearchType", "City");
-            localStorage.setItem("SearchStr", account.cityPreference); 
-        }
-             
-        
-    }
-
     truckRating(truck){
         if (truck.rating >= 0){
             if (truck.rating == 1 || truck.rating == 0){
@@ -83,7 +58,7 @@ class Table extends Component{
 
 
     render(){
-        const {isLoading, trucks, account} = this.state;
+        const {isLoading, trucks} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -104,6 +79,7 @@ class Table extends Component{
             )
         });
 
+
         return(
         
         <div>
@@ -116,8 +92,6 @@ class Table extends Component{
                 </select>
                 <div class="divider"/>
                 <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/searchfoodtruck">Search</a>
-                <div class="divider"/>
-                <a class="btn btn-info my-2 my-sm-0" type="submit" onClick={() => this.nearbyTrucks()}  href="/searchfoodtruck">Find Nearby Trucks</a>
             </form><br></br></>
 
 
@@ -136,24 +110,16 @@ class Table extends Component{
                 </tr>
             </thead>
             <tbody className="tableColors">
-<<<<<<< HEAD
-
-                {truckList}
-                
-=======
                 
                 {truckList}
->>>>>>> 45f93a6b0f7ee20a3d593c9299b3956d64c14d0c
 
             </tbody>
         </table>
         
     </div>
     </div>
-    
-    
 )
     }
 }
 
-export default Table;
+export default GuestTable;

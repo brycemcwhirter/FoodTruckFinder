@@ -22,10 +22,16 @@ public class Account {
     private AccountType accountType;
     private FoodTruckType typePreference;
     private FoodTruckPrice pricePreference;
+
+    private String cityPreference;
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
         inverseJoinColumns = @JoinColumn(name = "account_id"))
     private List<FoodTruck> subscribedTrucks;
+
+    public Account() {
+
+    }
 
     public void addSubscribedTruck(FoodTruck truck){
         subscribedTrucks.add(truck);
@@ -55,7 +61,6 @@ public class Account {
         this.subscribedTrucks = subscribedTrucks;
     }
 
-    public Account() {};
 
     public Account(String u, String e, String p, AccountType type){
         this.username = u;
@@ -90,19 +95,52 @@ public class Account {
         }
         String pricePreference;
         if ((pricePreference = newAccount.getString("pricePref")) == null){
-            this.pricePreference = FoodTruckPrice.$;
+            this.pricePreference = null;
         } else {
             this.pricePreference = FoodTruckPrice.getPrice(pricePreference);
         }
         String typePreference;
         if ((typePreference = newAccount.getString("typePref")) == null){
-            this.typePreference = FoodTruckType.AMERICAN;
+            this.typePreference = null;
         } else {
             this.typePreference = FoodTruckType.getType(typePreference);
+        }
+        if ((newAccount.getString("cityPref")) == null){
+            this.cityPreference = null;
+        } else {
+            this.cityPreference = newAccount.getString("cityPref");
         }
         log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }
 
+    public Account(JSONObject newAccount, int num){
+        Logger log = LoggerFactory.getLogger(Account.class);
+        this.username = newAccount.getString("username");
+        this.email = newAccount.getString("email");
+        this.password = newAccount.getString("password");
+        String t = newAccount.getString("type");
+        this.typePreference = null;
+        this.pricePreference = null;
+        log.info(t);
+        if (t.equals("Customer")){
+            this.accountType = AccountType.CUSTOMER;
+        } else {
+            this.accountType = AccountType.FOODTRUCKOWNER;
+        }
+        this.pricePreference = FoodTruckPrice.$;
+
+        this.typePreference = FoodTruckType.AMERICAN;
+
+        log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
+    }
+
+    public String getCityPreference() {
+        return cityPreference;
+    }
+
+    public void setCityPreference(String cityPreference) {
+        this.cityPreference = cityPreference;
+    }
 
     public void setUsername(String username) {
         this.username = username;

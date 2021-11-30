@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../ViewFoodTruck.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
-import GoogleMaps from './CustomerDashboard/GoogleMaps'
+import AppNavbar from './Navbar';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -47,6 +47,18 @@ class ViewFoodTruck extends Component {
     alert("You are now subscribed to the food truck!");
    }
 
+   deleteReview(id){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    fetch('removereview/'+id, requestOptions);
+    fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
+    window.location.reload();
+    
+   }
+
+
    async componentDidMount() {
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
@@ -55,11 +67,16 @@ class ViewFoodTruck extends Component {
         const response3 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
         const body3 = await response3.json();
         this.setState({ isLoading: false, truck: body, reviews: body2, routes: body3});
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
 
-        if (localStorage.getItem("UserID") == null){
+        if (localStorage.getItem("UserID") == null && localStorage.getItem("Action") != "viewTruck"){
             alert("You must be logged in to view this page");
             this.props.history.push("/");
         } 
@@ -80,30 +97,38 @@ class ViewFoodTruck extends Component {
         });
 
         const reviewList = reviews.map(review => {
+            if (review.account.id == localStorage.getItem("UserID")){
+                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+            } else {
+                var button = "";
+            }
             return <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username}</h5>
+              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
               <p class="card-text">{review.notes}</p>
             </div>
           </div>
         });
+
+        if (localStorage.getItem("UserID") == null){
+            var navBar = <AppNavbar/>
+        } else {
+            var navBar = <NavbarLoggedIn/>
+        }
        
        return (
-        <div className="backgroundDashboard">
-        <NavbarLoggedIn />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+           <>
+        {navBar}
+        <div className="view-foodtruck-style">
 
-
-            <div class="container-fluid">
-
-            <div class="row justify-content-center header-for-dashboard">
-                <h1>View Food Truck</h1>
+            <div className="FoodTruck-info">
+                <h1>{truck.name}</h1> <br></br>
+                <h5>{truck.type} | {truck.priceRange} </h5>
+                <h5>{truck.address}, {truck.city}, {truck.state}</h5>
             </div>
-            <header className="App-header" style={{width: '60%'}}>
-            <div className="formBackground"><br></br>
-            <h5>Name: {truck.name}, Type: {truck.type}, Price: {truck.priceRange}, Location: {truck.address}, {truck.city}, {truck.state}</h5>
 
-            <div>
+
+            <div className="view-foodtruck-buttons">
                 <button class="btn btn-secondary">View Menu</button>
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
@@ -124,12 +149,10 @@ class ViewFoodTruck extends Component {
                 {reviewList}
             </div>
             
-            </div>  
-            </header> 
             
               
             </div>
-        </div>
+            </>
         );
    }
 }

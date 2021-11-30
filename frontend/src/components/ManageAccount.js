@@ -19,6 +19,7 @@ class ManageAccount extends Component {
         var email = document.getElementById("email").value;
         var pricePref = document.getElementById("pricePref").value;
         var typePref = document.getElementById("typePref").value;
+        var cityPref = document.getElementById("cityPref").value;
         var confirm_password = document.getElementById("confirm_password").value;
         let valid = true;
         if (confirm_password != currAccount.password) {
@@ -43,6 +44,7 @@ class ManageAccount extends Component {
             newUser.email = email;
             newUser.typePref = typePref;
             newUser.pricePref = pricePref;
+            newUser.cityPref = cityPref;
             //Making JSON String
             var jsonString = JSON.stringify(newUser);
 
@@ -73,6 +75,21 @@ class ManageAccount extends Component {
         if (isLoading) {
             return <p>Loading...</p>;
         }
+        if (currAccount.typePreference == null){
+            var typePrefInfo = "No preference"
+        } else {
+            var typePrefInfo = currAccount.typePreference;
+        }
+        if (currAccount.pricePreference == null){
+            var pricePrefInfo = "No preference"
+        } else {
+            var pricePrefInfo = currAccount.pricePreference;
+        }
+        if (currAccount.cityPreference == null){
+            var cityPrefInfo = "No preference"
+        } else {
+            var cityPrefInfo = currAccount.cityPreference;
+        }
         return (
             <div>
                 <NavbarLoggedIn />
@@ -83,8 +100,9 @@ class ManageAccount extends Component {
                         <div className="formBackground"><br></br>
                             <h5>Username: {currAccount.username}</h5>
                             <h5>Email: {currAccount.email} </h5>
-                            <h5>Food Type Preference: {currAccount.typePreference}</h5>
-                            <h5>Price Preference: {currAccount.pricePreference} </h5><br></br>
+                            <h5>Food Type Preference: {typePrefInfo}</h5>
+                            <h5>Price Preference: {pricePrefInfo} </h5>
+                            <h5>City Preference: {cityPrefInfo}</h5><br></br>
                             <h5>Update Information</h5>
                             <form onSubmit={this.handleSubmit}>
                                 <label htmlFor="text-input">Update Username: </label><br></br>
@@ -100,7 +118,9 @@ class ManageAccount extends Component {
                                     <option>Seafood</option>
                                     <option>Indian</option>
                                     <option>German</option>
+                                    <option>Italian</option>
                                     <option>Drinks</option>
+                                    <option>No Preference</option>
                                 </select> <br></br>
                                 
                                 <label htmlFor="text-input">Update Price Preference: </label><br></br>
@@ -109,7 +129,11 @@ class ManageAccount extends Component {
                                     <option>$</option>
                                     <option>$$</option>
                                     <option>$$$</option>
+                                    <option>No Preference</option>
                                 </select>
+                                <br></br>
+                                <label htmlFor="text-input">City Preference <small>(enter "none" for no preference)</small>: </label><br></br>
+                                <input class="form-control" id="cityPref" placeholder="Enter city" /><br></br>
                                 <br></br>
                                 <label htmlFor="text-input">Confirm Password: </label><br></br>
                                 <input type="password" class="form-control" id="confirm_password" /><br></br>
