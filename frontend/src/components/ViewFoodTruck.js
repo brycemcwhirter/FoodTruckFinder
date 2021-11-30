@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../ViewFoodTruck.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
-import GoogleMaps from './CustomerDashboard/GoogleMaps'
+import AppNavbar from './Navbar';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -76,7 +76,7 @@ class ViewFoodTruck extends Component {
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
 
-        if (localStorage.getItem("UserID") == null){
+        if (localStorage.getItem("UserID") == null && localStorage.getItem("Action") != "viewTruck"){
             alert("You must be logged in to view this page");
             this.props.history.push("/");
         } 
@@ -109,10 +109,16 @@ class ViewFoodTruck extends Component {
             </div>
           </div>
         });
+
+        if (localStorage.getItem("UserID") == null){
+            var navBar = <AppNavbar/>
+        } else {
+            var navBar = <NavbarLoggedIn/>
+        }
        
        return (
            <>
-        <NavbarLoggedIn />
+        {navBar}
         <div className="view-foodtruck-style">
 
             <div className="FoodTruck-info">

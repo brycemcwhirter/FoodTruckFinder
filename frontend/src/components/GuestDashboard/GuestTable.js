@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 
-class Table extends Component{
+class GuestTable extends Component{
 
     state = {
         isLoading: true,
@@ -11,7 +11,7 @@ class Table extends Component{
 
 
     async componentDidMount(){
-        const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/allfoodtrucks/');  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
         this.setState({ isLoading: false, trucks: body});
     }
@@ -122,4 +122,4 @@ class Table extends Component{
     }
 }
 
-export default Table;
+export default GuestTable;

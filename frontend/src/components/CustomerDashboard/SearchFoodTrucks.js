@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavbarLoggedIn from '../NavBarLoggedIn';
+import AppNavbar from '../Navbar';
 
 
 class SearchFoodTruck extends Component{
@@ -89,11 +90,17 @@ class SearchFoodTruck extends Component{
               </td>
             </tr>
         });
+
+        if (localStorage.getItem("UserID") == null){
+            var navBar = <AppNavbar/>
+        } else {
+            var navBar = <NavbarLoggedIn/>
+        }
         
 
         return (
             <div className="backgroundDashboard">
-                <NavbarLoggedIn />
+                {navBar}
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 
