@@ -28,34 +28,25 @@ class Table extends Component{
         localStorage.setItem("Action", "viewTruck");
     }
 
-    async search(){
+    search = (event) => {
         const {trucks} = this.state;
+        var searchType = document.getElementById("searchType").value;
 
         var searchStr = document.getElementById("search").value;
         if (searchStr == ""){
             localStorage.setItem("ValidSearch", 0);
             alert("Please type in a name in the search bar");
         } else {
-            var found = -1;
-            for (let i = 0; i < trucks.length; i++){
-                if (trucks[i].name == searchStr){
-                    found = i;
-                }
-            }
-            if (found >= 0){
-                localStorage.setItem("ValidSearch", 1);
-                localStorage.setItem("TruckID", trucks[found].id);
-            } else {
-                alert("Not Found");
-                localStorage.setItem("ValidSearch", 0);
-            }        
+            localStorage.setItem("ValidSearch", 1); 
+            localStorage.setItem("SearchType", searchType);
+            localStorage.setItem("SearchStr", searchStr);      
         }
 
     }
 
     truckRating(truck){
-        if (truck.rating > 0){
-            if (truck.rating == 1){
+        if (truck.rating >= 0){
+            if (truck.rating == 1 || truck.rating == 0){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
             } else if (truck.rating == 2){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
@@ -101,7 +92,12 @@ class Table extends Component{
         <div>
         <><form class="form-inline my-2 my-lg-0">
                 <input class="form-control-lg mr-sm-2" id="search" type="text" placeholder="Search Food Trucks" aria-label="Search" />
-                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/viewfoodtruck">Search</a>
+                <select class="form-control-lg" id="searchType">
+                    <option>Name</option>
+                    <option>Type</option>
+                    <option>City</option>
+                </select>
+                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/searchfoodtruck">Search</a>
             </form><br></br></>
 
 
@@ -121,10 +117,7 @@ class Table extends Component{
             </thead>
             <tbody className="tableColors">
                 
-
                 {truckList}
-                
-                
 
             </tbody>
         </table>

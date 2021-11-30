@@ -36,8 +36,8 @@ class OwnerDashboard extends Component {
     }
 
     truckRating(truck){
-        if (truck.rating > 0){
-            if (truck.rating == 1){
+        if (truck.rating >= 0){
+            if (truck.rating == 1 || truck.rating == 0){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
             } else if (truck.rating == 2){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
@@ -145,7 +145,7 @@ class OwnerDashboard extends Component {
                     </div>
 
 
-                        </div>
+                    </div>
             </div>
         );
     }

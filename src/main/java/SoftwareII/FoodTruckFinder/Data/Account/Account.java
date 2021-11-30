@@ -103,6 +103,27 @@ public class Account {
         log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }
 
+    public Account(JSONObject newAccount, int num){
+        Logger log = LoggerFactory.getLogger(Account.class);
+        this.username = newAccount.getString("username");
+        this.email = newAccount.getString("email");
+        this.password = newAccount.getString("password");
+        String t = newAccount.getString("type");
+        this.typePreference = null;
+        this.pricePreference = null;
+        log.info(t);
+        if (t.equals("Customer")){
+            this.accountType = AccountType.CUSTOMER;
+        } else {
+            this.accountType = AccountType.FOODTRUCKOWNER;
+        }
+        this.pricePreference = FoodTruckPrice.$;
+
+        this.typePreference = FoodTruckType.AMERICAN;
+
+        log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
+    }
+
 
     public void setUsername(String username) {
         this.username = username;

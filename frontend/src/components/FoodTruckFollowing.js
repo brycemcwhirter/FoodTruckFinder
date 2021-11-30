@@ -10,7 +10,7 @@ class FoodTruckFollowing extends Component{
     }
 
     async componentDidMount(){
-        const response = await fetch('/subscribedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/getsubscriptions/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
         this.setState({ isLoading: false, trucks: body});
     }

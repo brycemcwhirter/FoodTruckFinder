@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Optional;
 
 
@@ -46,6 +47,42 @@ public class FoodTruckController {
     @GetMapping("/foodtrucks/{id}")
     FoodTruck getFoodTruckByID(@PathVariable Long id){
         return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
+    }
+
+    @GetMapping("/trucksbyname/{name}")
+    List<FoodTruck> getFoodTrucksByName(@PathVariable String name){
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> foundTrucks = new ArrayList<>();
+        for (int i = 0; i < allTrucks.size(); i++){
+            if (allTrucks.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+                foundTrucks.add(allTrucks.get(i));
+            }
+        }
+        return foundTrucks;
+    }
+
+    @GetMapping("/trucksbytype/{type}")
+    List<FoodTruck> getFoodTrucksByType(@PathVariable String type){
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> foundTrucks = new ArrayList<>();
+        for (int i = 0; i < allTrucks.size(); i++){
+            if (allTrucks.get(i).getType().toString().toLowerCase().contains(type.toLowerCase())){
+                foundTrucks.add(allTrucks.get(i));
+            }
+        }
+        return foundTrucks;
+    }
+
+    @GetMapping("/trucksbycity/{city}")
+    List<FoodTruck> getFoodTrucksByCity(@PathVariable String city){
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> foundTrucks = new ArrayList<>();
+        for (int i = 0; i < allTrucks.size(); i++){
+            if (allTrucks.get(i).getCity().toLowerCase().contains(city.toLowerCase())){
+                foundTrucks.add(allTrucks.get(i));
+            }
+        }
+        return foundTrucks;
     }
 
 

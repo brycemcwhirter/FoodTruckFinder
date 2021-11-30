@@ -44,7 +44,7 @@ public class FoodTruckFinderController {
     @PostMapping("/accounts")
     Account newAccount(@RequestBody String strAccount){
         log.info("Adding Account");
-        Account newAccount = new Account(new JSONObject(strAccount));
+        Account newAccount = new Account(new JSONObject(strAccount), 1);
         return accountRepository.save(newAccount);
     }
 
