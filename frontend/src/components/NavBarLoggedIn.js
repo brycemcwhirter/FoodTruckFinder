@@ -28,7 +28,7 @@ export default class NavbarLoggedIn extends Component {
       var button = ""
     }
     return (
-      <Navbar color="dark" dark expand="md" className="navbar">
+      <Navbar dark expand="md" className="navbar">
       <NavbarBrand tag={Link} to="/dashboard/customer">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
         <NavItem>
