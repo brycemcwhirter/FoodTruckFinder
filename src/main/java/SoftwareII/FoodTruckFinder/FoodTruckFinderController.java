@@ -4,9 +4,12 @@ import SoftwareII.FoodTruckFinder.Data.Account.*;
 import SoftwareII.FoodTruckFinder.Data.Review.*;
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 import SoftwareII.FoodTruckFinder.Exceptions.*;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.json.JSONObject;
 
 import org.slf4j.Logger;
@@ -59,13 +62,23 @@ public class FoodTruckFinderController {
         if (newAccount.getString("email") != ""){
             accountToUpdate.setEmail(newAccount.getString("email"));
         }
-        if (!newAccount.getString("typePref").equals("None")){
-            log.info("Updating Type Preference to " + newAccount.getString("typePref"));
+        log.info("Updating Type Preference to " + newAccount.getString("typePref"));
+        if (newAccount.getString("typePref").equals("No Preference")){
+            accountToUpdate.setTypePreference(null);
+        } else if (!Objects.equals(newAccount.getString("typePref"), "None")){
             accountToUpdate.setTypePreference(FoodTruckType.getType(newAccount.getString("typePref")));
         }
-        if (!newAccount.getString("pricePref").equals("None")){
-            log.info("Updating Price Preference to " + newAccount.getString("pricePref"));
+        log.info("Updating Price Preference to " + newAccount.getString("pricePref"));
+        if (newAccount.getString("pricePref").equals("No Preference")){
+            accountToUpdate.setPricePreference(null);
+        } else if (!Objects.equals(newAccount.getString("pricePref"), "None")){
             accountToUpdate.setPricePreference(FoodTruckPrice.getPrice(newAccount.getString("pricePref")));
+        }
+        log.info("Updating City Preference to " + newAccount.getString("cityPref"));
+        if (newAccount.getString("cityPref").equalsIgnoreCase("none")){
+            accountToUpdate.setCityPreference(null);
+        } else if (!Objects.equals(newAccount.getString("cityPref"), "")){
+            accountToUpdate.setCityPreference(newAccount.getString("cityPref"));
         }
         log.info("Updated Account: " + accountToUpdate.getUsername() + " " + accountToUpdate.getEmail());
         return accountRepository.save(accountToUpdate);

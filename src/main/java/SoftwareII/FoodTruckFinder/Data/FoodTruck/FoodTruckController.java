@@ -100,9 +100,20 @@ public class FoodTruckController {
         Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
 
 
+        String pricePref;
         // Get the prefs & price ranges w/ that account
-        String pricePref = a.getPricePreference().toString();
-        String typePref = a.getTypePreference().toString();
+        if (a.getPricePreference() != null) {
+            pricePref = a.getPricePreference().toString();
+        } else {
+            pricePref = "none";
+        }
+        String typePref;
+        // Get the prefs & price ranges w/ that account
+        if (a.getTypePreference() != null) {
+            typePref = a.getTypePreference().toString();
+        } else {
+            typePref = "none";
+        }
 
 
         trucks = sort                                  // sort trucks by user pref
