@@ -35,7 +35,6 @@ class Profile extends Component{
             </div>
 
             <div style={{textAlign: "center"}}>
-                <h2 style={{textAlign: "center"}}>Reviews</h2><br></br>
                 <ProfileReviews/>
             </div><hr></hr>
             <div class="row justify-content-center table-map-style" >

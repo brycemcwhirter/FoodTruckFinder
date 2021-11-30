@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../Dashboard.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -12,7 +10,8 @@ class OwnerDashboard extends Component {
         isLoading: true,
         loggedin: false,
         currAccount: [],
-        trucks: []
+        trucks: [],
+        accounts: []
     };
 
     handleSubmit(event) {
@@ -62,6 +61,18 @@ class OwnerDashboard extends Component {
         }
     };
 
+    search = (event) => {
+        var searchStr = document.getElementById("search").value;
+        if (searchStr == ""){
+            localStorage.setItem("ValidSearch", 0);
+            alert("Please type in a name in the search bar");
+        } else {
+            localStorage.setItem("ValidSearch", 1); 
+            localStorage.setItem("SearchUserID", 20);      
+        }
+
+    }
+
 
     render() {
         const { isLoading, trucks } = this.state;
@@ -106,7 +117,11 @@ class OwnerDashboard extends Component {
                     </div>
 
                     <div>
-
+                        <form class="form-inline my-2 my-lg-0 row justify-content-center">
+                            <input class="form-control mr-sm-2" id="search" type="text" placeholder="Search for User" aria-label="Search" />
+                            <div class="divider"/>
+                            <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/viewcustomer">Search</a>
+                        </form>
                         <div class="row justify-content-center header-for-dashboard">Your Food Trucks</div>
 
                         <div class="row justify-content-end" style={{paddingRight: "80px"}}>

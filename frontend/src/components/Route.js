@@ -8,7 +8,7 @@ import CustomerDashboard from './CustomerDashboard';
 import OwnerDashboard from './OwnerDashboard';
 import AddFoodTruck from './AddFoodTruck';
 import ManageFoodTruck from './ManageFoodTruck';
-import ViewCustomer from './ViewCustomer';
+import ViewCustomer from './ViewCustomer/ViewCustomer';
 import ViewFoodTruck from './ViewFoodTruck';
 import Profile from './Profile';
 import App from "./App"
