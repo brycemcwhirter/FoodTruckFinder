@@ -55,7 +55,7 @@ public class ReviewController {
     }
 
     @PostMapping("/addreview/{accountID}/{truckID}")
-    Review addRoute(@RequestBody String reviewStr, @PathVariable Long accountID, @PathVariable Long truckID){
+    Review addReview(@RequestBody String reviewStr, @PathVariable Long accountID, @PathVariable Long truckID){
         FoodTruck foodTruck = foodTruckRepository.findById(truckID).orElseThrow(() -> new FoodTruckNotFound(truckID));
         Account account = accountRepository.findById(accountID).orElseThrow(() -> new AccountNotFound(accountID));
         Review newReview = new Review(new JSONObject(reviewStr), foodTruck, account);
