@@ -31,7 +31,9 @@ class OwnerDashboard extends Component {
         const body2 = await response2.json();
         const response3 = await fetch('/getownertrucks/' + localStorage.getItem("UserID"));
         const body3 = await response3.json();
-        this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3});
+        const response4 = await fetch('/accounts');
+        const body4 = await response4.json();
+        this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3, accounts: body4});
     }
 
     truckRating(truck){
@@ -62,13 +64,25 @@ class OwnerDashboard extends Component {
     };
 
     search = (event) => {
+        const { accounts } = this.state;
         var searchStr = document.getElementById("search").value;
         if (searchStr == ""){
             localStorage.setItem("ValidSearch", 0);
             alert("Please type in a name in the search bar");
         } else {
-            localStorage.setItem("ValidSearch", 1); 
-            localStorage.setItem("SearchUserID", 20);      
+            var found = 0;
+            for (let i = 0; i < accounts.length; i++){
+                if (accounts[i].username == searchStr){
+                    localStorage.setItem("SearchUserID", accounts[i].id); 
+                    localStorage.setItem("ValidSearch", 1);
+                    found = 1;
+                }
+            } 
+            if (found == 0){
+                localStorage.setItem("ValidSearch", 0);
+                alert("Username not found");
+            }
+                 
         }
 
     }
