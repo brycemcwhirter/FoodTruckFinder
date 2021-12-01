@@ -45,9 +45,7 @@ class CustomerSubscriptions extends Component{
             return(
                 <div>
                 
-                <h2>You're not following any food trucks yet</h2>
-
-                <h3>Click on Dashboard to go follow some trucks</h3>
+                <h2>This account has not subscribed to any food truck yet.</h2>
 
                 </div>
                 

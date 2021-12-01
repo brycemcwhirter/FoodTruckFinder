@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import '../Dashboard.css';
-import NavbarLoggedIn from './NavBarLoggedIn';
+import '../../Dashboard.css';
+import NavbarLoggedIn from '../NavBarLoggedIn';
 
 
 
 /* import Dashboard Components*/
-import Table from './CustomerDashboard/CustomerTable'
-import GoogleMaps from './CustomerDashboard/GoogleMaps'
+import Table from './CustomerTable'
+import GoogleMaps from './GoogleMaps'
 
 
 

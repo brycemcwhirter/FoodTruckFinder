@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css';
-import NavbarLoggedIn from './NavBarLoggedIn';
+import '../../App.css';
+import NavbarLoggedIn from '../NavBarLoggedIn';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */

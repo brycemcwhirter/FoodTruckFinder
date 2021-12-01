@@ -20,7 +20,11 @@ class ViewFoodTruck extends Component {
    }
 
    makeReview(){
+       if (localStorage.getItem("Role") == "Guest"){
+        alert("You must be logged in to review a food truck");
+       } else {
         this.props.history.push("/reviewtruck");
+       }
    }
 
    hasRoutes(){

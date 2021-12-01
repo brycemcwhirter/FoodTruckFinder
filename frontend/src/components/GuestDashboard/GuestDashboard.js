@@ -19,6 +19,7 @@ class GuestDashboard extends Component {
 
    
     componentDidMount() {
+        localStorage.setItem("Role", "Guest");
     }
    
 
