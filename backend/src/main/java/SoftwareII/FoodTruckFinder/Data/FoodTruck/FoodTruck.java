@@ -1,5 +1,6 @@
 package SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +28,16 @@ public class FoodTruck {
     private FoodTruckPrice priceRange;
     @ManyToOne
     private Account owner;
-    @ManyToMany(mappedBy = "subscribedTrucks")
-    private List<Account> subscribers;
+    @ManyToMany(mappedBy="subscribedTrucks", cascade=CascadeType.ALL)
+    @JsonManagedReference
+    private List<Account> subscribers = new ArrayList<>();
 
     public void addSubscriber(Account account){
         subscribers.add(account);
+    }
+
+    public void removeSubscriber(Account account){
+        subscribers.remove(account);
     }
 
     public List<Account> getSubscribers() {

@@ -15,6 +15,25 @@ class CustomerSubscriptions extends Component{
         this.setState({ isLoading: false, trucks: body});
     }
 
+    truckRating(truck){
+        if (truck.rating >= 0){
+            if (truck.rating == 1 || truck.rating == 0){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            } else if (truck.rating == 2){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 3){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 4){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></div>
+            }else if (truck.rating == 5){
+                return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div>
+            }
+            
+        } else {
+            return <div>Not Yet Rated</div>
+        }
+    };
+
     render(){
 
         const {isLoading, trucks} = this.state;
@@ -57,6 +76,7 @@ class CustomerSubscriptions extends Component{
         <div>
 
         <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <table class="table table-striped table-hover owner-table-style">
             <thead>
                 <tr>

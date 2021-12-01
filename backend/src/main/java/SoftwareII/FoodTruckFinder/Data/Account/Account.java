@@ -1,5 +1,6 @@
 package SoftwareII.FoodTruckFinder.Data.Account;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.persistence.*;
@@ -25,8 +26,8 @@ public class Account {
 
     private String cityPreference;
     @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
-        inverseJoinColumns = @JoinColumn(name = "account_id"))
+    @JoinColumn(name="parent_id", referencedColumnName="parent_id")
+    @JsonBackReference
     private List<FoodTruck> subscribedTrucks;
 
     public Account() {
@@ -35,6 +36,10 @@ public class Account {
 
     public void addSubscribedTruck(FoodTruck truck){
         subscribedTrucks.add(truck);
+    }
+
+    public void removeSubscribedTruck(FoodTruck truck){
+        subscribedTrucks.remove(truck);
     }
 
     public FoodTruckType getTypePreference() {
