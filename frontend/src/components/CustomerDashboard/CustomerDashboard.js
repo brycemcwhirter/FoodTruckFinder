@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD:frontend/src/components/CustomerDashboard/CustomerDashboard.js
 import '../../Dashboard.css';
 import NavbarLoggedIn from '../NavBarLoggedIn';
+=======
+import '../Dashboard.css';
+import NavbarLoggedIn from './NavBarLoggedIn';
+<<<<<<< HEAD
+>>>>>>> 7cc72399d69127c0896105c809f0de27829c3dd6:frontend/src/components/CustomerDashboard.js
 
 
 
@@ -12,15 +18,44 @@ import GoogleMaps from './GoogleMaps'
 
 class CustomerDashboard extends Component {
     
+=======
+import {Map, GoogleApiWrapper, Marker} from "google-maps-react";
+
+/*
+The form which was previously present in the App component has been moved to its own separate component.
+*/
+const mapStyles={
+    width:'50%',
+    height: '50%'
+};
+class CustomerDashboard extends Component {
+    state = {
+        stores: [{lat: 31.548, lng: -97.125},
+            {latitude: 31.546, longitude: -97.120},
+            {latitude: 31.551, longitude: -97.118}]
+    }
+>>>>>>> 3bdb781f4faa073494e441cd1eeaa41564e267f7
 
    handleSubmit(event) {
         alert("Test");
    }
+<<<<<<< HEAD
 
    
     componentDidMount() {
     }
    
+=======
+   displayMarkers = () => {
+       return this.state.stores.map((store, index) => {
+           return <Marker key={index} id={index} position={{
+               lat: store.latitude,
+               lng: store.longitude
+           }}
+                          onClick={() => console.log("You clicked me!")} />
+       })
+   }
+>>>>>>> 3bdb781f4faa073494e441cd1eeaa41564e267f7
 
    render() {
        
@@ -48,14 +83,34 @@ class CustomerDashboard extends Component {
             <div>
                 
             </div>
+<<<<<<< HEAD
             
 
+=======
+                <div>
+                    <Map
+                        google={this.props.google}
+                        zoom={14}
+                        style={mapStyles}
+                        initialCenter={{lat: 31.548, lng: -97.125}}
+                    >
+                        {this.displayMarkers()}
+                    </Map>
+                </div>
+            </header>
+>>>>>>> 3bdb781f4faa073494e441cd1eeaa41564e267f7
             </div>
             </div>
            );
    }
 }
+<<<<<<< HEAD
 
 
 export default CustomerDashboard;
 
+=======
+export default GoogleApiWrapper({
+    apiKey:('API_KEY')
+})(CustomerDashboard);
+>>>>>>> 3bdb781f4faa073494e441cd1eeaa41564e267f7
