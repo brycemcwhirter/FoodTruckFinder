@@ -18,7 +18,7 @@ services:
     image: foodtruckfinder_backend_prod:1.0.0
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     networks:
       - shared-network
     depends_on:
