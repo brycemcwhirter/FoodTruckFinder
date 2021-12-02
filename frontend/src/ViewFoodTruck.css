@@ -13,11 +13,7 @@
 .FoodTruck-info { 
     font-family: 'Josefin Sans', sans-serif;
     color: white;
-    flex-grow: 4;
-}
-
-.FoodTruck-info > h1 { 
-    font-size: 75px;
+    text-align: center;
 }
 
 .view-foodtruck-buttons{
@@ -25,3 +21,16 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    background-color: #588008;
+    padding: 10px;
+  }
+
+  .reviewTable{
+    padding: 10px;
+    width: 50%;
+  }

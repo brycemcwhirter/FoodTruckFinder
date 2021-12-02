@@ -90,6 +90,25 @@ class ViewFoodTruck extends Component {
         fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
 
+   truckRating(truck){
+    if (truck.rating >= 0){
+        if (truck.rating == 1 || truck.rating == 0){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        } else if (truck.rating == 2){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 3){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 4){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 5){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div>
+        }
+        
+    } else {
+        return <div>Not Yet Rated</div>
+    }
+};
+
 
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
@@ -126,10 +145,11 @@ class ViewFoodTruck extends Component {
             } else {
                 var button = "";
             }
-            return <div class="card">
+            return <div class="col-6" className="reviewTable"><div class="card" style={{border: "ridge"}}>
             <div class="card-body">
               <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
               <p class="card-text">{review.notes}</p>
+            </div>
             </div>
           </div>
         });
@@ -144,37 +164,47 @@ class ViewFoodTruck extends Component {
            <>
         {navBar}
         <div className="view-foodtruck-style">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+        <div class="container">
             <div className="FoodTruck-info">
-                <h1>{truck.name}</h1> <br></br>
-                <h5>{truck.type} | {truck.priceRange} </h5>
-                <h5>{truck.address}, {truck.city}, {truck.state}</h5>
+                <h1>{truck.name}</h1>
+                <h4>{truck.type} | {truck.priceRange} </h4>
+                <h4> Overall Rating: {this.truckRating(truck)}</h4>
+                <h4>{truck.address}, {truck.city}, {truck.state}</h4>
             </div>
 
 
-            <div className="view-foodtruck-buttons">
+            <div class="container" style={{alignContent: "center"}}>
                 <button class="btn btn-secondary">View Menu</button>
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
                 <div class="divider"/>
                 {subButton}
             </div><br></br>
-            <div>
-                <h4>Routes:</h4>
+            <div class="row">
+            <div class="col">
+                <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Routes:</h4>
                 {this.hasRoutes()}
-                <div style={{borderStyle: "solid"}, {backgroundColor: "white"}}>
+                <div className="center">
                 {routeList}
                 </div>
+            </div>
             </div><br></br>
+            <div class="col">
             <div>
-                <h4>Reviews:</h4>
+                <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Reviews:</h4>
                 {this.hasReviews()}
                 <h6>Number of Reviews: {reviews.length}</h6>
+                <div class="row">
                 {reviewList}
+                </div>
+            </div>
             </div>
             
             
               
+            </div>
             </div>
             </>
         );
