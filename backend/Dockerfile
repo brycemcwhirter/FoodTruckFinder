@@ -1,6 +1,6 @@
 FROM openjdk:16
 
-ADD target/foodtruckfinder-boot.jar user-mysql.jar
+ADD backend/target/foodtruckfinder-boot.jar user-mysql.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "user-mysql.jar"]
 
