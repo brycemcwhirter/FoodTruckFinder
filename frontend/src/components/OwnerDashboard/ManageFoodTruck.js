@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import NavbarLoggedIn from '../NavBarLoggedIn';
+import Geocode from "react-geocode";
+
+Geocode.setApiKey("AIzaSyA-gMFepF4IYvOdIzjP1SN0SvmQgLyJZUY");
+
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -74,8 +78,26 @@ class ManageFoodTruck extends Component {
         updatedTruck.openTime = document.getElementById("inputOpen").value;
         updatedTruck.closeTime = document.getElementById("inputClose").value;
 
+        /*Geocode.fromAddress(updatedTruck.address + " " + updatedTruck.city + " " + updatedTruck.state + " " + updatedTruck.zip).then((result)=>{
+                const { lat, lng } = result.results[0].geometry.location;
+                var truckLoc = new Object();
+                truckLoc.lat = lat;
+                truckLoc.lng = lng;
+                var locString = JSON.stringify(truckLoc);
+                const requestOptions2 = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: locString
+                };
+                fetch('updatelocation/'+localStorage.getItem("TruckID"), requestOptions2)
+            console.log(result)
+            }).catch((err)=>{
+             console.log(err);
+            })*/
+
         var validOpen = this.checkValidTime(updatedTruck.openTime);
         var validClose = this.checkValidTime(updatedTruck.closeTime);
+        alert(updatedTruck.openTime);
 
         if (!validOpen && updatedTruck.openTime !== ""){
             alert("The open time is not valid");

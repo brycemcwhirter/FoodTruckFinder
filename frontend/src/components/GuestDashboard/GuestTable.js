@@ -89,6 +89,7 @@ class GuestTable extends Component{
                     <option>Name</option>
                     <option>Type</option>
                     <option>City</option>
+                    <option>Time</option>
                 </select>
                 <div class="divider"/>
                 <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/searchfoodtruck">Search</a>

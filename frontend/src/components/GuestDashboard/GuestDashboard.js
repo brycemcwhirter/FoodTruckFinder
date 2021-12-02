@@ -6,7 +6,7 @@ import AppNavbar from '../Navbar';
 
 /* import Dashboard Components*/
 import GuestTable from './GuestTable';
-import GoogleMaps from '../CustomerDashboard/GoogleMaps'
+import GoogleMapsGuest from './GuestMap'
 
 
 
@@ -42,7 +42,7 @@ class GuestDashboard extends Component {
                     <GuestTable/>
                 </div>
                 <div class="col-6">
-                    <GoogleMaps/>
+                    <GoogleMapsGuest/>
                 </div>     
             </div>  
 
