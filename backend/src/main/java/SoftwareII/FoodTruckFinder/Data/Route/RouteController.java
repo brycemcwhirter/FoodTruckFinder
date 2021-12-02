@@ -44,6 +44,7 @@ public class RouteController {
         List<Route> truckRoutes = new ArrayList<>();
         for (int i = 0; i < allRoutes.size(); i++){
             if (allRoutes.get(i).getFoodTruck().getId() == id){
+                //log.info(allRoutes.get(i).getAddress());
                 truckRoutes.add(allRoutes.get(i));
             }
         }
@@ -53,15 +54,12 @@ public class RouteController {
 
     @PostMapping("/addroute/{id}")
     void addRoute(@RequestBody String routeStr, @PathVariable Long id){
-        log.info("Adding Routes");
         FoodTruck foodTruck = foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
 
         JSONObject routeJSON = new JSONObject(routeStr);
-        if (!Objects.equals(routeJSON.getString("latitude"), "") && !Objects.equals(routeJSON.getString("longitude"), "")) {
-            Route newRoute = new Route(routeJSON, foodTruck);
-            log.info("Added Route");
-            routeRepository.save(newRoute);
-        }
+        Route newRoute = new Route(routeJSON, foodTruck);
+        log.info("Added Route " + routeJSON.getInt("numInRoute") + " for " + foodTruck.getName());
+        routeRepository.save(newRoute);
     }
 
     @PostMapping("/removeroutes/{id}")

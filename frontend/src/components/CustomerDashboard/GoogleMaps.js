@@ -30,50 +30,45 @@ class GoogleMapsTest extends Component{
         truckLng: [],
     }
 
-    displayMarkers = () => {
-        //alert(this.state.truckLat[0]);
-        
-        return this.state.trucks.map((truck, i) => {
-            var index = i+1;
-            //alert(this.state.truckLat[i]);
-            alert(this.truckLat[i])
-            return <Marker position={{
-                lat: this.state.truckLat[i],
-                lng: this.state.truckLat[i]
-            }} label={index.toString()}/>
-        })
-        
-    }
-
     async componentDidMount(){
         const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        
-        this.setState({ trucks: body, isLoading: false});
+        this.setState({ trucks: body});
+        this.setState({ isLoading: false});
     }
+
     
-      
+    renderMarkers = async (truck) =>{
+        //trucks.map( (truck) => {
+        const response = Geocode.fromAddress(truck.address + " " + truck.city + " " + truck.state + " " + truck.zip);
+        response.then((result)=>{
+                const { lat, lng } = result.results[0].geometry.location;
+                this.state.truckLat.push(lat);
+                this.state.truckLng.push(lng);
+            console.log(result)
+            }).catch((err)=>{
+             console.log(err);
+            })
+        //})
+           
+    }
 
     render(){
         const {isLoading, trucks} = this.state;
-
-        const markers = trucks.map((truck, i) => {
-            Geocode.fromAddress(truck.address + " " + truck.city + " " + truck.state + " " + truck.zip).then(
-                (response) => {
-                  const { lat, lng } = response.results[0].geometry.location;
-                  this.state.truckLat.push(lat);
-                  this.state.truckLng.push(lng);
-                },
-                (error) => {
-                  console.error(error);
-                }
-              );
-        })
         
 
         if (isLoading) {
             return <p>Loading...</p>;
         }
+
+        const setMarker = trucks.map((truck, i) => {
+            var index = i+1;
+            return <Marker position={{
+                lat: truck.locationLat,
+                lng: truck.locationLng
+            }} label={index.toString()}/>
+        });
+            
 
         return(
             <div id = "id">
@@ -83,7 +78,7 @@ class GoogleMapsTest extends Component{
                     style={mapStyles}
                     initialCenter={{lat: 31.5493, lng: -97.1467}}
                 >
-                    {markers}
+                    {setMarker}
                 </Map>
             </div>
         )

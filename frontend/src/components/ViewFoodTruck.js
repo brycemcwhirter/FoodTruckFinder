@@ -116,7 +116,7 @@ class ViewFoodTruck extends Component {
 
         const routeList = routes.map((route, index) => {
             return <div>
-            Stop {index+1}: {route.latitude}, {route.longitude}
+            Stop {index+1}: {route.address}, {route.city}, {route.state}
           </div>
         });
 
