@@ -1,7 +1,7 @@
 FROM openjdk:16
-
+#RUN mvn clean package
 ADD backend/target/foodtruckfinder-boot.jar user-mysql.jar
-EXPOSE 8080
+#EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "user-mysql.jar"]
 
 

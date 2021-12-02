@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=FoodTruck
     ports:
-      - "3309:3306"
+      - "3306:3306"
     networks:
       - shared-network
   backend:

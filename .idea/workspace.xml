@@ -8,10 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +105,9 @@
       <workItem from="1638227311325" duration="5958000" />
       <workItem from="1638285999170" duration="5864000" />
       <workItem from="1638307065938" duration="2170000" />
-      <workItem from="1638458322926" duration="4202000" />
+      <workItem from="1638458322926" duration="4322000" />
+      <workItem from="1638472098097" duration="4327000" />
+      <workItem from="1638479999926" duration="3869000" />
     </task>
     <servers />
   </component>
