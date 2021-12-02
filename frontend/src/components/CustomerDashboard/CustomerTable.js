@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import CustomerDashboard from '../CustomerDashboard';
-import SearchFoodTruck from './SearchFoodTrucks';
-
 
 class Table extends Component{
 
     state = {
         isLoading: true,
         trucks: [],
-        trucksAll: []
+        account: []
     }
 
 
@@ -17,9 +14,9 @@ class Table extends Component{
     async componentDidMount(){
         const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
-        const response2 = await fetch('allfoodtrucks');
+        const response2 = await fetch('/accounts/' + localStorage.getItem("UserID"));
         const body2 = await response2.json();
-        this.setState({ isLoading: false, trucks: body, trucksAll: body2});
+        this.setState({ isLoading: false, trucks: body, account: body2});
     }
 
     viewTruck(id){
@@ -28,34 +25,73 @@ class Table extends Component{
         localStorage.setItem("Action", "viewTruck");
     }
 
-    async search(){
-        const {trucks} = this.state;
+    
+    checkValidTime(timeStr){
+        var validTime = true;
+        const time = timeStr.split(":");
+        if (time.length != 2){
+            validTime = false;
+        } else {
+            const otherTime = time[1].split(" ");
+            if (otherTime.length != 2){
+                validTime = false;
+            } else {
+                if (!Number.isInteger(parseInt(time[0], 10)) || !Number.isInteger(parseInt(otherTime[0], 10))
+                 || !(otherTime[1] == "AM" || otherTime[1] == "PM")){
+                    validTime = false;
+                }else{
+                    var hr = parseInt(time[0], 10);
+                    var min = parseInt(otherTime[0], 10);
+                    if (hr > 12 || hr < 1 || min > 59 || min < 0){
+                        validTime = false;
+                    }
+                }
+            }
+        }
+        return validTime;
+    }
+
+    search = (event) => {
+        var searchType = document.getElementById("searchType").value;
 
         var searchStr = document.getElementById("search").value;
         if (searchStr == ""){
             localStorage.setItem("ValidSearch", 0);
-            alert("Please type in a name in the search bar");
-        } else {
-            var found = -1;
-            for (let i = 0; i < trucks.length; i++){
-                if (trucks[i].name == searchStr){
-                    found = i;
-                }
-            }
-            if (found >= 0){
-                localStorage.setItem("ValidSearch", 1);
-                localStorage.setItem("TruckID", trucks[found].id);
+            alert("Please type something into the search bar");
+        } else if (searchType == "Time"){
+            var valid = this.checkValidTime(searchStr);
+            if (!valid){
+                alert("Please enter a valid time in the format: HH:MM XM");
             } else {
-                alert("Not Found");
-                localStorage.setItem("ValidSearch", 0);
-            }        
+                localStorage.setItem("ValidSearch", 1); 
+                localStorage.setItem("SearchType", searchType);
+                localStorage.setItem("SearchStr", searchStr); 
+            }
+        } else {
+            localStorage.setItem("ValidSearch", 1); 
+            localStorage.setItem("SearchType", searchType);
+            localStorage.setItem("SearchStr", searchStr);      
         }
 
     }
 
+    nearbyTrucks = (event) => {
+        const {account} = this.state;
+        if (account.cityPreference == null){
+            localStorage.setItem("ValidSearch", 0);
+            alert("You do not have a peference city");
+        } else {
+            localStorage.setItem("ValidSearch", 1); 
+            localStorage.setItem("SearchType", "City");
+            localStorage.setItem("SearchStr", account.cityPreference); 
+        }
+             
+        
+    }
+
     truckRating(truck){
-        if (truck.rating > 0){
-            if (truck.rating == 1){
+        if (truck.rating >= 0){
+            if (truck.rating == 1 || truck.rating == 0){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
             } else if (truck.rating == 2){
                 return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
@@ -74,7 +110,7 @@ class Table extends Component{
 
 
     render(){
-        const {isLoading, trucks} = this.state;
+        const {isLoading, trucks, account} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -99,8 +135,17 @@ class Table extends Component{
         
         <div>
         <><form class="form-inline my-2 my-lg-0">
-                <input class="form-control-lg mr-sm-2" id="search" type="text" placeholder="Search Food Trucks" aria-label="Search" />
-                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/viewfoodtruck">Search</a>
+                <input class="form-control mr-sm-2" id="search" type="text" placeholder="Search Food Trucks" aria-label="Search" />
+                <select class="form-control" id="searchType">
+                    <option>Name</option>
+                    <option>Type</option>
+                    <option>City</option>
+                    <option>Time</option>
+                </select>
+                <div class="divider"/>
+                <a class="btn btn-secondary my-2 my-sm-0" type="submit" onClick={() => this.search()}  href="/searchfoodtruck">Search</a>
+                <div class="divider"/>
+                <a class="btn btn-info my-2 my-sm-0" type="submit" onClick={() => this.nearbyTrucks()}  href="/searchfoodtruck">Find Nearby Trucks</a>
             </form><br></br></>
 
 
@@ -120,10 +165,7 @@ class Table extends Component{
             </thead>
             <tbody className="tableColors">
                 
-
                 {truckList}
-                
-                
 
             </tbody>
         </table>
