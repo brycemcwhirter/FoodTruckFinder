@@ -134,6 +134,8 @@ public class FoodTruck {
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
+        this.openTime = newFoodTruck.getString("openTime");
+        this.closeTime = newFoodTruck.getString("closeTime");
         this.owner = owner;
 
         log.info("Adding Truck: " + this.name + " " + this.type + " " + this.address);

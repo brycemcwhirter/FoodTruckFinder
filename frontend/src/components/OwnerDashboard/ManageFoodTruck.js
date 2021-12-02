@@ -115,10 +115,11 @@ class ManageFoodTruck extends Component {
         document.getElementById("inputZip").value = "";
         document.getElementById("inputPrice").value = "Select...";
         document.getElementById("inputOperational").value = "Select...";
+        document.getElementById("inputOpen").value = truck.openTime;
+        document.getElementById("inputClose").value = truck.closeTime;
    }
 
    deleteTruck(){
-        alert("Deleting Truck");
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -131,6 +132,12 @@ class ManageFoodTruck extends Component {
 
    manageRoutes(){
        this.props.history.push("/manageroutes");
+   }
+
+   cancel(){
+        localStorage.removeItem("TruckID");
+        localStorage.removeItem("Action");
+       this.props.history.push("/dashboard/owner");
    }
 
    async componentDidMount() {
@@ -205,11 +212,16 @@ class ManageFoodTruck extends Component {
                 <div class="form-group col-md-4">
                 <label>State</label>
                 <select id="inputState" class="form-control" placeholder={truck.state}>
-                    <option>TX</option>
-                    <option>OK</option>
-                    <option>CA</option>
-                    <option>AR</option>
-                    <option>LA</option>
+                    <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                    <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                    <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                    <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                    <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                    <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                    <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                    <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                    <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                    <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
                 </select>
                 </div>
                 <div class="form-group col-md-2">
@@ -241,14 +253,16 @@ class ManageFoodTruck extends Component {
                 </div>
                 <div class="form-group col-md-2">
                     <label>Open Time</label>
-                    <input id="inputOpen" type="text" class="form-control"/>   
+                    <input id="inputOpen" type="text" class="form-control" placeholder={truck.openTime}/>   
                 </div>
                 <div class="form-group col-md-2">
                     <label>Close Time</label>
-                    <input id="inputClose" type="text" class="form-control"/>    
+                    <input id="inputClose" type="text" class="form-control" placeholder={truck.closeTime}/>    
                 </div>
             </div><br></br>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>
+            <div class="divider"/>
+            <button type="button" class="btn btn-secondary" onClick={() => this.cancel()}>Cancel</button>
             <div class="divider"/>
             <button type="button" class="btn btn-secondary" onClick={() => this.resetInfo()}>Reset Information</button>
             <div class="divider"/>

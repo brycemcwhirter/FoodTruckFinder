@@ -156,7 +156,7 @@ class OwnerDashboard extends Component {
                         <table class="table table-striped table-hover owner-table-style">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style={{width: "10%"}}>Name</th>
+                                        <th scope="col" style={{width: "15%"}}>Name</th>
                                         <th scope="col" style={{width: "10%"}}>Type</th>
                                         <th scope="col" style={{width: "5%"}}>Price</th>
                                         <th scope="col" style={{width: "20%"}}>Address</th>

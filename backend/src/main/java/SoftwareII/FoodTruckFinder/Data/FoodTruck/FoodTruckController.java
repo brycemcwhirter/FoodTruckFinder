@@ -150,7 +150,7 @@ public class FoodTruckController {
     @PostMapping("/foodtrucks/{id}")
     FoodTruck newFoodTruck(@RequestBody String strFoodTruck, @PathVariable Long id){
         log.info("Adding FoodTruck");
-        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck),accountRepository.getById(id));
+        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck),accountRepository.findById(id).get());
         return foodTruckRepository.save(newFoodTruck);
     }
 
