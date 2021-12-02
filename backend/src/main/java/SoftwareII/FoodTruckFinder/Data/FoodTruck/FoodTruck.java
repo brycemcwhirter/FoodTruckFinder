@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.FoodTruck;
+package main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.json.JSONObject;
@@ -9,7 +9,10 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 
-import SoftwareII.FoodTruckFinder.Data.Account.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+
+
+
 
 @Entity
 public class FoodTruck {
@@ -29,29 +32,18 @@ public class FoodTruck {
     private Integer rating;
     private Boolean operational;
     private FoodTruckPrice priceRange;
-<<<<<<< HEAD:src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java
 
-
-
-
-    @ManyToOne
-    private Account owner;
-
-
-
-    @ManyToMany(mappedBy = "subscribedTrucks")
-    private List<Account> subscribers;
-=======
     private String locationLat;
     private String locationLng;
     private String openTime;
     private String closeTime;
+
+
     @ManyToOne
     private Account owner;
     @ManyToMany(mappedBy="subscribedTrucks", cascade=CascadeType.ALL)
     @JsonManagedReference
     private List<Account> subscribers = new ArrayList<>();
->>>>>>> sheldon:backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java
 
 
 
