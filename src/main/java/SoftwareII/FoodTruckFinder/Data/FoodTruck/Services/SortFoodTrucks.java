@@ -14,45 +14,42 @@ public class SortFoodTrucks {
 
     public static List<FoodTruck> sortRecommended(List<FoodTruck> l, String type, String price) {
         FoodTruck temp;
+        int t;
+        List<Integer> points = new ArrayList<Integer>();
         boolean sorted = false;
+
+        for (int i = 0; i < l.size(); i++) { // initialize points alist
+            points.add(0);
+        }
+
+        for (int i = 0; i < l.size(); i++) { // initialize points alist
+            int curPoints = points.get(i);
+
+            curPoints += l.get(i).getRating(); // add rating points
+            if (l.get(i).getType().toString().equals(type))
+                curPoints += 2;
+            if (l.get(i).getPrice().toString().equals(price))
+                curPoints += 1;
+
+            points.set(i, curPoints);
+        }
 
         while (!sorted) { // sort by price
             sorted = true;
             for (int i = 0; i < l.size()-1; i++) {
-                if (!((l.get(i)).getPriceRange().toString().equals(price)) && l.get(i + 1).getPriceRange().toString().equals(price)) {
+                if (points.get(i) < points.get(i + 1)) {
                     temp = l.get(i);
                     l.set(i, l.get(i + 1));
                     l.set(i + 1, temp);
+
+                    t = points.get(i);
+                    points.set(i, points.get(i + 1));
+                    points.set(i + 1, t);
                     sorted = false;
                 }
             }
         }
 
-        sorted = false;
-        while (!sorted) { // sort by rating
-            sorted = true;
-            for (int i = 0; i < l.size()-1; i++) {
-                if ((l.get(i)).getRating() < (l.get(i + 1).getRating())) {
-                    temp = l.get(i);
-                    l.set(i, l.get(i + 1));
-                    l.set(i + 1, temp);
-                    sorted = false;
-                }
-            }
-        }
-
-        sorted = false;
-        while (!sorted) { // sort by specialty
-            sorted = true;
-            for (int i = 0; i < l.size()-1; i++) {
-                if (!((l.get(i)).getType().toString().equals(type)) && l.get(i + 1).getType().toString().equals(type)) {
-                    temp = l.get(i);
-                    l.set(i, l.get(i + 1));
-                    l.set(i + 1, temp);
-                    sorted = false;
-                }
-            }
-        }
         return l;
     }
 }
