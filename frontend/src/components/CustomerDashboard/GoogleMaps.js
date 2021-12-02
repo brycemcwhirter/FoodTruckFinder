@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import {Map, GoogleApiWrapper, Marker} from "google-maps-react";
+import {Map, GoogleApiWrapper, Marker, InfoWindow} from "google-maps-react";
+import Geocode from "react-geocode";
 
 const mapStyles={
     width:'97%',
     height: '100%'
 };
 
+Geocode.setApiKey("AIzaSyA-gMFepF4IYvOdIzjP1SN0SvmQgLyJZUY");
 
-class GoogleMaps extends Component{
+class GoogleMapsTest extends Component{
 
     //Get the Addresses from the Database
 
@@ -19,41 +21,71 @@ class GoogleMaps extends Component{
     name={'SOMA'}
     position={{lat: 37.778519, lng: -122.405640}} />
     */
-    
+
 
     state = {
-        stores: [{lat: 31.548, lng: -97.125},
-            {latitude: 31.546, longitude: -97.120},
-            {latitude: 31.551, longitude: -97.118}]
+        trucks: [],
+        isLoading: true,
+        truckLat: [],
+        truckLng: [],
     }
 
-    displayMarkers = () => {
-        return this.state.stores.map((store, index) => {
-            return <Marker key={index} id={index} position={{
-                lat: store.latitude,
-                lng: store.longitude
-            }}
-            onClick={() => console.log("You clicked me!")} />
-        })
+    async componentDidMount(){
+        const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
+        const body = await response.json();
+        this.setState({ trucks: body});
+        this.setState({ isLoading: false});
+    }
+
+    
+    renderMarkers = async (truck) =>{
+        //trucks.map( (truck) => {
+        const response = Geocode.fromAddress(truck.address + " " + truck.city + " " + truck.state + " " + truck.zip);
+        response.then((result)=>{
+                const { lat, lng } = result.results[0].geometry.location;
+                this.state.truckLat.push(lat);
+                this.state.truckLng.push(lng);
+            console.log(result)
+            }).catch((err)=>{
+             console.log(err);
+            })
+        //})
+           
     }
 
     render(){
+        const {isLoading, trucks} = this.state;
+        
+
+        if (isLoading) {
+            return <p>Loading...</p>;
+        }
+
+        const setMarker = trucks.map((truck, i) => {
+            var index = i+1;
+            return <Marker position={{
+                lat: truck.locationLat,
+                lng: truck.locationLng
+            }} label={index.toString()}/>
+        });
+            
+
         return(
-            <div>
+            <div id = "id">
                 <Map
                     google={this.props.google}
-                    zoom={14}
+                    zoom={13}
                     style={mapStyles}
-                    initialCenter={{lat: 31.548, lng: -97.125}}
+                    initialCenter={{lat: 31.5493, lng: -97.1467}}
                 >
-                    {this.displayMarkers()}
+                    {setMarker}
                 </Map>
             </div>
         )
-    }
+        }
 }
 
 export default GoogleApiWrapper({
-    //apiKey:('AIzaSyD6WCgqYOmICfM4d29CP4_LN65Wk-Q-k-A')
-}) (GoogleMaps)
+    apiKey:('AIzaSyD6WCgqYOmICfM4d29CP4_LN65Wk-Q-k-A')
+}) (GoogleMapsTest)
 

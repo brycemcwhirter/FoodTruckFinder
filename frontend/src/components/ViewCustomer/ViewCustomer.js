@@ -16,6 +16,8 @@ class ViewCustomer extends Component{
         this.setState({ account : body});
     }
 
+    
+
     render(){
 
         const {account} = this.state;
