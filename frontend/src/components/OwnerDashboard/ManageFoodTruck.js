@@ -11,8 +11,57 @@ class ManageFoodTruck extends Component {
         routes: []
     };
 
+    checkValidTime(timeStr){
+        var validTime = true;
+        const time = timeStr.split(":");
+        if (time.length != 2){
+            validTime = false;
+        } else {
+            const otherTime = time[1].split(" ");
+            if (otherTime.length != 2){
+                validTime = false;
+            } else {
+                if (!Number.isInteger(parseInt(time[0], 10)) || !Number.isInteger(parseInt(otherTime[0], 10))
+                 || !(otherTime[1] == "AM" || otherTime[1] == "PM")){
+                    validTime = false;
+                }else{
+                    var hr = parseInt(time[0], 10);
+                    var min = parseInt(otherTime[0], 10);
+                    if (hr > 12 || hr < 1 || min > 59 || min < 0){
+                        validTime = false;
+                    }
+                }
+            }
+        }
+        return validTime;
+    }
+
+    validOpenClose(open, close){
+        var valid = true;
+        var firstTime = open.split(":");
+        var secondTime = close.split(":");
+        var firstTime2 = firstTime[1].split(" ");
+        var secondTime2 = secondTime[1].split(" ");
+        if (firstTime2[1] == "PM" && secondTime2[1] == "AM"){
+            valid = false;
+        } else {
+            if (firstTime2[1] == secondTime2[1]){
+                var hr1 = parseInt(firstTime[0], 10);
+                var hr2 = parseInt(secondTime[0], 10);
+                var min1 = parseInt(firstTime2[0], 10);
+                var min2 = parseInt(secondTime2[0], 10);
+                if (firstTime2[1] == secondTime2[1] && hr1 == hr2 && min1 >= min2){
+                    valid = false;
+                } else if (firstTime2[1] == secondTime2[1] && hr1 > hr2 && hr1 != 12){
+                    valid = false;
+                }
+            }
+        }
+        return valid;
+    }
+
     
-   handleSubmit(event) {
+   async handleSubmit(event) {
         var updatedTruck = new Object();
         updatedTruck.name = document.getElementById("name").value;
         updatedTruck.type = document.getElementById("type").value;
@@ -22,18 +71,38 @@ class ManageFoodTruck extends Component {
         updatedTruck.zipcode = document.getElementById("inputZip").value;
         updatedTruck.price = document.getElementById("inputPrice").value;
         updatedTruck.operational = document.getElementById("inputOperational").value;
+        updatedTruck.openTime = document.getElementById("inputOpen").value;
+        updatedTruck.closeTime = document.getElementById("inputClose").value;
 
-        var jsonString = JSON.stringify(updatedTruck);
+        var validOpen = this.checkValidTime(updatedTruck.openTime);
+        var validClose = this.checkValidTime(updatedTruck.closeTime);
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: jsonString
-        };
-        fetch('updatetruck/'+localStorage.getItem("TruckID"), requestOptions)
-        localStorage.removeItem("TruckID");
-        localStorage.removeItem("Action");
-        this.props.history.push("/dashboard/owner");
+        if (!validOpen){
+            alert("The open time is not valid");
+        } else if (!validClose){
+            alert("The close time is not valid");
+        }else {
+            var openClose = this.validOpenClose(updatedTruck.openTime, updatedTruck.closeTime)
+            if (!openClose){
+                alert("Your chosen times are not valid.  Make sure that the open time is before the close time.");
+            } else {
+        
+                var jsonString = JSON.stringify(updatedTruck);
+
+                //alert(updatedTruck.latitude);
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: jsonString
+                };
+                fetch('updatetruck/'+localStorage.getItem("TruckID"), requestOptions)
+                
+                localStorage.removeItem("Action");
+                localStorage.removeItem("TruckID");
+                this.props.history.push("/dashboard/owner");
+            
+            }
+        }
    }
 
    resetInfo(){
@@ -169,6 +238,14 @@ class ManageFoodTruck extends Component {
                         <option>Yes</option>
                         <option>No</option>
                     </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Open Time</label>
+                    <input id="inputOpen" type="text" class="form-control"/>   
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Close Time</label>
+                    <input id="inputClose" type="text" class="form-control"/>    
                 </div>
             </div><br></br>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>

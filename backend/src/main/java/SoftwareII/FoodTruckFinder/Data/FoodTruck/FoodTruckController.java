@@ -155,11 +155,11 @@ public class FoodTruckController {
     }
 
     @PostMapping("/updatetruck/{id}")
-    FoodTruck updateAccount(@RequestBody String strTruck, @PathVariable Long id){
+    FoodTruck updateTruck(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
         FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
             .orElseThrow(() -> new FoodTruckNotFound(id));
-        
+
         if (newTruck.getString("name") != ""){
             trucktoUpdate.setName(newTruck.getString("name"));
         }
@@ -178,6 +178,12 @@ public class FoodTruckController {
         if (newTruck.getString("price") != "" && !newTruck.getString("price").equals("Select...")){
             trucktoUpdate.setPriceRange(FoodTruckPrice.getPrice(newTruck.getString("price")));
         }
+        if (newTruck.getString("openTime") != ""){
+            trucktoUpdate.setOpenTime(newTruck.getString("openTime"));
+        }
+        if (newTruck.getString("closeTime") != ""){
+            trucktoUpdate.setCloseTime(newTruck.getString("closeTime"));
+        }
         if (newTruck.getString("operational") != "" && !newTruck.getString("operational").equals("Select...")){
             if (newTruck.getString("operational").equals("Yes"))
                 trucktoUpdate.setOperational(true);
@@ -186,6 +192,18 @@ public class FoodTruckController {
             }
         }
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
+        return foodTruckRepository.save(trucktoUpdate);
+    }
+
+    @PostMapping("/updatelocation/{id}")
+    FoodTruck updateLocation(@RequestBody String strTruck, @PathVariable Long id){
+        JSONObject newTruck = new JSONObject(strTruck);
+        FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
+                .orElseThrow(() -> new FoodTruckNotFound(id));
+
+        trucktoUpdate.setLocationLat(newTruck.getString("latitude"));
+        trucktoUpdate.setLocationLng(newTruck.getString("longitude"));
+        log.info("Updated location: " + trucktoUpdate.getLocationLat() + " " + trucktoUpdate.getLocationLng());
         return foodTruckRepository.save(trucktoUpdate);
     }
 

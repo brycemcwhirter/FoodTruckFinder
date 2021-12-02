@@ -59,7 +59,7 @@ public class FoodTruckFinderController {
         if (newAccount.getString("username") != ""){
             accountToUpdate.setUsername(newAccount.getString("username"));
         }
-        if (newAccount.getString("email") != ""){
+        if (newAccount.getString("email") != "") {
             accountToUpdate.setEmail(newAccount.getString("email"));
         }
         log.info("Updating Type Preference to " + newAccount.getString("typePref"));
