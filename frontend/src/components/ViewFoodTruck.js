@@ -30,14 +30,14 @@ class ViewFoodTruck extends Component {
    hasRoutes(){
         const { routes } = this.state;
         if (routes.length == 0){
-            return <div>This food truck does not have any stops within their route currently</div>
+            return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any stops within their route currently</h5>
         }
    }
 
    hasReviews(){
     const { reviews } = this.state;
     if (reviews.length == 0){
-        return <div>This food truck does not have any reviews</div>
+        return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any reviews</h5>
     }
 }
 
@@ -145,11 +145,13 @@ class ViewFoodTruck extends Component {
             } else {
                 var button = "";
             }
-            return <div class="col-6" className="reviewTable"><div class="card" style={{border: "ridge"}}>
-            <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
-              <p class="card-text">{review.notes}</p>
-            </div>
+            return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
+                <div class="card-header">
+                {review.rating} Star(s) reviewed by {review.account.username} <span style={{float: "right"}}>{button}</span>
+                </div>
+                <div class="card-body">
+                <p class="card-text">{review.notes}</p>
+                </div>
             </div>
           </div>
         });
@@ -168,25 +170,26 @@ class ViewFoodTruck extends Component {
 
         <div class="container">
             <div className="FoodTruck-info">
-                <h1>{truck.name}</h1>
-                <h4>{truck.type} | {truck.priceRange} </h4>
-                <h4> Overall Rating: {this.truckRating(truck)}</h4>
-                <h4>{truck.address}, {truck.city}, {truck.state}</h4>
+                <h1>{truck.name}</h1><hr></hr>
+                <h5>{truck.type} | {truck.priceRange} </h5>
+                <h5> Overall Rating: {this.truckRating(truck)}</h5>
+                <h5>{truck.address}, {truck.city}, {truck.state}</h5>
+                <div>
+                    <button class="btn btn-secondary">View Menu</button>
+                    <div class="divider"/>
+                    <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
+                    <div class="divider"/>
+                    {subButton}
+                </div>
             </div>
 
 
-            <div class="container" style={{alignContent: "center"}}>
-                <button class="btn btn-secondary">View Menu</button>
-                <div class="divider"/>
-                <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
-                <div class="divider"/>
-                {subButton}
-            </div><br></br>
+            <br></br>
             <div class="row">
             <div class="col">
                 <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Routes:</h4>
                 {this.hasRoutes()}
-                <div className="center">
+                <div className="routeBackground">
                 {routeList}
                 </div>
             </div>
@@ -195,14 +198,11 @@ class ViewFoodTruck extends Component {
             <div>
                 <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Reviews:</h4>
                 {this.hasReviews()}
-                <h6>Number of Reviews: {reviews.length}</h6>
-                <div class="row">
+                <div class="row" className="reviewBackground">
                 {reviewList}
                 </div>
             </div>
             </div>
-            
-            
               
             </div>
             </div>
