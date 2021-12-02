@@ -63,9 +63,9 @@ class Table extends Component{
             if (!valid){
                 alert("Please enter a valid time in the format: HH:MM XM");
             } else {
-                localStorage.setItem("ValidSearch", 0); 
-                /*localStorage.setItem("SearchType", searchType);
-                localStorage.setItem("SearchStr", searchStr);*/ 
+                localStorage.setItem("ValidSearch", 1); 
+                localStorage.setItem("SearchType", searchType);
+                localStorage.setItem("SearchStr", searchStr); 
             }
         } else {
             localStorage.setItem("ValidSearch", 1); 

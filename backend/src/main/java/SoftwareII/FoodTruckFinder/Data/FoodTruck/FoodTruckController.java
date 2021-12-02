@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -86,11 +89,33 @@ public class FoodTruckController {
     }
 
     @GetMapping("/trucksbytime/{time}")
-    List<FoodTruck> getFoodTrucksByTime(@PathVariable String time){
+    List<FoodTruck> getFoodTrucksByTime(@PathVariable String time) throws ParseException {
         List<FoodTruck> allTrucks = foodTruckRepository.findAll();
         List<FoodTruck> foundTrucks = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("hh:mm a");
+        java.sql.Time enteredTime = new java.sql.Time(formatter.parse(time).getTime());
+        log.info("Finding trucks by time");
+
         for (int i = 0; i < allTrucks.size(); i++){
-            
+            boolean validTruck = true;
+            if (allTrucks.get(i).getOpenTime() != null && allTrucks.get(i).getCloseTime() != null){
+                java.sql.Time openTime = new java.sql.Time(formatter.parse(allTrucks.get(i).getOpenTime()).getTime());
+                java.sql.Time closeTime = new java.sql.Time(formatter.parse(allTrucks.get(i).getCloseTime()).getTime());
+                if (!enteredTime.after(openTime) || !enteredTime.before(closeTime)){
+                    validTruck = false;
+                }
+                if (enteredTime.equals(openTime) || enteredTime.equals(closeTime)){
+                    validTruck = true;
+                }
+            }else {
+                validTruck = false;
+            }
+
+
+
+            if (validTruck){
+                foundTrucks.add(allTrucks.get(i));
+            }
         }
         return foundTrucks;
     }

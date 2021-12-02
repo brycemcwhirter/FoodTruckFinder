@@ -35,6 +35,8 @@ class SearchFoodTruck extends Component{
             var response = await fetch('trucksbyname/'+searchStr);
         } else if (searchType == "Type"){
             var response = await fetch('trucksbytype/'+searchStr);
+        } else if (searchType == "Time"){
+            var response = await fetch('trucksbytime/'+searchStr);
         } else {
             var response = await fetch('trucksbycity/'+searchStr);
         }
