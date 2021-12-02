@@ -85,6 +85,16 @@ public class FoodTruckController {
         return foundTrucks;
     }
 
+    @GetMapping("/trucksbytime/{time}")
+    List<FoodTruck> getFoodTrucksByTime(@PathVariable String time){
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> foundTrucks = new ArrayList<>();
+        for (int i = 0; i < allTrucks.size(); i++){
+            
+        }
+        return foundTrucks;
+    }
+
 
     // Finding Recommended Food Trucks when a user opens Dashboard
     @GetMapping("/recommendedtrucks/{id}")

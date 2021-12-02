@@ -77,13 +77,13 @@ class ManageFoodTruck extends Component {
         var validOpen = this.checkValidTime(updatedTruck.openTime);
         var validClose = this.checkValidTime(updatedTruck.closeTime);
 
-        if (!validOpen){
+        if (!validOpen && updatedTruck.openTime !== ""){
             alert("The open time is not valid");
-        } else if (!validClose){
+        } else if (!validClose && updatedTruck.closeTime !== ""){
             alert("The close time is not valid");
         }else {
             var openClose = this.validOpenClose(updatedTruck.openTime, updatedTruck.closeTime)
-            if (!openClose){
+            if (!openClose && updatedTruck.openTime !== "" && updatedTruck.closeTime !== ""){
                 alert("Your chosen times are not valid.  Make sure that the open time is before the close time.");
             } else {
         
@@ -212,6 +212,7 @@ class ManageFoodTruck extends Component {
                 <div class="form-group col-md-4">
                 <label>State</label>
                 <select id="inputState" class="form-control" placeholder={truck.state}>
+                    <option hidden>Select...</option>
                     <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
                     <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
                     <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
@@ -259,7 +260,7 @@ class ManageFoodTruck extends Component {
                     <label>Close Time</label>
                     <input id="inputClose" type="text" class="form-control" placeholder={truck.closeTime}/>    
                 </div>
-            </div><br></br>
+            </div><div style={{textAlign: "right", paddingRight: "30px"}}>Enter time in format HH:MM XM</div><br></br>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>
             <div class="divider"/>
             <button type="button" class="btn btn-secondary" onClick={() => this.cancel()}>Cancel</button>

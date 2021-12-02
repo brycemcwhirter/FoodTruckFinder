@@ -161,8 +161,8 @@ class OwnerDashboard extends Component {
                                         <th scope="col" style={{width: "5%"}}>Price</th>
                                         <th scope="col" style={{width: "20%"}}>Address</th>
                                         <th scope="col" style={{width: "15%"}}>Hours</th>
-                                        <th scope="col" style={{width: "15%"}}>Rating</th>
-                                        <th scope="col" style={{width: "15%"}}>Operating</th>
+                                        <th scope="col" style={{width: "12%"}}>Rating</th>
+                                        <th scope="col" style={{width: "10%"}}>Operating</th>
                                         <th scope="col" style={{width: "8%"}}>Edit</th>
                                     </tr>
                                 </thead>
