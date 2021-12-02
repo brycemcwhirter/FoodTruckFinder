@@ -28,7 +28,16 @@ class GuestTable extends Component{
         var searchStr = document.getElementById("search").value;
         if (searchStr == ""){
             localStorage.setItem("ValidSearch", 0);
-            alert("Please type in a name in the search bar");
+            alert("Please type something into the search bar");
+        } else if (searchType == "Time"){
+            var valid = this.checkValidTime(searchStr);
+            if (!valid){
+                alert("Please enter a valid time in the format: HH:MM XM");
+            } else {
+                localStorage.setItem("ValidSearch", 1); 
+                localStorage.setItem("SearchType", searchType);
+                localStorage.setItem("SearchStr", searchStr); 
+            }
         } else {
             localStorage.setItem("ValidSearch", 1); 
             localStorage.setItem("SearchType", searchType);
@@ -55,6 +64,31 @@ class GuestTable extends Component{
             return <div>Not Yet Rated</div>
         }
     };
+
+    checkValidTime(timeStr){
+        var validTime = true;
+        const time = timeStr.split(":");
+        if (time.length != 2){
+            validTime = false;
+        } else {
+            const otherTime = time[1].split(" ");
+            if (otherTime.length != 2){
+                validTime = false;
+            } else {
+                if (!Number.isInteger(parseInt(time[0], 10)) || !Number.isInteger(parseInt(otherTime[0], 10))
+                 || !(otherTime[1] == "AM" || otherTime[1] == "PM")){
+                    validTime = false;
+                }else{
+                    var hr = parseInt(time[0], 10);
+                    var min = parseInt(otherTime[0], 10);
+                    if (hr > 12 || hr < 1 || min > 59 || min < 0){
+                        validTime = false;
+                    }
+                }
+            }
+        }
+        return validTime;
+    }
 
 
     render(){
