@@ -6,7 +6,7 @@ import NavbarLoggedIn from '../NavBarLoggedIn';
 
 /* import Dashboard Components*/
 import Table from './CustomerTable'
-import GoogleMaps from './GoogleMaps'
+import GoogleMapsTest from './GoogleMaps'
 
 
 
@@ -41,7 +41,7 @@ class CustomerDashboard extends Component {
                             <Table/>
                         </div>
                         <div class="col-6">
-                            <GoogleMaps/>
+                            <GoogleMapsTest/>
                         </div>
                     </div>
 

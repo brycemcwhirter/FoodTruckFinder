@@ -43,8 +43,8 @@ class CustomerSubscriptions extends Component{
             return (<tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.priceRange}</td>
               <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{truck.openTime} - {truck.closeTime}</td>
               <td>{this.truckRating(truck)}</td>
           
             </tr>

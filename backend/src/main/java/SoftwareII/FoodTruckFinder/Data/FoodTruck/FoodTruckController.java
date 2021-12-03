@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -85,6 +88,38 @@ public class FoodTruckController {
         return foundTrucks;
     }
 
+    @GetMapping("/trucksbytime/{time}")
+    List<FoodTruck> getFoodTrucksByTime(@PathVariable String time) throws ParseException {
+        List<FoodTruck> allTrucks = foodTruckRepository.findAll();
+        List<FoodTruck> foundTrucks = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("hh:mm a");
+        java.sql.Time enteredTime = new java.sql.Time(formatter.parse(time).getTime());
+        log.info("Finding trucks by time");
+
+        for (int i = 0; i < allTrucks.size(); i++){
+            boolean validTruck = true;
+            if (allTrucks.get(i).getOpenTime() != null && allTrucks.get(i).getCloseTime() != null){
+                java.sql.Time openTime = new java.sql.Time(formatter.parse(allTrucks.get(i).getOpenTime()).getTime());
+                java.sql.Time closeTime = new java.sql.Time(formatter.parse(allTrucks.get(i).getCloseTime()).getTime());
+                if (!enteredTime.after(openTime) || !enteredTime.before(closeTime)){
+                    validTruck = false;
+                }
+                if (enteredTime.equals(openTime) || enteredTime.equals(closeTime)){
+                    validTruck = true;
+                }
+            }else {
+                validTruck = false;
+            }
+
+
+
+            if (validTruck){
+                foundTrucks.add(allTrucks.get(i));
+            }
+        }
+        return foundTrucks;
+    }
+
 
     // Finding Recommended Food Trucks when a user opens Dashboard
     @GetMapping("/recommendedtrucks/{id}")
@@ -150,16 +185,16 @@ public class FoodTruckController {
     @PostMapping("/foodtrucks/{id}")
     FoodTruck newFoodTruck(@RequestBody String strFoodTruck, @PathVariable Long id){
         log.info("Adding FoodTruck");
-        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck),accountRepository.getById(id));
+        FoodTruck newFoodTruck = new FoodTruck(new JSONObject(strFoodTruck),accountRepository.findById(id).get());
         return foodTruckRepository.save(newFoodTruck);
     }
 
     @PostMapping("/updatetruck/{id}")
-    FoodTruck updateAccount(@RequestBody String strTruck, @PathVariable Long id){
+    FoodTruck updateTruck(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
         FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
             .orElseThrow(() -> new FoodTruckNotFound(id));
-        
+
         if (newTruck.getString("name") != ""){
             trucktoUpdate.setName(newTruck.getString("name"));
         }
@@ -178,6 +213,12 @@ public class FoodTruckController {
         if (newTruck.getString("price") != "" && !newTruck.getString("price").equals("Select...")){
             trucktoUpdate.setPriceRange(FoodTruckPrice.getPrice(newTruck.getString("price")));
         }
+        if (newTruck.getString("openTime") != ""){
+            trucktoUpdate.setOpenTime(newTruck.getString("openTime"));
+        }
+        if (newTruck.getString("closeTime") != ""){
+            trucktoUpdate.setCloseTime(newTruck.getString("closeTime"));
+        }
         if (newTruck.getString("operational") != "" && !newTruck.getString("operational").equals("Select...")){
             if (newTruck.getString("operational").equals("Yes"))
                 trucktoUpdate.setOperational(true);
@@ -186,6 +227,18 @@ public class FoodTruckController {
             }
         }
         log.info("Updated FoodTruck: " + trucktoUpdate.getName());
+        return foodTruckRepository.save(trucktoUpdate);
+    }
+
+    @PostMapping("/updatelocation/{id}")
+    FoodTruck updateLocation(@RequestBody String strTruck, @PathVariable Long id){
+        JSONObject newTruck = new JSONObject(strTruck);
+        FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
+                .orElseThrow(() -> new FoodTruckNotFound(id));
+
+        trucktoUpdate.setLocationLat(newTruck.getString("latitude"));
+        trucktoUpdate.setLocationLng(newTruck.getString("longitude"));
+        log.info("Updated location: " + trucktoUpdate.getLocationLat() + " " + trucktoUpdate.getLocationLng());
         return foodTruckRepository.save(trucktoUpdate);
     }
 

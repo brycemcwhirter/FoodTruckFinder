@@ -49,7 +49,8 @@ class FoodTruckFollowing extends Component{
             return (<tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.priceRange}</td>
+              <td>{truck.address}</td>
+              <td>{truck.openTime} - {truck.closeTime}</td>
               <td>{truck.address},  {truck.city}, {truck.state}</td>
               <td>{this.truckRating(truck)}</td>
               <td>
@@ -96,6 +97,8 @@ class FoodTruckFollowing extends Component{
                 <th scope="col">Address</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Rating</th>
+                <th scope="col">Rating</th>
+                <th scope="col">View</th>
                 </tr>
             </thead>
             <tbody className="tableColors">

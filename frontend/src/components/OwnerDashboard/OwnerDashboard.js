@@ -11,7 +11,7 @@ class OwnerDashboard extends Component {
         loggedin: false,
         currAccount: [],
         trucks: [],
-        accounts: []
+        accounts: [],
     };
 
     handleSubmit(event) {
@@ -33,6 +33,7 @@ class OwnerDashboard extends Component {
         const body3 = await response3.json();
         const response4 = await fetch('/accounts');
         const body4 = await response4.json();
+       
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3, accounts: body4});
     }
 
@@ -109,6 +110,7 @@ class OwnerDashboard extends Component {
               <td>{truck.type}</td>
               <td>{truck.priceRange}</td>
               <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{truck.openTime} - {truck.closeTime}</td>
           <td>{this.truckRating(truck)}</td>
           <td>{this.truckOperating(truck)}</td>
           <td>
@@ -154,13 +156,14 @@ class OwnerDashboard extends Component {
                         <table class="table table-striped table-hover owner-table-style">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Rating</th>
-                                        <th scope="col">Operating</th>
-                                        <th scope="col">Edit</th>
+                                        <th scope="col" style={{width: "15%"}}>Name</th>
+                                        <th scope="col" style={{width: "10%"}}>Type</th>
+                                        <th scope="col" style={{width: "5%"}}>Price</th>
+                                        <th scope="col" style={{width: "20%"}}>Address</th>
+                                        <th scope="col" style={{width: "15%"}}>Hours</th>
+                                        <th scope="col" style={{width: "12%"}}>Rating</th>
+                                        <th scope="col" style={{width: "10%"}}>Operating</th>
+                                        <th scope="col" style={{width: "8%"}}>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tableColors">

@@ -26,6 +26,10 @@ public class FoodTruck {
     private Integer rating;
     private Boolean operational;
     private FoodTruckPrice priceRange;
+    private String locationLat;
+    private String locationLng;
+    private String openTime;
+    private String closeTime;
     @ManyToOne
     private Account owner;
     @ManyToMany(mappedBy="subscribedTrucks", cascade=CascadeType.ALL)
@@ -38,6 +42,38 @@ public class FoodTruck {
 
     public void removeSubscriber(Account account){
         subscribers.remove(account);
+    }
+
+    public String getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
+
+    public String getLocationLat() {
+        return locationLat;
+    }
+
+    public void setLocationLat(String locationLat) {
+        this.locationLat = locationLat;
+    }
+
+    public String getLocationLng() {
+        return locationLng;
+    }
+
+    public void setLocationLng(String locationLng) {
+        this.locationLng = locationLng;
     }
 
     public List<Account> getSubscribers() {
@@ -98,6 +134,8 @@ public class FoodTruck {
         this.type = FoodTruckType.getType(t);
         this.rating = -1;
         this.operational = true;
+        this.openTime = newFoodTruck.getString("openTime");
+        this.closeTime = newFoodTruck.getString("closeTime");
         this.owner = owner;
 
         log.info("Adding Truck: " + this.name + " " + this.type + " " + this.address);
