@@ -29,15 +29,44 @@ class ViewFoodTruck extends Component {
 
    hasRoutes(){
         const { routes } = this.state;
+        const routeList = routes.map((route, index) => {
+            return <div>
+            Stop {index+1}: {route.address}, {route.city}, {route.state}
+          </div>
+        });
         if (routes.length == 0){
             return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any stops within their route currently</h5>
+        } else {
+            return<div className="routeBackground">
+                {routeList}
+                </div>
         }
    }
 
    hasReviews(){
     const { reviews } = this.state;
+    const reviewList = reviews.map(review => {
+        if (review.account.id == localStorage.getItem("UserID")){
+            var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+        } else {
+            var button = "";
+        }
+        return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
+            <div class="card-header">
+            {review.rating} Star(s) reviewed by {review.account.username} <span style={{float: "right"}}>{button}</span>
+            </div>
+            <div class="card-body">
+            <p class="card-text">{review.notes}</p>
+            </div>
+        </div>
+      </div>
+    });
     if (reviews.length == 0){
         return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any reviews</h5>
+    } else {
+        return <div class="row" className="reviewBackground">
+                {reviewList}
+                </div>
     }
 }
 
@@ -132,30 +161,6 @@ class ViewFoodTruck extends Component {
             }
         }
 
-
-        const routeList = routes.map((route, index) => {
-            return <div>
-            Stop {index+1}: {route.address}, {route.city}, {route.state}
-          </div>
-        });
-
-        const reviewList = reviews.map(review => {
-            if (review.account.id == localStorage.getItem("UserID")){
-                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
-            } else {
-                var button = "";
-            }
-            return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
-                <div class="card-header">
-                {review.rating} Star(s) reviewed by {review.account.username} <span style={{float: "right"}}>{button}</span>
-                </div>
-                <div class="card-body">
-                <p class="card-text">{review.notes}</p>
-                </div>
-            </div>
-          </div>
-        });
-
         if (localStorage.getItem("UserID") == null){
             var navBar = <AppNavbar/>
         } else {
@@ -168,7 +173,7 @@ class ViewFoodTruck extends Component {
         <div className="view-foodtruck-style">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-        <div class="container">
+        <div class="container"><br></br>
             <div className="FoodTruck-info">
                 <h1>{truck.name}</h1><hr></hr>
                 <h5>{truck.type} | {truck.priceRange} </h5>
@@ -189,18 +194,13 @@ class ViewFoodTruck extends Component {
             <div class="col">
                 <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Routes:</h4>
                 {this.hasRoutes()}
-                <div className="routeBackground">
-                {routeList}
-                </div>
+                
             </div>
             </div><br></br>
             <div class="col">
             <div>
                 <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Reviews:</h4>
                 {this.hasReviews()}
-                <div class="row" className="reviewBackground">
-                {reviewList}
-                </div>
             </div>
             </div>
               

@@ -2,8 +2,9 @@
     border: none;
 
     background-color: #6fa00f;
-    height: 100vh;
+    height:auto;
     gap: 50px;
+    padding-bottom: 15%;
 
 }
 
