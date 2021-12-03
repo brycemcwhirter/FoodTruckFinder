@@ -5,31 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99018d71-6b1f-4ab0-a397-e1871a935dd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/GuestDashboard/GuestMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AccountPages/FoodTruckFollowing.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AccountPages/FoodTruckFollowing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/GoogleMaps.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/GoogleMaps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/SearchFoodTrucks.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/SearchFoodTrucks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/GuestDashboard/GuestDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GuestDashboard/GuestDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/GuestDashboard/GuestTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/GuestDashboard/GuestTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/AddFoodTruck.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/AddFoodTruck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/ManageFoodTruck.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/ManageFoodTruck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/ManageRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/ManageRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/OwnerDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard/OwnerDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ViewCustomer/CustomerSubscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ViewCustomer/CustomerSubscriptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ViewFoodTruck.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ViewFoodTruck.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +102,7 @@
       <workItem from="1638307065938" duration="2170000" />
       <workItem from="1638458322926" duration="4322000" />
       <workItem from="1638472098097" duration="4327000" />
-      <workItem from="1638479999926" duration="7684000" />
+      <workItem from="1638479999926" duration="8684000" />
     </task>
     <servers />
   </component>
