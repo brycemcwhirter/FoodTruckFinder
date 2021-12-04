@@ -5,70 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99018d71-6b1f-4ab0-a397-e1871a935dd5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AddFoodTruck.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ManageAccount.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/NavBarLoggedIn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/OwnerDashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/FoodTruckFinder/v16/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Route.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/TestComponent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/accounts.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/avo.htm" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/images/avo.htm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/avo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/images/avo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/serviceWorker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/Account.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/Customer/Customer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckPrice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckType.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/Review.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/Route.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Exceptions/AccountNotFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Exceptions/FoodTruckNotFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Exceptions/ReviewNotFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/Exceptions/RouteNotFound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Route.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +58,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -109,14 +70,40 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/backend/src/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sheld.DESKTOP-JK1JFDM\Desktop\SoftwareIIProject\FoodTruckFinder\backend" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.FoodTruckRepositoryTests">
+    <configuration name="AccountRepositoryTests" type="JUnit" factoryName="JUnit">
+      <module name="FoodTruckFinder" />
+      <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
+      <option name="MAIN_CLASS_NAME" value="SoftwareII.FoodTruckFinder.AccountRepositoryTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FoodTruckRepositoryTests" type="JUnit" factoryName="JUnit">
+      <module name="FoodTruckFinder" />
+      <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
+      <option name="MAIN_CLASS_NAME" value="SoftwareII.FoodTruckFinder.FoodTruckRepositoryTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,10 +118,17 @@
     <configuration name="FoodTruckFinderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="FoodTruckFinder" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="SoftwareII.FoodTruckFinder.FoodTruckFinderApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.AccountRepositoryTests" />
+      <item itemvalue="JUnit.FoodTruckRepositoryTests" />
+      <item itemvalue="Spring Boot.FoodTruckFinderApplication" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -152,10 +146,22 @@
       <workItem from="1638227311325" duration="5958000" />
       <workItem from="1638285999170" duration="5864000" />
       <workItem from="1638307065938" duration="2170000" />
+      <workItem from="1638483700561" duration="10700000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

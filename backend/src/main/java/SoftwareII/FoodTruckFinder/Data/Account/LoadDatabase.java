@@ -17,7 +17,8 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(AccountRepository repo, FoodTruckRepository repo2, RouteRepository repo3, ReviewRepository repo4){
         return args -> {
-            /*Account testOwner = new Account("SheldonS", "sheldon_smith2@baylor.edu", "Password1!", AccountType.FOODTRUCKOWNER, FoodTruckType.ASIAN, FoodTruckPrice.$);
+            /*repo.deleteAll();
+            Account testOwner = new Account("SheldonS", "sheldon_smith2@baylor.edu", "Password1!", AccountType.FOODTRUCKOWNER, FoodTruckType.ASIAN, FoodTruckPrice.$);
             log.info("Adding " + repo.save(testOwner));
             Account testCustomer = new Account("TestCustomer", "test2@baylor.edu", "Password1!", AccountType.CUSTOMER, FoodTruckType.SEAFOOD, FoodTruckPrice.$$);
             log.info("Adding " + repo.save(testCustomer));
@@ -31,6 +32,7 @@ public class LoadDatabase {
             log.info("Adding " + repo3.save(new Route(testTruck, 3, "31.551","-97.118")));
             log.info("Adding " + repo4.save(new Review(5, "Great food, great service", testCustomer, testTruck)));
             log.info("Adding " + repo4.save(new Review(3, "Okay food, service could be improved", testCustomer, testTruck2)));*/
+            log.info(repo.findAll().toString());
         };
     }
 }
