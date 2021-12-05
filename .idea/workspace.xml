@@ -6,13 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="99018d71-6b1f-4ab0-a397-e1871a935dd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/test/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/AccountRepositoryTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/AccountRepositoryTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/FoodTruckRepositoryTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/FoodTruckRepositoryTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/ReviewRepositoryTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/ReviewRepositoryTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/RouteRepositoryTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/RouteRepositoryTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +71,7 @@
       <recent name="C:\Users\sheld.DESKTOP-JK1JFDM\Desktop\SoftwareIIProject\FoodTruckFinder\backend" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RouteRepositoryTests">
+  <component name="RunManager" selected="JUnit.RecommendationAlgorithmTest">
     <configuration name="AccountRepositoryTests" type="JUnit" factoryName="JUnit">
       <module name="FoodTruckFinder" />
       <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
@@ -86,6 +86,16 @@
       <module name="FoodTruckFinder" />
       <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
       <option name="MAIN_CLASS_NAME" value="SoftwareII.FoodTruckFinder.FoodTruckRepositoryTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecommendationAlgorithmTest" type="JUnit" factoryName="JUnit">
+      <module name="FoodTruckFinder" />
+      <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
+      <option name="MAIN_CLASS_NAME" value="SoftwareII.FoodTruckFinder.FoodTruckAlgorithmTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
@@ -137,6 +147,7 @@
       <item itemvalue="JUnit.FoodTruckRepositoryTests" />
       <item itemvalue="JUnit.RouteRepositoryTests" />
       <item itemvalue="JUnit.ReviewRepositoryTests" />
+      <item itemvalue="JUnit.RecommendationAlgorithmTest" />
       <item itemvalue="Spring Boot.FoodTruckFinderApplication" />
     </list>
   </component>
@@ -156,7 +167,7 @@
       <workItem from="1638227311325" duration="5958000" />
       <workItem from="1638285999170" duration="5864000" />
       <workItem from="1638307065938" duration="2170000" />
-      <workItem from="1638483700561" duration="13087000" />
+      <workItem from="1638483700561" duration="14445000" />
     </task>
     <servers />
   </component>
