@@ -5,4 +5,3 @@ build:
 
 run:
   web: npm start
-  worker: java -jar user-mysql.jar
