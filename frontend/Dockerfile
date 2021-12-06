@@ -12,7 +12,7 @@ RUN npm install
 #RUN npm install react-scripts@4.0.3
 
 COPY . .
-
+EXPOSE 3000
 #RUN npm run build
 
 CMD ["npm", "start"]
