@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99018d71-6b1f-4ab0-a397-e1871a935dd5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heroku.yml" beforeDir="false" afterPath="$PROJECT_DIR$/heroku.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +111,7 @@
       <workItem from="1638479999926" duration="8734000" />
       <workItem from="1638742371956" duration="512000" />
       <workItem from="1638753240158" duration="7695000" />
+      <workItem from="1638824954793" duration="1269000" />
     </task>
     <servers />
   </component>
