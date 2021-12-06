@@ -81,7 +81,10 @@ class AddFoodTruck extends Component {
         var validOpen = this.checkValidTime(newTruck.openTime);
         var validClose = this.checkValidTime(newTruck.closeTime);
 
-        if (!validOpen){
+        if (name == "" || type == "" || address == "" || city == "" || state == "Choose..." || zipcode == "" || price == "" 
+            || newTruck.openTime == "" || newTruck.closeTime == ""){
+            alert("You must fill out every field");
+        } else if (!validOpen){
             alert("The open time is not valid");
         } else if (!validClose){
             alert("The close time is not valid");
@@ -115,6 +118,15 @@ class AddFoodTruck extends Component {
    }
 
    render() {
+
+        if (localStorage.getItem("UserID") == null){
+            this.props.history.push("/");
+            alert("You must be logged in to view this page");
+        } else if (localStorage.getItem("Role") == "CUSTOMER"){
+            alert("You must be a food truck owner in order to view this page");
+            this.props.history.push("/dashboard/customer");
+        }
+
        return (
             <div>
             <NavbarLoggedIn/>
@@ -174,10 +186,6 @@ class AddFoodTruck extends Component {
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Upload Menu</label>
-                    <input type="file" id="menu"/>
-                </div>
                 <div class="form-group col-md-2">
                     <label>Price Type</label>
                     <select id="price" class="form-control">
@@ -194,7 +202,7 @@ class AddFoodTruck extends Component {
                     <label>Close Time</label>
                     <input id="inputClose" type="text" class="form-control"/>    
                 </div>
-            </div><div style={{textAlign: "right", paddingRight: "175px"}}>Enter time in format HH:MM XM</div>
+            </div><div style={{paddingLeft: "175px"}}>Enter time in format HH:MM XM</div>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Create</button>
             <div class="divider"/>
             <button type="submit" class="btn btn-danger" onClick={() => this.cancel()}>Cancel</button>
