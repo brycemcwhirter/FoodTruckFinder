@@ -19,6 +19,7 @@ class CustomerDashboard extends Component {
 
    
     componentDidMount() {
+        localStorage.setItem("ValidSearch", 0);
     }
    
 

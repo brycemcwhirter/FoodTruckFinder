@@ -63,11 +63,8 @@ class ProfileReviews extends Component{
 
         if (reviews.length == 0){
             return <div>
-                
-            <h2>You have not made any reviews yet</h2>
-
-            <h3>Go to a food trucks details page to write a review</h3>
-
+                <h2>You have not made any reviews yet</h2>
+                <h3>Go to a food trucks details page to write a review</h3>
             </div>
         } 
 
