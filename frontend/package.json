@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://host.docker.internal:8080"
+  "proxy": "https://still-retreat-57050.herokuapp.com"
 }
