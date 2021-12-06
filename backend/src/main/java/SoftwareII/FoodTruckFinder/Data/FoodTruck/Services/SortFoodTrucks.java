@@ -31,7 +31,7 @@ public class SortFoodTrucks {
             if (l.get(i).getType().toString().equals(type))
                 curPoints += 5;
             if (l.get(i).getPriceRange().toString().equals(price))
-                curPoints += 3;
+                curPoints += 4;
 
             points.set(i, curPoints);
             Logger log = LoggerFactory.getLogger(SortFoodTrucks.class);
