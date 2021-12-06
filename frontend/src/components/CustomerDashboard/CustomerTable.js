@@ -131,7 +131,6 @@ class Table extends Component{
             )
         });
 
-
         return(
         
         <div>
@@ -173,6 +172,8 @@ class Table extends Component{
         
     </div>
     </div>
+    
+    
 )
     }
 }

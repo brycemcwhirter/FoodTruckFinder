@@ -6,9 +6,9 @@ public enum FoodTruckPrice {
     $, $$, $$$;
 
     public static FoodTruckPrice getPrice(String s){
-        if (Objects.equals(s, "$")){
+        if(Objects.equals(s, "$")) {
             return $;
-        } else if (Objects.equals(s, "$$")){
+        }else if(Objects.equals(s, "$$")) {
             return $$;
         }else {
             return $$$;

@@ -5,8 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99018d71-6b1f-4ab0-a397-e1871a935dd5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/DashboardComponents/Table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/FoodTruckFollowing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckPrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Review/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/SoftwareII/FoodTruckFinder/FoodTruckFinderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AccountPages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AccountPages/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CustomerDashboard/CustomerTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/AccountType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Customer/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/Customer/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Account/LoadDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckPrice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckPrice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/FoodTruckType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/FoodTruck/Services/SortFoodTrucks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Review/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Review/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Review/ReviewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Review/ReviewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Route.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Route.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/RouteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Sortbyroutenum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Data/Route/Sortbyroutenum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/AccountNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/AccountNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/FoodTruckNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/FoodTruckNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/ReviewNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/ReviewNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/RouteNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/Exceptions/RouteNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SoftwareII/FoodTruckFinder/FoodTruckFinderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/SoftwareII/FoodTruckFinder/FoodTruckFinderApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +94,10 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -70,7 +124,22 @@
       <recent name="C:\Users\sheld.DESKTOP-JK1JFDM\Desktop\SoftwareIIProject\FoodTruckFinder\backend" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.AccountRepositoryTests">
+    <configuration name="AccountRepositoryTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FoodTruckFinder" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SoftwareII.FoodTruckFinder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SoftwareII.FoodTruckFinder" />
+      <option name="MAIN_CLASS_NAME" value="SoftwareII.FoodTruckFinder.AccountRepositoryTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -89,6 +158,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AccountRepositoryTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -111,7 +185,6 @@
       <workItem from="1638479999926" duration="8734000" />
       <workItem from="1638742371956" duration="512000" />
       <workItem from="1638753240158" duration="7695000" />
-      <workItem from="1638824954793" duration="1269000" />
     </task>
     <servers />
   </component>

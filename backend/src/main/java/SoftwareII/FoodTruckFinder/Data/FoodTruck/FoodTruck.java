@@ -17,8 +17,12 @@ public class FoodTruck {
     private @Id
     @GeneratedValue
     Long id;
+
+
+
     private String name;
     private FoodTruckType type;
+    private FoodTruckPrice price;
     private String address;
     private String city;
     private String state;
@@ -35,6 +39,9 @@ public class FoodTruck {
     @ManyToMany(mappedBy="subscribedTrucks", cascade=CascadeType.ALL)
     @JsonManagedReference
     private List<Account> subscribers = new ArrayList<>();
+
+
+
 
     public void addSubscriber(Account account){
         subscribers.add(account);
@@ -98,9 +105,10 @@ public class FoodTruck {
 
     public FoodTruck() {};
 
-    public FoodTruck(String n, FoodTruckType t, String a, String c, String s, String z){
+    public FoodTruck(String n, FoodTruckType t, FoodTruckPrice p, String a, String c, String s, String z){
         this.name = n;
         this.type = t;
+        this.price = p;
         this.address = a;
         this.city = c;
         this.state = s;
@@ -125,6 +133,7 @@ public class FoodTruck {
         Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
         String t = newFoodTruck.getString("type");
+        String p = newFoodTruck.getString("price");
         this.address = newFoodTruck.getString("address");
         this.city = newFoodTruck.getString("city");
         this.state = newFoodTruck.getString("state");
@@ -132,6 +141,7 @@ public class FoodTruck {
         String priceRangeStr = newFoodTruck.getString("price");
         this.priceRange = FoodTruckPrice.getPrice(priceRangeStr);
         this.type = FoodTruckType.getType(t);
+        this.price = FoodTruckPrice.getPrice(p);
         this.rating = -1;
         this.operational = true;
         this.openTime = newFoodTruck.getString("openTime");
@@ -151,9 +161,7 @@ public class FoodTruck {
     public void setRating(Integer rating) {
         this.rating = rating;
     }
-    public Integer setRating() {
-        return rating;
-    }
+
 
     public void setPriceRange(FoodTruckPrice priceRange) {
         this.priceRange = priceRange;
@@ -192,6 +200,9 @@ public class FoodTruck {
     }
 
     public FoodTruckType getType() {
+        if(type.equals(null)){
+            type = FoodTruckType.GENERAL;
+        }
         return type;
     }
 
@@ -199,7 +210,20 @@ public class FoodTruck {
         this.type = type;
     }
 
+    public FoodTruckPrice getPrice() {
+        return price;
+    }
+
+    public void setPrice(FoodTruckPrice price) {
+        this.price = price;
+    }
+
     public String getAddress() {
+
+        if(address.isEmpty()){
+            return "not specified";
+        }
+
         return address;
     }
 
@@ -208,6 +232,11 @@ public class FoodTruck {
     }
 
     public String getCity() {
+
+        if(city.isEmpty()){
+            return "not specified";
+        }
+
         return city;
     }
 
@@ -216,6 +245,11 @@ public class FoodTruck {
     }
 
     public String getState() {
+
+        if(state.isEmpty()){
+            return "not specified";
+        }
+
         return state;
     }
 
@@ -224,11 +258,20 @@ public class FoodTruck {
     }
 
     public String getZipcode() {
+
+        if(zipcode.isEmpty()){
+            return "not specified";
+        }
+
+
         return zipcode;
     }
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+
+
 
 }
