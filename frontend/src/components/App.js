@@ -9,6 +9,10 @@ class App extends Component {
 Now the App Component just acts as an entry point for other components/pages
 */
    render() {
+      if (localStorage.getItem("UserID") != null){
+         alert("You cannot access this page while logged in");
+         this.props.history.push('/dashboard/customer');
+     }
        return (
          <div>
            <BackgroundNotLoggedIn/>

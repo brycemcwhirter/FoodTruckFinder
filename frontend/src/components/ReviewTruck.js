@@ -29,6 +29,8 @@ class ReviewTruck extends Component {
 
         if (review.rating == "Select..."){
             alert("Please Select a Rating");
+        }else if (review.notes == ""){
+            alert("Please enter something into the text box");
         } else {
             const requestOptions = {
                 method: 'POST',
@@ -85,7 +87,7 @@ class ReviewTruck extends Component {
                                 </select>
                                 </div>
                                 <label htmlFor="text-input">Brief Description of Experience: <br></br></label>
-                                <textarea class="form-control" id="notes" rows="4" cols="50"/><br></br>
+                                <textarea class="form-control" id="notes" rows="4" cols="50" placeholder="256 character limit"/><br></br>
 
                                 <button class="btn btn-secondary" type="submit" onClick={() => this.handleSubmit()}>Create Review</button>
                                 <div class="divider"/>

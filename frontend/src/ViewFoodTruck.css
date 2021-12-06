@@ -1,23 +1,17 @@
 .view-foodtruck-style{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     border: none;
 
     background-color: #6fa00f;
-    height: 100vh;
+    height:auto;
     gap: 50px;
+    padding-bottom: 15%;
 
 }
 
 .FoodTruck-info { 
     font-family: 'Josefin Sans', sans-serif;
     color: white;
-    flex-grow: 4;
-}
-
-.FoodTruck-info > h1 { 
-    font-size: 75px;
+    text-align: center;
 }
 
 .view-foodtruck-buttons{
@@ -25,3 +19,23 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.routeBackground {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    background-color: #588008;
+    padding: 10px;
+  }
+
+  .reviewTable{
+    padding: 10px;
+    width: 50%;
+  }
+
+  .reviewBackground{
+      border-style: groove;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #588008;
+  }

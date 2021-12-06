@@ -19,9 +19,10 @@ class CustomerDashboard extends Component {
    }
 
    
-   componentDidMount() {
 
-   }
+    componentDidMount() {
+        localStorage.setItem("ValidSearch", 0);
+    }
    
 
    render() {
