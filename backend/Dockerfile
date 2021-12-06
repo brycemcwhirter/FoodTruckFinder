@@ -1,7 +1,7 @@
 FROM maven:3.8.3-openjdk-16 AS build
 WORKDIR /backend
-COPY backend/pom.xml /backend
-COPY backend/src /backend/src
+COPY pom.xml /backend
+COPY src /backend/src
 RUN mvn clean install -DskipTests
 
 
