@@ -23,6 +23,9 @@ export default class AppNavbar extends Component {
     <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
       <Nav className="ml-auto" navbar>
         <NavItem>
+          <NavLink tag={Link} to='/dashboard/guest'>Guest Dashboard</NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink tag={Link} to='/login'>Login</NavLink>
         </NavItem>
         <NavItem>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../ViewFoodTruck.css';
 import NavbarLoggedIn from './NavBarLoggedIn';
-import GoogleMaps from './CustomerDashboard/GoogleMaps'
+import AppNavbar from './Navbar';
 /*
 The form which was previously present in the App component has been moved to its own separate component.
 */
@@ -10,7 +10,8 @@ class ViewFoodTruck extends Component {
     state = {
         isLoading: true,
         truck: [],
-        reviews: []
+        reviews: [],
+        routes: []
     };
     
    handleSubmit(event) {
@@ -19,30 +20,81 @@ class ViewFoodTruck extends Component {
    }
 
    makeReview(){
+       if (localStorage.getItem("Role") == "Guest"){
+        alert("You must be logged in to review a food truck");
+       } else {
         this.props.history.push("/reviewtruck");
+       }
    }
 
+   hasRoutes(){
+        const { routes } = this.state;
+        if (routes.length == 0){
+            return <div>This food truck does not have any stops within their route currently</div>
+        }
+   }
+
+   hasReviews(){
+    const { reviews } = this.state;
+    if (reviews.length == 0){
+        return <div>This food truck does not have any reviews</div>
+    }
+}
+
    subscribe(){
-    /*const requestOptions = {
+    const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     };
     
-    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);*/
+    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
     alert("You are now subscribed to the food truck!");
+    window.location.reload();
    }
+
+   unsubscribe(){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    
+    fetch('unsubscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
+    alert("You are now unsubscribed to the food truck");
+    window.location.reload();
+   }
+
+   deleteReview(id){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    fetch('removereview/'+id, requestOptions);
+    fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
+    window.location.reload();
+    
+   }
+
 
    async componentDidMount() {
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
         const response2 = await fetch('/getreviewsbytruck/' + localStorage.getItem("TruckID"));
         const body2 = await response2.json();
-        this.setState({ isLoading: false, truck: body, reviews: body2 });
+        const response3 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
+        const body3 = await response3.json();
+        this.setState({ isLoading: false, truck: body, reviews: body2, routes: body3});
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
-   render() {
-        const { isLoading, truck, reviews } = this.state;
 
-        if (localStorage.getItem("UserID") == null){
+
+   render() {
+        const { isLoading, truck, reviews, routes } = this.state;
+
+        if (localStorage.getItem("UserID") == null && localStorage.getItem("Action") != "viewTruck"){
             alert("You must be logged in to view this page");
             this.props.history.push("/");
         } 
@@ -54,50 +106,77 @@ class ViewFoodTruck extends Component {
         if (isLoading) {
             return <p>Loading...</p>;
         }
+        var subButton = <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>;
+        for (let i = 0; i < truck.subscribers.length; i++){
+            if (truck.subscribers[i].id == localStorage.getItem("UserID")){
+                subButton = <button class="btn btn-secondary" onClick={() => this.unsubscribe()}>Unsubscribe from Food Truck</button>
+            }
+        }
+
+
+        const routeList = routes.map((route, index) => {
+            return <div>
+            Stop {index+1}: {route.address}, {route.city}, {route.state}
+          </div>
+        });
 
         const reviewList = reviews.map(review => {
+            if (review.account.id == localStorage.getItem("UserID")){
+                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+            } else {
+                var button = "";
+            }
             return <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username}</h5>
+              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
               <p class="card-text">{review.notes}</p>
             </div>
           </div>
         });
+
+        if (localStorage.getItem("UserID") == null){
+            var navBar = <AppNavbar/>
+        } else {
+            var navBar = <NavbarLoggedIn/>
+        }
        
        return (
-        <div className="backgroundDashboard">
-        <NavbarLoggedIn />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+           <>
+        {navBar}
+        <div className="view-foodtruck-style">
 
-
-            <div class="container-fluid">
-
-            <div class="row justify-content-center header-for-dashboard">
-                <h1>View Food Truck</h1>
+            <div className="FoodTruck-info">
+                <h1>{truck.name}</h1> <br></br>
+                <h5>{truck.type} | {truck.priceRange} </h5>
+                <h5>{truck.address}, {truck.city}, {truck.state}</h5>
             </div>
-            <header className="App-header" style={{width: '60%'}}>
-            <div className="formBackground"><br></br>
-            <h5>Name: {truck.name}, Type: {truck.type}, Price: {truck.priceRange}, Location: {truck.address}, {truck.city}, {truck.state}</h5>
 
-            <div>
+
+            <div className="view-foodtruck-buttons">
                 <button class="btn btn-secondary">View Menu</button>
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
                 <div class="divider"/>
-                <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>
+                {subButton}
+            </div><br></br>
+            <div>
+                <h4>Routes:</h4>
+                {this.hasRoutes()}
+                <div style={{borderStyle: "solid"}, {backgroundColor: "white"}}>
+                {routeList}
+                </div>
             </div><br></br>
             <div>
                 <h4>Reviews:</h4>
+                {this.hasReviews()}
                 <h6>Number of Reviews: {reviews.length}</h6>
                 {reviewList}
             </div>
             
-            </div>  
-            </header> 
             
               
             </div>
-        </div>
+            </>
         );
    }
 }
