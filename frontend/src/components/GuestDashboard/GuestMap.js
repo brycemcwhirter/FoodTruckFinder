@@ -9,7 +9,7 @@ const mapStyles={
 
 Geocode.setApiKey("AIzaSyA-gMFepF4IYvOdIzjP1SN0SvmQgLyJZUY");
 
-class GoogleMapsTest extends Component{
+class GoogleMapsGuest extends Component{
 
     //Get the Addresses from the Database
 
@@ -31,27 +31,10 @@ class GoogleMapsTest extends Component{
     }
 
     async componentDidMount(){
-        const response = await fetch('/recommendedtrucks/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
-        const body = await response.json();
-        this.setState({ trucks: body});
         this.setState({ isLoading: false});
     }
 
-    
-    renderMarkers = async (truck) =>{
-        //trucks.map( (truck) => {
-        const response = Geocode.fromAddress(truck.address + " " + truck.city + " " + truck.state + " " + truck.zip);
-        response.then((result)=>{
-                const { lat, lng } = result.results[0].geometry.location;
-                this.state.truckLat.push(lat);
-                this.state.truckLng.push(lng);
-            console.log(result)
-            }).catch((err)=>{
-             console.log(err);
-            })
-        //})
-           
-    }
+  
 
     render(){
         const {isLoading, trucks} = this.state;
@@ -60,14 +43,6 @@ class GoogleMapsTest extends Component{
         if (isLoading) {
             return <p>Loading...</p>;
         }
-
-        const setMarker = trucks.map((truck, i) => {
-            var index = i+1;
-            return <Marker position={{
-                lat: truck.locationLat,
-                lng: truck.locationLng
-            }} label={index.toString()}/>
-        });
             
 
         return(
@@ -78,7 +53,6 @@ class GoogleMapsTest extends Component{
                     style={mapStyles}
                     initialCenter={{lat: 31.5493, lng: -97.1467}}
                 >
-                    {setMarker}
                 </Map>
             </div>
         )
@@ -87,5 +61,5 @@ class GoogleMapsTest extends Component{
 
 export default GoogleApiWrapper({
     apiKey:('AIzaSyD6WCgqYOmICfM4d29CP4_LN65Wk-Q-k-A')
-}) (GoogleMapsTest)
+}) (GoogleMapsGuest)
 

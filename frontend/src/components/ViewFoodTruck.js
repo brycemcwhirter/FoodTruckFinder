@@ -20,7 +20,11 @@ class ViewFoodTruck extends Component {
    }
 
    makeReview(){
+       if (localStorage.getItem("Role") == "Guest"){
+        alert("You must be logged in to review a food truck");
+       } else {
         this.props.history.push("/reviewtruck");
+       }
    }
 
    hasRoutes(){
@@ -38,13 +42,25 @@ class ViewFoodTruck extends Component {
 }
 
    subscribe(){
-    /*const requestOptions = {
+    const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     };
     
-    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);*/
+    fetch('subscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
     alert("You are now subscribed to the food truck!");
+    window.location.reload();
+   }
+
+   unsubscribe(){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    
+    fetch('unsubscribetotruck/'+localStorage.getItem("UserID")+"/"+localStorage.getItem("TruckID"), requestOptions);
+    alert("You are now unsubscribed to the food truck");
+    window.location.reload();
    }
 
    deleteReview(id){
@@ -73,6 +89,8 @@ class ViewFoodTruck extends Component {
         };
         fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
+
+
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
 
@@ -88,11 +106,17 @@ class ViewFoodTruck extends Component {
         if (isLoading) {
             return <p>Loading...</p>;
         }
+        var subButton = <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>;
+        for (let i = 0; i < truck.subscribers.length; i++){
+            if (truck.subscribers[i].id == localStorage.getItem("UserID")){
+                subButton = <button class="btn btn-secondary" onClick={() => this.unsubscribe()}>Unsubscribe from Food Truck</button>
+            }
+        }
 
 
         const routeList = routes.map((route, index) => {
             return <div>
-            Stop {index+1}: {route.latitude}, {route.longitude}
+            Stop {index+1}: {route.address}, {route.city}, {route.state}
           </div>
         });
 
@@ -133,7 +157,7 @@ class ViewFoodTruck extends Component {
                 <div class="divider"/>
                 <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
                 <div class="divider"/>
-                <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>
+                {subButton}
             </div><br></br>
             <div>
                 <h4>Routes:</h4>

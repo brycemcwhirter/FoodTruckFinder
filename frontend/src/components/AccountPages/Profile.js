@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../App.css'
-import NavbarLoggedIn from './NavBarLoggedIn';
+import '../../App.css'
+import NavbarLoggedIn from '../NavBarLoggedIn';
 import FoodTruckFollowing from './FoodTruckFollowing';
 import ProfileReviews from './ProfileReviews';
 

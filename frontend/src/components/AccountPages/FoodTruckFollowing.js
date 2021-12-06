@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class CustomerSubscriptions extends Component{
+class FoodTruckFollowing extends Component{
 
     state = {
         isLoading: true,
@@ -10,7 +10,7 @@ class CustomerSubscriptions extends Component{
     }
 
     async componentDidMount(){
-        const response = await fetch('/getsubscriptions/'+localStorage.getItem("SearchUserID"));  // send account info to backend to get 5 recommended trucks
+        const response = await fetch('/getsubscriptions/'+localStorage.getItem("UserID"));  // send account info to backend to get 5 recommended trucks
         const body = await response.json();
         this.setState({ isLoading: false, trucks: body});
     }
@@ -34,6 +34,12 @@ class CustomerSubscriptions extends Component{
         }
     };
 
+    viewTruck(id){
+        localStorage.setItem("ValidSearch", 1);
+        localStorage.setItem("TruckID", id);
+        localStorage.setItem("Action", "viewTruck");
+    }
+
     render(){
 
         const {isLoading, trucks} = this.state;
@@ -43,9 +49,13 @@ class CustomerSubscriptions extends Component{
             return (<tr key={truck.id}>
               <td>{truck.name}</td>
               <td>{truck.type}</td>
-              <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{truck.address}</td>
               <td>{truck.openTime} - {truck.closeTime}</td>
+              <td>{truck.address},  {truck.city}, {truck.state}</td>
               <td>{this.truckRating(truck)}</td>
+              <td>
+                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
+              </td>
           
             </tr>
             )
@@ -64,7 +74,9 @@ class CustomerSubscriptions extends Component{
             return(
                 <div>
                 
-                <h2>This account has not subscribed to any food truck yet.</h2>
+                <h2>You're not following any food trucks yet</h2>
+
+                <h3>Click on Dashboard to go follow some trucks</h3>
 
                 </div>
                 
@@ -85,6 +97,8 @@ class CustomerSubscriptions extends Component{
                 <th scope="col">Address</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Rating</th>
+                <th scope="col">Rating</th>
+                <th scope="col">View</th>
                 </tr>
             </thead>
             <tbody className="tableColors">
@@ -103,4 +117,4 @@ class CustomerSubscriptions extends Component{
 
 }
 
-export default CustomerSubscriptions;
+export default FoodTruckFollowing;

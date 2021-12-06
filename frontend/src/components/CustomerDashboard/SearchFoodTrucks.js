@@ -35,6 +35,8 @@ class SearchFoodTruck extends Component{
             var response = await fetch('trucksbyname/'+searchStr);
         } else if (searchType == "Type"){
             var response = await fetch('trucksbytype/'+searchStr);
+        } else if (searchType == "Time"){
+            var response = await fetch('trucksbytime/'+searchStr);
         } else {
             var response = await fetch('trucksbycity/'+searchStr);
         }
@@ -84,6 +86,7 @@ class SearchFoodTruck extends Component{
               <td>{truck.type}</td>
               <td>{truck.priceRange}</td>
               <td>{truck.address},  {truck.city}, {truck.state}</td>
+              <td>{truck.openTime} - {truck.closeTime}</td>
           <td>{this.truckRating(truck)}</td>
           <td>
                 <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
@@ -128,12 +131,13 @@ class SearchFoodTruck extends Component{
                         <table class="table table-striped table-hover owner-table-style">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Rating</th>
-                                        <th scope="col">View</th>
+                                        <th scope="col" style={{width: "10%"}}>Name</th>
+                                        <th scope="col" style={{width: "10%"}}>Type</th>
+                                        <th scope="col" style={{width: "5%"}}>Price</th>
+                                        <th scope="col" style={{width: "20%"}}>Address</th>
+                                        <th scope="col" style={{width: "10%"}}>Hours</th>
+                                        <th scope="col" style={{width: "10%"}}>Rating</th>
+                                        <th scope="col" style={{width: "10%"}}>View</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tableColors">

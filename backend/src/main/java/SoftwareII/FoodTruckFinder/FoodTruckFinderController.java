@@ -59,7 +59,7 @@ public class FoodTruckFinderController {
         if (newAccount.getString("username") != ""){
             accountToUpdate.setUsername(newAccount.getString("username"));
         }
-        if (newAccount.getString("email") != ""){
+        if (newAccount.getString("email") != "") {
             accountToUpdate.setEmail(newAccount.getString("email"));
         }
         log.info("Updating Type Preference to " + newAccount.getString("typePref"));
@@ -105,15 +105,25 @@ public class FoodTruckFinderController {
         accountRepository.save(account);
     }
 
+    @PostMapping("/unsubscribetotruck/{accountID}/{truckID}")
+    void unsubscribeToTruck(@PathVariable Long accountID, @PathVariable Long truckID){
+        FoodTruck foodTruck = foodTruckRepository.getById(truckID);
+        Account account = accountRepository.getById(accountID);
+        foodTruck.removeSubscriber(account);
+        account.removeSubscribedTruck(foodTruck);
+        foodTruckRepository.save(foodTruck);
+        accountRepository.save(account);
+    }
+
     @GetMapping("/gettrucksubscribers/{id}")
     List<Account> getSubscribers(@PathVariable Long id){
-        FoodTruck foodTruck = foodTruckRepository.getById(id);
+        FoodTruck foodTruck = foodTruckRepository.findById(id).get();
         return foodTruck.getSubscribers();
     }
 
     @GetMapping("/getsubscriptions/{id}")
     List<FoodTruck> getSubscriptions(@PathVariable Long id){
-        Account account = accountRepository.getById(id);
+        Account account = accountRepository.findById(id).get();
         return account.getSubscribedTrucks();
     }
 
