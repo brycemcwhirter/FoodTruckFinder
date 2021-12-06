@@ -79,7 +79,7 @@ class Table extends Component{
         const {account} = this.state;
         if (account.cityPreference == null){
             localStorage.setItem("ValidSearch", 0);
-            alert("You do not have a peference city");
+            alert("You do not have a city preference.  Please choose one on the account page.");
         } else {
             localStorage.setItem("ValidSearch", 1); 
             localStorage.setItem("SearchType", "City");

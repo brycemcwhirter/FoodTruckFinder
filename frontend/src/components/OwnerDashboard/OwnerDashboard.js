@@ -119,6 +119,12 @@ class OwnerDashboard extends Component {
           </td>
             </tr>
         });
+
+        if (trucks.length == 0){
+            var results = "You currently do not have any created food trucks.  Click the \"Add a Food Truck\" button in order to make a new truck.";
+        } else {
+            var results = "";
+        }
         
 
         return (
@@ -141,6 +147,7 @@ class OwnerDashboard extends Component {
                         </form>
                         <div class="row justify-content-center header-for-dashboard">Your Food Trucks</div>
 
+                        <div style={{color: "white", textAlign: "center"}}>{results}</div>
                         <div class="row justify-content-end" style={{paddingRight: "80px"}}>
                             <small className="muted">Add a Food Truck? <a href="/addfoodtruck">Click Here</a></small>
                         </div>   

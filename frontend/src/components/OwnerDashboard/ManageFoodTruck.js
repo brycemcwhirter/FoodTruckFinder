@@ -42,6 +42,9 @@ class ManageFoodTruck extends Component {
 
     validOpenClose(open, close){
         var valid = true;
+        if (open == "" || close == ""){
+            return false;
+        }
         var firstTime = open.split(":");
         var secondTime = close.split(":");
         var firstTime2 = firstTime[1].split(" ");
@@ -66,6 +69,7 @@ class ManageFoodTruck extends Component {
 
     
    async handleSubmit(event) {
+        const { truck } = this.state;
         var updatedTruck = new Object();
         updatedTruck.name = document.getElementById("name").value;
         updatedTruck.type = document.getElementById("type").value;
@@ -77,18 +81,25 @@ class ManageFoodTruck extends Component {
         updatedTruck.operational = document.getElementById("inputOperational").value;
         updatedTruck.openTime = document.getElementById("inputOpen").value;
         updatedTruck.closeTime = document.getElementById("inputClose").value;
+        if (updatedTruck.openTime == ""){
+            updatedTruck.openTime = truck.openTime;
+        }
+        if (updatedTruck.closeTime == ""){
+            updatedTruck.closeTime = truck.closeTime;
+        }
 
         var validOpen = this.checkValidTime(updatedTruck.openTime);
         var validClose = this.checkValidTime(updatedTruck.closeTime);
-        alert(updatedTruck.openTime);
 
         if (!validOpen && updatedTruck.openTime !== ""){
             alert("The open time is not valid");
         } else if (!validClose && updatedTruck.closeTime !== ""){
             alert("The close time is not valid");
+        } else if (updatedTruck.zipcode != "" && !Number.isInteger(parseInt(updatedTruck.zipcode, 10))){
+            alert("Zip code must be a number");
         }else {
             var openClose = this.validOpenClose(updatedTruck.openTime, updatedTruck.closeTime)
-            if (!openClose && updatedTruck.openTime !== "" && updatedTruck.closeTime !== ""){
+            if (updatedTruck.openTime !== "" && updatedTruck.closeTime !== "" && !openClose){
                 alert("Your chosen times are not valid.  Make sure that the open time is before the close time.");
             } else {
         

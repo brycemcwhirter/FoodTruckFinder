@@ -132,9 +132,9 @@ public class Account {
         } else {
             this.accountType = AccountType.FOODTRUCKOWNER;
         }
-        this.pricePreference = FoodTruckPrice.$;
-
-        this.typePreference = FoodTruckType.AMERICAN;
+        this.pricePreference = null;
+        this.typePreference = null;
+        this.cityPreference = null;
 
         log.info(this.email + " " + this.username + " " + this.password + " " + this.accountType);
     }

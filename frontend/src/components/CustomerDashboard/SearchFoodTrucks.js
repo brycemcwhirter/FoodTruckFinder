@@ -102,6 +102,12 @@ class SearchFoodTruck extends Component{
         } else {
             var navBar = <NavbarLoggedIn/>
         }
+
+        if (trucks.length == 0){
+            var results = "Sorry, there are no results for that search.  Please try searching for something else.";
+        } else {
+            var results = "";
+        }
         
 
         return (
@@ -126,11 +132,10 @@ class SearchFoodTruck extends Component{
                         <div class="row justify-content-center table-map-style">
 
 
+                        <div style={{color: "white"}}>{results}</div>
                         <div className="tablebg table-wrapper-scroll-y my-custom-scrollbar" style={{ color: 'black' }}>
 
                         
-
-
                         <table class="table table-striped table-hover owner-table-style">
                                 <thead>
                                     <tr>
