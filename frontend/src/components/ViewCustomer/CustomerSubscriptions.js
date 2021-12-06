@@ -88,11 +88,7 @@ class CustomerSubscriptions extends Component{
                 </tr>
             </thead>
             <tbody className="tableColors">
-                
-
                 {truckList}
-                
-                
 
             </tbody>
         </table>

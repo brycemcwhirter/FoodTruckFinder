@@ -15,30 +15,29 @@ class CustomerReviews extends Component{
         this.setState({ reviews : body, isLoading: false});
     }
 
-    deleteReview(id){
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        };
-        fetch('removereview/'+id, requestOptions);
-        fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
-        window.location.reload();
-        
-       }
+       hasReviews(){
+        const { reviews } = this.state;
+        const reviewList = reviews.map(review => {
+            return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
+                <div class="card-header">
+                {review.account.username} gave {review.foodtruck.name} {review.rating} Star(s)
+                </div>
+                <div class="card-body">
+                <p class="card-text">{review.notes}</p>
+                </div>
+            </div>
+          </div>
+        });
+        if (reviews.length != 0) {
+            return <div class="row" className="reviewBackground">
+                    {reviewList}
+                    </div>
+        }
+    }
 
     render(){
 
         const {isLoading, reviews} = this.state;
-
-
-        const reviewList = reviews.map(review => {
-            return <div class="col-6"><div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) for {review.foodtruck.name} <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button></h5>
-              <p class="card-text">{review.notes}</p>
-            </div>
-          </div></div>
-        });
 
         if(isLoading){
             return(
@@ -46,23 +45,23 @@ class CustomerReviews extends Component{
             )
         }
 
-
         if(reviews.length === 0){
             return(
                 <div>
                 
-                <h2>This user have not made any reviews yet.</h2>
+                <h2>This account has not reviews any food trucks yet.</h2>
 
                 </div>
                 
             )
         }
+        
 
         return(
 
             <div class="container">
                 <div class="row">
-                    {reviewList}
+                    {this.hasReviews()}
                             
                 </div>
             </div>
