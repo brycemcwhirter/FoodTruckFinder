@@ -5,7 +5,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/frontend
 ENV PATH /usr/src/frontend/node_modules/.bin:$PATH
 
-COPY package.json .
+COPY ../package.json .
 COPY package-lock.json .
 RUN npm install
 #RUN npm install --save http-proxy-middleware
