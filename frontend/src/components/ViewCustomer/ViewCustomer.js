@@ -22,9 +22,15 @@ class ViewCustomer extends Component{
 
         const {account} = this.state;
 
-        if (localStorage.getItem("ValidSearch") == "0"){
+        if (localStorage.getItem("UserID") == null){
+            alert("You must be logged in to view this page");
+            this.props.history.push("/");
+        } else if (localStorage.getItem("Role") == "CUSTOMER"){
+            alert("You must be a food truck owner in order to view this page");
+            this.props.history.push("/dashboard/customer");
+        } else if (localStorage.getItem("ValidSearch") == "0"){
             this.props.history.push("/dashboard/owner");
-        }
+        } 
 
         return(
             <div className="backgroundDashboard">

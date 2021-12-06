@@ -26,19 +26,34 @@ class ProfileReviews extends Component{
         
        }
 
+       hasReviews(){
+        const { reviews } = this.state;
+        const reviewList = reviews.map(review => {
+            if (review.account.id == localStorage.getItem("UserID")){
+                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+            } else {
+                var button = "";
+            }
+            return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
+                <div class="card-header">
+                You gave {review.foodtruck.name} {review.rating} Star(s) <span style={{float: "right"}}>{button}</span>
+                </div>
+                <div class="card-body">
+                <p class="card-text">{review.notes}</p>
+                </div>
+            </div>
+          </div>
+        });
+        if (reviews.length != 0){
+            return <div class="row" className="reviewBackground">
+                    {reviewList}
+                    </div>
+        }
+    }
+
     render(){
 
         const {isLoading, reviews} = this.state;
-
-
-        const reviewList = reviews.map(review => {
-            return <div class="col-6"><div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) for {review.foodtruck.name} <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button></h5>
-              <p class="card-text">{review.notes}</p>
-            </div>
-          </div></div>
-        });
 
         if(isLoading){
             return(
@@ -46,25 +61,18 @@ class ProfileReviews extends Component{
             )
         }
 
-
-        if(reviews.length === 0){
-            return(
-                <div>
-                
+        if (reviews.length == 0){
+            return <div>
                 <h2>You have not made any reviews yet</h2>
-
                 <h3>Go to a food trucks details page to write a review</h3>
-
-                </div>
-                
-            )
-        }
+            </div>
+        } 
 
         return(
 
             <div class="container">
                 <div class="row">
-                    {reviewList}
+                    {this.hasReviews()}
                             
                 </div>
             </div>

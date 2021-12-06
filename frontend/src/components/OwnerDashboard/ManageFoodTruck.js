@@ -78,23 +78,6 @@ class ManageFoodTruck extends Component {
         updatedTruck.openTime = document.getElementById("inputOpen").value;
         updatedTruck.closeTime = document.getElementById("inputClose").value;
 
-        /*Geocode.fromAddress(updatedTruck.address + " " + updatedTruck.city + " " + updatedTruck.state + " " + updatedTruck.zip).then((result)=>{
-                const { lat, lng } = result.results[0].geometry.location;
-                var truckLoc = new Object();
-                truckLoc.lat = lat;
-                truckLoc.lng = lng;
-                var locString = JSON.stringify(truckLoc);
-                const requestOptions2 = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: locString
-                };
-                fetch('updatelocation/'+localStorage.getItem("TruckID"), requestOptions2)
-            console.log(result)
-            }).catch((err)=>{
-             console.log(err);
-            })*/
-
         var validOpen = this.checkValidTime(updatedTruck.openTime);
         var validClose = this.checkValidTime(updatedTruck.closeTime);
         alert(updatedTruck.openTime);
@@ -253,10 +236,6 @@ class ManageFoodTruck extends Component {
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label>Upload Menu</label>
-                    <input type="file" id="menu"/>
-                </div>
                 <div class="form-group col-md-2">
                     <label>Change Price</label>
                     <select id="inputPrice" class="form-control" placeholder={truck.priceRange}>
@@ -282,7 +261,7 @@ class ManageFoodTruck extends Component {
                     <label>Close Time</label>
                     <input id="inputClose" type="text" class="form-control" placeholder={truck.closeTime}/>    
                 </div>
-            </div><div style={{textAlign: "right", paddingRight: "30px"}}>Enter time in format HH:MM XM</div><br></br>
+            </div><div style={{paddingLeft: "320px"}}>Enter time in format HH:MM XM</div><br></br>
             <button type="submit" class="btn btn-secondary" onClick={() => this.handleSubmit()}>Update</button>
             <div class="divider"/>
             <button type="button" class="btn btn-secondary" onClick={() => this.cancel()}>Cancel</button>

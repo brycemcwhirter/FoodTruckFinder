@@ -29,15 +29,44 @@ class ViewFoodTruck extends Component {
 
    hasRoutes(){
         const { routes } = this.state;
+        const routeList = routes.map((route, index) => {
+            return <div>
+            Stop {index+1}: {route.address}, {route.city}, {route.state}
+          </div>
+        });
         if (routes.length == 0){
-            return <div>This food truck does not have any stops within their route currently</div>
+            return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any stops within their route currently</h5>
+        } else {
+            return<div className="routeBackground">
+                {routeList}
+                </div>
         }
    }
 
    hasReviews(){
     const { reviews } = this.state;
+    const reviewList = reviews.map(review => {
+        if (review.account.id == localStorage.getItem("UserID")){
+            var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
+        } else {
+            var button = "";
+        }
+        return <div class="col-6" className="reviewTable"><div class="card bg-light" style={{border: "ridge"}}>
+            <div class="card-header">
+            {review.rating} Star(s) reviewed by {review.account.username} <span style={{float: "right"}}>{button}</span>
+            </div>
+            <div class="card-body">
+            <p class="card-text">{review.notes}</p>
+            </div>
+        </div>
+      </div>
+    });
     if (reviews.length == 0){
-        return <div>This food truck does not have any reviews</div>
+        return <h5 style={{color: "white", textAlign: "center"}}>This food truck does not have any reviews</h5>
+    } else {
+        return <div class="row" className="reviewBackground">
+                {reviewList}
+                </div>
     }
 }
 
@@ -90,6 +119,25 @@ class ViewFoodTruck extends Component {
         fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
    }
 
+   truckRating(truck){
+    if (truck.rating >= 0){
+        if (truck.rating == 1 || truck.rating == 0){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        } else if (truck.rating == 2){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 3){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 4){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span></div>
+        }else if (truck.rating == 5){
+            return <div><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></div>
+        }
+        
+    } else {
+        return <div>Not Yet Rated</div>
+    }
+};
+
 
    render() {
         const { isLoading, truck, reviews, routes } = this.state;
@@ -112,69 +160,58 @@ class ViewFoodTruck extends Component {
                 subButton = <button class="btn btn-secondary" onClick={() => this.unsubscribe()}>Unsubscribe from Food Truck</button>
             }
         }
-
-
-        const routeList = routes.map((route, index) => {
-            return <div>
-            Stop {index+1}: {route.address}, {route.city}, {route.state}
-          </div>
-        });
-
-        const reviewList = reviews.map(review => {
-            if (review.account.id == localStorage.getItem("UserID")){
-                var button = <button class="btn btn-danger btn-sm" onClick={() => this.deleteReview(review.id)} href="/viewfoodtruck">Delete</button>;
-            } else {
-                var button = "";
-            }
-            return <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{review.rating} Star(s) reviewed by {review.account.username} {button}</h5>
-              <p class="card-text">{review.notes}</p>
-            </div>
-          </div>
-        });
+        if (localStorage.getItem("Role") == "Guest"){
+            subButton = "";
+        }
 
         if (localStorage.getItem("UserID") == null){
             var navBar = <AppNavbar/>
         } else {
             var navBar = <NavbarLoggedIn/>
         }
+
+        if (localStorage.getItem("Role") == "Guest"){
+            var reviewButton = "";
+        } else {
+            var reviewButton = <><button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
+            <div class="divider"/></>
+        }
        
        return (
            <>
         {navBar}
         <div className="view-foodtruck-style">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+        <div class="container"><br></br>
             <div className="FoodTruck-info">
-                <h1>{truck.name}</h1> <br></br>
+                <h1>{truck.name}</h1><hr></hr>
                 <h5>{truck.type} | {truck.priceRange} </h5>
+                <h5> Overall Rating: {this.truckRating(truck)}</h5>
                 <h5>{truck.address}, {truck.city}, {truck.state}</h5>
-            </div>
-
-
-            <div className="view-foodtruck-buttons">
-                <button class="btn btn-secondary">View Menu</button>
-                <div class="divider"/>
-                <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
-                <div class="divider"/>
-                {subButton}
-            </div><br></br>
-            <div>
-                <h4>Routes:</h4>
-                {this.hasRoutes()}
-                <div style={{borderStyle: "solid"}, {backgroundColor: "white"}}>
-                {routeList}
+                <div>
+                    {reviewButton}
+                    {subButton}
                 </div>
-            </div><br></br>
-            <div>
-                <h4>Reviews:</h4>
-                {this.hasReviews()}
-                <h6>Number of Reviews: {reviews.length}</h6>
-                {reviewList}
             </div>
-            
-            
+
+
+            <br></br>
+            <div class="row">
+            <div class="col">
+                <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Routes:</h4>
+                {this.hasRoutes()}
+                
+            </div>
+            </div><br></br>
+            <div class="col">
+            <div>
+                <h4 style={{textAlign: "center", fontSize: "30px", color: "white"}}>Reviews:</h4>
+                {this.hasReviews()}
+            </div>
+            </div>
               
+            </div>
             </div>
             </>
         );

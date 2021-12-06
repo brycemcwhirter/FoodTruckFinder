@@ -33,6 +33,7 @@ class OwnerDashboard extends Component {
         const body3 = await response3.json();
         const response4 = await fetch('/accounts');
         const body4 = await response4.json();
+        localStorage.setItem("ValidSearch", 0);
        
         this.setState({ currAccount: body, isLoading: false, loggedin: body2, trucks: body3, accounts: body4});
     }

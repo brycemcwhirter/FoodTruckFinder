@@ -74,7 +74,10 @@ class SearchFoodTruck extends Component{
 
         if (localStorage.getItem("ValidSearch") == 0){
             this.props.history.push("/dashboard/customer");
-        } 
+        } else if (localStorage.getItem("UserID") == null && localStorage.getItem("ValidSearch") != 1){
+            alert("You must search to view this page");
+            this.props.history.push("/");
+        }
 
         if (isLoading) {
             return <p>Loading...</p>;
