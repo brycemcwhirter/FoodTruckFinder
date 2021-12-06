@@ -1,11 +1,10 @@
-package SoftwareII.FoodTruckFinder.Data.FoodTruck;
+package main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
-import SoftwareII.FoodTruckFinder.Data.Account.Account;
-import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.Services.SortFoodTrucks;
-import SoftwareII.FoodTruckFinder.Data.Review.*;
-import SoftwareII.FoodTruckFinder.Data.Route.*;
-import SoftwareII.FoodTruckFinder.Exceptions.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.Account;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.Services.SortFoodTrucks;
+import main.java.SoftwareII.FoodTruckFinder.Data.Review.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Route.*;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -49,7 +48,7 @@ public class FoodTruckController {
     //Finding One Item in food truck Repository
     @GetMapping("/foodtrucks/{id}")
     FoodTruck getFoodTruckByID(@PathVariable Long id){
-        return foodTruckRepository.findById(id).orElseThrow(() -> new FoodTruckNotFound(id));
+        return foodTruckRepository.findById(id).orElseThrow(() -> new SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound(id));
     }
 
     @GetMapping("/trucksbyname/{name}")
@@ -125,7 +124,7 @@ public class FoodTruckController {
     List<FoodTruck> subscribedTrucks(@PathVariable Long id){
         log.info("Getting Subscribed Food Trucks for user:" + id);
 
-        Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+        Account a = accountRepository.findById(id).orElseThrow(() -> new SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound(id));
 
         return a.getSubscribedTrucks();
     }
@@ -142,7 +141,7 @@ public class FoodTruckController {
 
 
         //Get The Account from the ID
-        Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+        Account a = accountRepository.findById(id).orElseThrow(() -> new SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound(id));
 
 
         String pricePref;
@@ -203,7 +202,7 @@ public class FoodTruckController {
     FoodTruck updateTruck(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
         FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
-            .orElseThrow(() -> new FoodTruckNotFound(id));
+            .orElseThrow(() -> new SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound(id));
 
         if (newTruck.getString("name") != ""){
             trucktoUpdate.setName(newTruck.getString("name"));
@@ -244,7 +243,7 @@ public class FoodTruckController {
     FoodTruck updateLocation(@RequestBody String strTruck, @PathVariable Long id){
         JSONObject newTruck = new JSONObject(strTruck);
         FoodTruck trucktoUpdate = foodTruckRepository.findById(id)
-                .orElseThrow(() -> new FoodTruckNotFound(id));
+                .orElseThrow(() -> new SoftwareII.FoodTruckFinder.Exceptions.FoodTruckNotFound(id));
 
         trucktoUpdate.setLocationLat(newTruck.getString("latitude"));
         trucktoUpdate.setLocationLng(newTruck.getString("longitude"));

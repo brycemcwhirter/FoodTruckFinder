@@ -1,6 +1,7 @@
 package main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.Account;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,7 +135,7 @@ public class FoodTruck {
     }
 
     public FoodTruck(JSONObject newFoodTruck, Account owner){
-        Logger log = LoggerFactory.getLogger(SoftwareII.FoodTruckFinder.Data.Account.Account.class);
+        Logger log = LoggerFactory.getLogger(main.java.SoftwareII.FoodTruckFinder.Data.Account.Account.class);
         this.name = newFoodTruck.getString("name");
         String t = newFoodTruck.getString("type");
         this.address = newFoodTruck.getString("address");

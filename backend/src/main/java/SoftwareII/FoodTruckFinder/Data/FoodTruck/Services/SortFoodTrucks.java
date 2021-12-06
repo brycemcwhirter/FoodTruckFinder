@@ -1,14 +1,14 @@
-package SoftwareII.FoodTruckFinder.Data.FoodTruck.Services;
+package main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.Services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckPrice;
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckType;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckPrice;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckType;
 
 import org.json.JSONObject;
 
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
 
 public class SortFoodTrucks {
 

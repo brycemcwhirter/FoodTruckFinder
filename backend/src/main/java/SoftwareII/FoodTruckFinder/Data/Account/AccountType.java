@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Account;
+package main.java.SoftwareII.FoodTruckFinder.Data.Account;
 
 public enum AccountType {
     CUSTOMER, FOODTRUCKOWNER

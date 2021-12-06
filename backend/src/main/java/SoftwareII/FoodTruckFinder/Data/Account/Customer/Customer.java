@@ -1,8 +1,8 @@
-package SoftwareII.FoodTruckFinder.Data.Account.Customer;
+package main.java.SoftwareII.FoodTruckFinder.Data.Account.Customer;
 
-import SoftwareII.FoodTruckFinder.Data.Account.Account;
-import SoftwareII.FoodTruckFinder.Data.Account.AccountType;
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.Account;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.AccountType;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
 import org.json.JSONObject;
 
 import java.util.List;

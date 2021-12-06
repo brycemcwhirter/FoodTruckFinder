@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Review;
+package main.java.SoftwareII.FoodTruckFinder.Data.Review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import org.json.JSONObject;
 
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
-import SoftwareII.FoodTruckFinder.Data.Account.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Account.*;
 
 @Entity
 public class Review {

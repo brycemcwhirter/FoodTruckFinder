@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Review;
+package main.java.SoftwareII.FoodTruckFinder.Data.Review;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

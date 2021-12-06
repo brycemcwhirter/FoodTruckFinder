@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Account;
+package main.java.SoftwareII.FoodTruckFinder.Data.Account;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.slf4j.Logger;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import java.util.Objects;
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
-import SoftwareII.FoodTruckFinder.Data.Review.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Review.*;
 
 @Entity
 public class Account {
@@ -26,15 +26,9 @@ public class Account {
 
     private String cityPreference;
     @ManyToMany
-<<<<<<< HEAD:src/main/java/SoftwareII/FoodTruckFinder/Data/Account/Account.java
-    @JoinTable(joinColumns = @JoinColumn(name = "truck_id"), 
-        inverseJoinColumns = @JoinColumn(name = "account_id"))
-    private List<FoodTruck> subscribedTrucks = new ArrayList<FoodTruck>();
-=======
     @JoinColumn(name="parent_id", referencedColumnName="parent_id")
     @JsonBackReference
     private List<FoodTruck> subscribedTrucks;
->>>>>>> sheldon:backend/src/main/java/SoftwareII/FoodTruckFinder/Data/Account/Account.java
 
     public Account() {
 

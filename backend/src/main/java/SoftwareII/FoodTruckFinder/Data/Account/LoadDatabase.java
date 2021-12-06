@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Account;
+package main.java.SoftwareII.FoodTruckFinder.Data.Account;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
-import SoftwareII.FoodTruckFinder.Data.Review.*;
-import SoftwareII.FoodTruckFinder.Data.Route.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Review.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.Route.*;
 
 @Configuration
 public class LoadDatabase {

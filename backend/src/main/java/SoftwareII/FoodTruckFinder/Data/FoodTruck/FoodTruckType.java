@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.FoodTruck;
+package main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package SoftwareII.FoodTruckFinder.Data.Route;
+package main.java.SoftwareII.FoodTruckFinder.Data.Route;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

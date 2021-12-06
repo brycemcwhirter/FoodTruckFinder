@@ -1,10 +1,10 @@
-package SoftwareII.FoodTruckFinder.Data.Route;
+package main.java.SoftwareII.FoodTruckFinder.Data.Route;
 
 import javax.persistence.*;
 
 import org.json.JSONObject;
 
-import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
+import main.java.SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 
 @Entity
 public class Route {
