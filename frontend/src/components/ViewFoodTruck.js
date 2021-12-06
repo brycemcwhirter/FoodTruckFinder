@@ -160,11 +160,21 @@ class ViewFoodTruck extends Component {
                 subButton = <button class="btn btn-secondary" onClick={() => this.unsubscribe()}>Unsubscribe from Food Truck</button>
             }
         }
+        if (localStorage.getItem("Role") == "Guest"){
+            subButton = "";
+        }
 
         if (localStorage.getItem("UserID") == null){
             var navBar = <AppNavbar/>
         } else {
             var navBar = <NavbarLoggedIn/>
+        }
+
+        if (localStorage.getItem("Role") == "Guest"){
+            var reviewButton = "";
+        } else {
+            var reviewButton = <><button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
+            <div class="divider"/></>
         }
        
        return (
@@ -180,10 +190,7 @@ class ViewFoodTruck extends Component {
                 <h5> Overall Rating: {this.truckRating(truck)}</h5>
                 <h5>{truck.address}, {truck.city}, {truck.state}</h5>
                 <div>
-                    <button class="btn btn-secondary">View Menu</button>
-                    <div class="divider"/>
-                    <button class="btn btn-secondary" onClick={() => this.makeReview()}>Review Food Truck</button>
-                    <div class="divider"/>
+                    {reviewButton}
                     {subButton}
                 </div>
             </div>

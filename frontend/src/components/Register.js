@@ -94,6 +94,11 @@ class Register extends Component {
 
         const { isLoading } = this.state;
 
+        if (localStorage.getItem("UserID") != null){
+            alert("You cannot access this page while logged in");
+            this.props.history.push('/dashboard/customer');
+        }
+
         if (isLoading) {
             return <p>Loading...</p>;
         }

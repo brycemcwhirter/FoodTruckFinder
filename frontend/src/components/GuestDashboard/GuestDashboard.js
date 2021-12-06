@@ -24,6 +24,10 @@ class GuestDashboard extends Component {
    
 
    render() {
+       if (localStorage.getItem("UserID") != null){
+            alert("You must be logged out to access this page");
+            this.props.history.push("/dashboard/customer");
+       }
        
        return (
            <div className="backgroundDashboard">
