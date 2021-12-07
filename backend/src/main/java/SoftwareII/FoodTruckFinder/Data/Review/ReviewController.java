@@ -80,6 +80,9 @@ public class ReviewController {
             log.info("Num reviews = " + numReviews);
             foodTruck.setRating(Math.floorDiv(totalPoints,numReviews));
             foodTruckRepository.save(foodTruck);
+        } else {
+            foodTruck.setRating(-1);
+            foodTruckRepository.save(foodTruck);
         }
     }
 

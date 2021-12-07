@@ -17,9 +17,6 @@ public class FoodTruck {
     private @Id
     @GeneratedValue
     Long id;
-
-
-
     private String name;
     private FoodTruckType type;
     private FoodTruckPrice price;

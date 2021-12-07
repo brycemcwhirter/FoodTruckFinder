@@ -5,10 +5,23 @@ import BackgroundNotLoggedIn from './BackgroundNotLoggedIn';
 
 class App extends Component {
   
-/*
-Now the App Component just acts as an entry point for other components/pages
-*/
+   state = {
+      isLoading: true
+  }
+
+
+
+  async componentDidMount(){
+      localStorage.clear();
+      this.setState({ isLoading: false});
+  }
    render() {
+      const {isLoading} = this.state;
+
+        if (isLoading) {
+            return <p>Loading...</p>;
+        }
+
       if (localStorage.getItem("UserID") != null){
          alert("You cannot access this page while logged in");
          this.props.history.push('/dashboard/customer');

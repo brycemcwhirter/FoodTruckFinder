@@ -258,6 +258,9 @@ public class FoodTruckController {
 
     @PostMapping("/removefoodtruck/{id}")
     void removeFoodTruck(@PathVariable Long id){
+        FoodTruck foodTruck = foodTruckRepository.findById(id)
+                .orElseThrow(() -> new FoodTruckNotFound(id));
+        log.info("Removing Food Truck");
         List<Route> allRoutes = routeRepository.findAll();
         for (int i = 0; i < allRoutes.size(); i++){
             if (allRoutes.get(i).getFoodTruck().getId() == id){
@@ -267,10 +270,20 @@ public class FoodTruckController {
         List<Review> allReviews = reviewRepository.findAll();
         for (int i = 0; i < allReviews.size(); i++){
             if (allReviews.get(i).getFoodtruck().getId() == id){
+                allReviews.get(i).setAccount(null);
                 reviewRepository.delete(allReviews.get(i));
             }
         }
-        foodTruckRepository.deleteById(id);
+        List<Account> allAccounts = accountRepository.findAll();
+        for (int i = 0; i < allAccounts.size(); i++){
+            //accountRepository.save(allAccounts.get(i));
+            //foodTruck.getSubscribers().remove(allAccounts.get(i));
+            allAccounts.get(i).getSubscribedTrucks().remove(foodTruck);
+            foodTruck.getSubscribers().remove(allAccounts.get(i));
+        }
+        log.info("Finished Removing");
+        foodTruck.setOwner(null);
+        foodTruckRepository.delete(foodTruck);
     }
 
     @GetMapping("/getownertrucks/{id}")

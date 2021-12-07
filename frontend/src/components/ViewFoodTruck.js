@@ -105,6 +105,11 @@ class ViewFoodTruck extends Component {
 
 
    async componentDidMount() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        const response4 = await fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
         const response = await fetch('/foodtrucks/' + localStorage.getItem("TruckID"));
         const body = await response.json();
         const response2 = await fetch('/getreviewsbytruck/' + localStorage.getItem("TruckID"));
@@ -112,11 +117,7 @@ class ViewFoodTruck extends Component {
         const response3 = await fetch('/gettruckroutes/' + localStorage.getItem("TruckID"));
         const body3 = await response3.json();
         this.setState({ isLoading: false, truck: body, reviews: body2, routes: body3});
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        };
-        fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions);
+        
    }
 
    truckRating(truck){
@@ -154,6 +155,12 @@ class ViewFoodTruck extends Component {
         if (isLoading) {
             return <p>Loading...</p>;
         }
+
+        if (localStorage.getItem("Action") == "Review"){
+            //window.location.reload();
+            localStorage.removeItem("Action");
+        }
+        
         var subButton = <button class="btn btn-secondary" onClick={() => this.subscribe()}>Subscribe to Food Truck</button>;
         for (let i = 0; i < truck.subscribers.length; i++){
             if (truck.subscribers[i].id == localStorage.getItem("UserID")){
