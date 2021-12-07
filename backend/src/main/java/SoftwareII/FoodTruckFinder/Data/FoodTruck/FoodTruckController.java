@@ -221,6 +221,9 @@ public class FoodTruckController {
         if (newTruck.getString("city") != ""){
             trucktoUpdate.setCity(newTruck.getString("city"));
         }
+        if (newTruck.getString("state") != "" && !newTruck.getString("state").equals("Select...")){
+            trucktoUpdate.setState(newTruck.getString("state"));
+        }
         if (newTruck.getString("zipcode") != ""){
             trucktoUpdate.setZipcode(newTruck.getString("zipcode"));
         }

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 This function used to directly load App.js to the root element. Now it has been modified to use the router configuration defined above.
 */
 ReactDOM.render(
+   
  <div>
     <RouterConfig/>
  </div>,
