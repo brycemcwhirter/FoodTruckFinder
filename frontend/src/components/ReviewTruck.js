@@ -44,6 +44,7 @@ class ReviewTruck extends Component {
                 headers: { 'Content-Type': 'application/json' },
             };
             fetch('updaterating/'+localStorage.getItem("TruckID"), requestOptions2);
+            localStorage.setItem("Action", "Review");
             this.props.history.push("viewfoodtruck");
         }
     }

@@ -121,6 +121,16 @@ public class FoodTruckController {
     }
 
 
+    @GetMapping("/subscribedTrucks/{id}")
+    List<FoodTruck> subscribedTrucks(@PathVariable Long id){
+        log.info("Getting Subscribed Food Trucks for user:" + id);
+
+        Account a = accountRepository.findById(id).orElseThrow(() -> new AccountNotFound(id));
+
+        return a.getSubscribedTrucks();
+    }
+
+
     // Finding Recommended Food Trucks when a user opens Dashboard
     @GetMapping("/recommendedtrucks/{id}")
     List<FoodTruck> recommendedTrucks(@PathVariable Long id){
@@ -155,8 +165,12 @@ public class FoodTruckController {
                 .sortRecommended
                         (trucks, typePref, pricePref);
 
-        for (int i = 0; i < Math.min(5, trucks.size()); i++) {                  // only add top 5 to list to send back to frontend
-            recommended.add(trucks.get(i));
+        int index = 0;
+        for (int i = 0; i < trucks.size() && index < Math.min(trucks.size(),5); i++) { // only add top 5 to list to send back to frontend
+            if (trucks.get(i).getOperational()){
+                recommended.add(trucks.get(i));
+                index++;
+            }
         }
         return recommended;
 
@@ -244,6 +258,9 @@ public class FoodTruckController {
 
     @PostMapping("/removefoodtruck/{id}")
     void removeFoodTruck(@PathVariable Long id){
+        FoodTruck foodTruck = foodTruckRepository.findById(id)
+                .orElseThrow(() -> new FoodTruckNotFound(id));
+        log.info("Removing Food Truck");
         List<Route> allRoutes = routeRepository.findAll();
         for (int i = 0; i < allRoutes.size(); i++){
             if (allRoutes.get(i).getFoodTruck().getId() == id){
@@ -253,10 +270,20 @@ public class FoodTruckController {
         List<Review> allReviews = reviewRepository.findAll();
         for (int i = 0; i < allReviews.size(); i++){
             if (allReviews.get(i).getFoodtruck().getId() == id){
+                allReviews.get(i).setAccount(null);
                 reviewRepository.delete(allReviews.get(i));
             }
         }
-        foodTruckRepository.deleteById(id);
+        List<Account> allAccounts = accountRepository.findAll();
+        for (int i = 0; i < allAccounts.size(); i++){
+            //accountRepository.save(allAccounts.get(i));
+            //foodTruck.getSubscribers().remove(allAccounts.get(i));
+            allAccounts.get(i).getSubscribedTrucks().remove(foodTruck);
+            foodTruck.getSubscribers().remove(allAccounts.get(i));
+        }
+        log.info("Finished Removing");
+        foodTruck.setOwner(null);
+        foodTruckRepository.delete(foodTruck);
     }
 
     @GetMapping("/getownertrucks/{id}")

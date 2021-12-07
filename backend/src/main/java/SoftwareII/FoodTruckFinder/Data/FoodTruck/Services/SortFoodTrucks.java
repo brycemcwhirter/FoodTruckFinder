@@ -28,14 +28,15 @@ public class SortFoodTrucks {
             int curPoints = points.get(i);
 
             curPoints += l.get(i).getRating(); // add rating points
+            if (l.get(i).getRating() == -1){
+                curPoints += 3;
+            }
             if (l.get(i).getType().toString().equals(type))
                 curPoints += 5;
             if (l.get(i).getPriceRange().toString().equals(price))
-                curPoints += 3;
+                curPoints += 4;
 
             points.set(i, curPoints);
-            Logger log = LoggerFactory.getLogger(SortFoodTrucks.class);
-            log.info(l.get(i).getName() + " points = " + curPoints);
         }
 
         while (!sorted) { // sort by price

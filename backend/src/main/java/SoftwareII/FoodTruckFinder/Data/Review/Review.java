@@ -1,9 +1,7 @@
 package SoftwareII.FoodTruckFinder.Data.Review;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 import org.json.JSONObject;
 
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
@@ -15,18 +13,11 @@ public class Review {
     private Integer rating;
     private String notes;
     @ManyToOne
-    private Account account;
-    @ManyToOne
     private FoodTruck foodtruck;
+    @ManyToOne
+    private Account account;
 
     public Review(){}
-
-    public Review(Integer rating, String notes, Account account, FoodTruck foodtruck) {
-        this.rating = rating;
-        this.notes = notes;
-        this.account = account;
-        this.foodtruck = foodtruck;
-    }
 
     public Review(JSONObject newReview, FoodTruck foodTruck, Account account) {
         String ratingStr = newReview.getString("rating");

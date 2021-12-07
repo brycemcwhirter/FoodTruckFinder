@@ -8,16 +8,18 @@ import NavbarLoggedIn from '../NavBarLoggedIn';
 import Table from './CustomerTable'
 import GoogleMapsTest from './GoogleMaps'
 
-
-
 class CustomerDashboard extends Component {
-    
+    state = {
+        currAccount: [],
+        foodtrucks: []
+    };    
 
    handleSubmit(event) {
         alert("Test");
    }
 
    
+
     componentDidMount() {
         localStorage.setItem("ValidSearch", 0);
     }
@@ -37,8 +39,7 @@ class CustomerDashboard extends Component {
 
 
             <div class="row justify-content-center table-map-style">
-
-                <div class="col">
+                <div class="col-6">
                     <Table/>
                 </div>
                 <div class="col-6">

@@ -88,6 +88,8 @@ class AddFoodTruck extends Component {
             alert("The open time is not valid");
         } else if (!validClose){
             alert("The close time is not valid");
+        } else if (!Number.isInteger(parseInt(newTruck.zipcode, 10))){
+            alert("Zip code must be a number");
         }else {
             var openClose = this.validOpenClose(newTruck.openTime, newTruck.closeTime)
             if (!openClose){

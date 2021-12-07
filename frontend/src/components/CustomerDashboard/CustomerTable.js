@@ -79,7 +79,7 @@ class Table extends Component{
         const {account} = this.state;
         if (account.cityPreference == null){
             localStorage.setItem("ValidSearch", 0);
-            alert("You do not have a peference city");
+            alert("You do not have a city preference.  Please choose one on the account page.");
         } else {
             localStorage.setItem("ValidSearch", 1); 
             localStorage.setItem("SearchType", "City");
@@ -124,7 +124,7 @@ class Table extends Component{
               <td>{truck.address},  {truck.city}, {truck.state}</td>
               <td>{this.truckRating(truck)}</td>
               <td>
-                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">View Page</a>
+                <a class="btn btn-outline-secondary btn-sm" onClick={() => this.viewTruck(truck.id)} href="/viewfoodtruck">Details</a>
               </td>
           
             </tr>
@@ -155,12 +155,12 @@ class Table extends Component{
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Price</th>
-                <th scope="col">Address</th>
-                <th scope="col">Rating</th>
-                <th scope="col">View</th>
+                <th scope="col" style={{width: "20%"}}>Name</th>
+                <th scope="col" style={{width: "5%"}}>Type</th>
+                <th scope="col" style={{width: "2%"}}>Price</th>
+                <th scope="col" style={{width: "20%"}}>Address</th>
+                <th scope="col" style={{width: "15%"}}>Rating</th>
+                <th scope="col" style={{width: "7%"}}>View</th>
                 </tr>
             </thead>
             <tbody className="tableColors">
@@ -172,6 +172,8 @@ class Table extends Component{
         
     </div>
     </div>
+    
+    
 )
     }
 }

@@ -1,12 +1,16 @@
 package SoftwareII.FoodTruckFinder;
 
-import SoftwareII.FoodTruckFinder.Data.Account.*;
-import SoftwareII.FoodTruckFinder.Data.Review.*;
+import SoftwareII.FoodTruckFinder.Data.Account.Account;
+import SoftwareII.FoodTruckFinder.Data.Account.AccountRepository;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruck;
+import SoftwareII.FoodTruckFinder.Data.FoodTruck.FoodTruckRepository;
+import SoftwareII.FoodTruckFinder.Exceptions.AccountNotFound;
 import SoftwareII.FoodTruckFinder.Data.FoodTruck.*;
 import SoftwareII.FoodTruckFinder.Exceptions.*;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,18 +24,16 @@ public class FoodTruckFinderController {
     Logger log = LoggerFactory.getLogger(FoodTruckFinderController.class);
 
     private final AccountRepository accountRepository;
-    private final ReviewRepository reviewRepository;
     private final FoodTruckRepository foodTruckRepository;
 
-    FoodTruckFinderController(AccountRepository accountRepository, ReviewRepository reviewRepository, FoodTruckRepository foodTruckRepository){
+    FoodTruckFinderController(AccountRepository accountRepository, FoodTruckRepository foodTruckRepository){
         this.accountRepository = accountRepository;
-        this.reviewRepository = reviewRepository;
         this.foodTruckRepository = foodTruckRepository;
     }
 
     //Getting all the Items in the Repo
     @GetMapping("/accounts")
-    List<Account> all(){
+    List<Account> allAccounts(){
         return accountRepository.findAll();
     }
 
@@ -84,16 +86,16 @@ public class FoodTruckFinderController {
         return accountRepository.save(accountToUpdate);
     }
 
-    @PostMapping("/removeaccount/{id}")
-    void removeAccount(@PathVariable Long id){
+    /* @PostMapping("/removeaccount/{id}")
+    void removeAccount(@PathVariable Long id) {
         List<Review> allReviews = reviewRepository.findAll();
-        for (int i = 0; i < allReviews.size(); i++){
-            if (allReviews.get(i).getAccount().getId() == id){
+        for (int i = 0; i < allReviews.size(); i++) {
+            if (allReviews.get(i).getAccount().getId() == id) {
                 reviewRepository.delete(allReviews.get(i));
             }
         }
         accountRepository.deleteById(id);
-    }
+    }*/
 
     @PostMapping("/subscribetotruck/{accountID}/{truckID}")
     void subscribeToTruck(@PathVariable Long accountID, @PathVariable Long truckID){
