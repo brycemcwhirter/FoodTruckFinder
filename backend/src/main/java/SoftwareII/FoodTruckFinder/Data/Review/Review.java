@@ -36,7 +36,22 @@ public class Review {
         this.foodtruck = foodTruck;
         this.account = account;
     }
-    
+
+    public Review(Long id, Integer rating, String notes, FoodTruck foodtruck, Account account) {
+        this.id = id;
+        this.rating = rating;
+        this.notes = notes;
+        this.foodtruck = foodtruck;
+        this.account = account;
+    }
+
+    public Review(int i, String s, Account account, FoodTruck truck) {
+        this.rating = i;
+        this.notes = s;
+        this.foodtruck = truck;
+        this.account = account;
+    }
+
     public Long getId() {
         return id;
     }
